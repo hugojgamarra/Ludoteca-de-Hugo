@@ -1,0 +1,17 @@
+LUDOTECA DE HUGO — PWA
+
+Para instalarla como app, estos archivos deben servirse desde HTTPS (o localhost).
+Abrir index.html directamente desde Descargas (content:// o file://) no permite registrar
+el Service Worker de una PWA.
+
+Archivos:
+- index.html
+- manifest.webmanifest
+- sw.js
+- icon-192.png
+- icon-512.png
+
+Una vez publicada en HTTPS:
+1. Abrir la URL en Chrome para Android.
+2. Menú ⋮ > Instalar app / Añadir a pantalla de inicio.
+3. Después de la primera carga, funciona offline.
