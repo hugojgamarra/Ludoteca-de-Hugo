@@ -1,0 +1,44 @@
+const CACHE='ludoteca-hugo-v15-corrected';
+const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./icon-maskable-512.png',
+  "covers/cover-01-e9db0b4d76f1.png",
+  "covers/cover-02-282c796f9c56.jpg",
+  "covers/cover-03-d164a4e1d1e3.jpg",
+  "covers/cover-04-6f116f5cb2ae.jpg",
+  "covers/cover-05-e0f34e8ab828.jpg",
+  "covers/cover-06-187a4c8c24a1.jpg",
+  "covers/cover-07-e80980cf8c96.jpg",
+  "covers/cover-08-ae40c6b65d22.jpg",
+  "covers/cover-09-bb182ff83c77.jpg",
+  "covers/cover-10-ec24e4c1b103.jpg",
+  "covers/cover-11-c58074e257c2.jpg",
+  "covers/cover-12-4e8d850191b0.jpg",
+  "covers/cover-13-16791a17c4c7.jpg",
+  "covers/cover-14-6a81b94d59f3.jpg",
+  "covers/cover-15-8658a3da38df.jpg",
+  "covers/cover-16-ea66767a39b3.jpg",
+  "covers/cover-17-5302fa00eff7.jpg",
+  "covers/cover-18-f448d4b39ba6.jpg",
+  "covers/cover-19-d05dd49e07cd.jpg",
+  "covers/cover-20-8413569bc404.jpg",
+  "covers/cover-21-828388b9d925.jpg",
+  "covers/cover-22-201abdc6c176.jpg",
+  "covers/cover-23-39e394b861ed.jpg",
+  "covers/cover-24-88d653f9c1c3.jpg",
+  "covers/cover-25-9d1dabc67996.jpg",
+  "covers/cover-26-3ed17056fec6.jpg",
+  "covers/cover-27-399ee54b1cfc.jpg",
+  "covers/cover-28-308d64ec1bc3.jpg",
+  "covers/cover-29-8fe51a4c139d.jpg",
+  "covers/cover-30-7ceac92c77aa.jpg",
+  "covers/cover-31-6ae06a0d9143.png",
+  "covers/cover-32-17fb27931723.png",
+  "covers/cover-33-3f950932a50b.png",
+  "covers/cover-34-0a0d377a2f5a.png",
+  "covers/cover-35-uno-paraguay.png"
+];
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener('fetch',e=>{
+ if(e.request.mode==='navigate'){e.respondWith(fetch(e.request).then(r=>{const c=r.clone();caches.open(CACHE).then(x=>x.put('./index.html',c));return r}).catch(()=>caches.match('./index.html')));return;}
+ e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));
+});

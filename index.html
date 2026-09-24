@@ -1,0 +1,921 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#111214"><title>Ludoteca de Hugo</title>
+<style>
+:root{--bg:#f5f5f7;--card:#fff;--text:#171719;--muted:#71717a;--line:#e5e5e7;--accent:#202124;--chip:#eeeef0}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text)}
+body.dark{--bg:#0f1012;--card:#1a1b1f;--text:#f5f5f7;--muted:#a8abb2;--line:#303238;--accent:#f5f5f7;--chip:#282a2f}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top{max-width:1400px;margin:auto;padding:14px 16px 10px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+h1{font-size:25px;margin:0}.sub{font-size:12px;color:var(--muted);margin-top:2px}.iconbtn{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:13px;padding:9px 11px;font-size:17px}
+.controls{max-width:1400px;margin:auto;padding:0 16px 13px;display:grid;grid-template-columns:1fr auto;gap:8px}
+input,select,button{font:inherit}.search,select{width:100%;border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:13px;padding:11px 12px}
+.tabs{max-width:1400px;margin:auto;padding:0 16px 12px;display:flex;gap:7px;overflow:auto}.tab{white-space:nowrap;border:0;background:var(--chip);color:var(--text);padding:8px 12px;border-radius:999px}.tab.active{background:var(--accent);color:var(--bg)}
+main{max-width:1400px;margin:auto;padding:14px 16px 90px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:17px;overflow:hidden;box-shadow:0 2px 10px #0000000a;cursor:pointer}.pic{aspect-ratio:1;background:white}.pic img{width:100%;height:100%;object-fit:contain;display:block}.info{padding:11px 12px 13px;border-top:1px solid var(--line)}.id{font-size:10px;color:var(--muted)}.title{font-weight:700;margin:2px 0 7px}.facts{display:flex;gap:5px;flex-wrap:wrap}.chip{font-size:10px;background:var(--chip);padding:4px 7px;border-radius:999px;color:var(--text)}
+.empty{text-align:center;color:var(--muted);padding:50px 10px}.actions{position:static;transform:none;display:flex;gap:10px;max-width:1100px;margin:12px auto 4px;padding:0 18px}.primary{border:0;border-radius:999px;padding:12px 17px;background:#171719;color:white;box-shadow:0 5px 20px #0003}.secondary{border:1px solid var(--line);border-radius:999px;padding:12px 17px;background:var(--card);color:var(--text);box-shadow:0 5px 20px #0002}
+dialog{width:min(92vw,520px);border:1px solid var(--line);border-radius:22px;padding:0;background:var(--card);color:var(--text);box-shadow:0 20px 70px #0006}dialog::backdrop{background:#0008}.modalpic{background:white;border-radius:22px 22px 0 0;overflow:hidden;display:flex;align-items:center;justify-content:center}.modalpic img{width:100%;height:auto;max-height:55vh;object-fit:contain;display:block}.modalbody{padding:16px}.modalbody h2{margin:0 0 5px}.detailgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:14px 0}.detail{background:var(--chip);border-radius:12px;padding:10px}.detail small{display:block;color:var(--muted)}.close{width:100%;border:0;border-radius:13px;padding:11px;background:var(--accent);color:var(--bg)}
+.reco{padding:16px}.reco h2{margin-top:0}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.reco button.go{width:100%;margin-top:12px;border:0;border-radius:13px;padding:12px;background:var(--accent);color:var(--bg)}
+@media(max-width:600px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}main{padding:10px}.top,.controls,.tabs{padding-left:10px;padding-right:10px}.title{font-size:13px}.facts .chip:nth-child(n+3){display:none}.controls{grid-template-columns:1fr 105px}.actions{width:auto;padding:0 10px;margin:10px auto 2px}.actions button{flex:1}.formgrid{grid-template-columns:1fr}}
+
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.brand-logo{display:block;width:92px;height:72px;object-fit:contain;border-radius:14px;transition:.2s ease}
+.brand .sub{max-width:190px;line-height:1.25}
+body.dark .brand-logo{background:#fff;padding:4px;box-shadow:0 0 0 1px #34363c,0 3px 12px #0005}
+@media(max-width:600px){
+  .brand-logo{width:78px;height:62px}
+  .brand .sub{font-size:11px;max-width:150px}
+}
+
+/* V5 header: definitive transparent logo */
+.top{position:relative;justify-content:center;min-height:150px;padding-top:10px;padding-bottom:8px}
+.brand{width:100%;justify-content:center}
+.brand-logo{width:min(330px,68vw);height:132px;object-fit:contain;border-radius:0;background:transparent!important;padding:0!important;box-shadow:none!important}
+.top>.iconbtn{position:absolute;right:16px;top:18px}
+body.dark .brand-logo{background:transparent!important;padding:0!important;box-shadow:none!important}
+@media(max-width:600px){
+ .top{min-height:132px;padding-top:6px;padding-bottom:4px}
+ .brand-logo{width:min(300px,72vw);height:118px}
+ .top>.iconbtn{right:10px;top:12px}
+}
+
+@media(max-width:600px){
+  #detail{
+    width:calc(100vw - 24px);
+    max-height:calc(100dvh - 24px);
+    margin:auto;
+    overflow-y:auto;
+  }
+  #detail .modalpic{
+    width:100%;
+    height:auto;
+    aspect-ratio:auto;
+  }
+  #detail .modalpic img{
+    width:100%;
+    height:auto;
+    max-height:none;
+    object-fit:contain;
+  }
+}
+
+.recohint{color:var(--muted);margin-top:-4px}.recoresults{margin-top:16px;display:grid;gap:10px}
+.recopick{display:grid;grid-template-columns:74px 1fr;gap:12px;align-items:center;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:8px;cursor:pointer;color:var(--text)}
+.recopick img{width:74px;height:74px;object-fit:contain;background:#fff;border-radius:9px}
+.recopick b{display:block;font-size:15px}.recopick small{color:var(--muted);line-height:1.35;display:block;margin-top:3px}
+.recolabel{margin-top:16px;font-weight:800}.recoempty{color:var(--muted);margin-top:16px}
+
+html.modal-open, body.modal-open{
+  overflow:hidden !important;
+  overscroll-behavior:none !important;
+  touch-action:none;
+}
+dialog[open]{
+  overscroll-behavior:contain;
+  touch-action:pan-y;
+}
+
+.recoopt{display:flex;gap:9px;align-items:center;margin:12px 2px 4px;color:var(--muted);font-size:14px}
+.recoopt input{width:18px;height:18px}
+.recoscore{display:inline-block;margin-top:5px;font-size:12px;font-weight:800;color:var(--text)}
+</style><link rel="manifest" href="./manifest.webmanifest?v=4">
+<meta name="theme-color" content="#0f1012">
+
+<style id="expansion-spacing-final">
+.card .expbadge{
+  display:inline-block!important;
+  margin-top:24px!important;
+  margin-bottom:24px!important;
+  margin-left:12px!important;
+}
+</style>
+
+
+<style id="detail-alignment-final">
+#detailContent .detail-actions,
+#detailContent .history-block,
+#detailContent .play-counter{
+  margin-left:24px!important;
+  margin-right:24px!important;
+}
+</style>
+
+
+<style id="history-spacing-final">
+#detailContent .history-block{
+  margin-bottom:24px!important;
+}
+</style>
+
+<style>
+header img{object-fit:contain!important;background:transparent!important;border-radius:0!important;box-shadow:none!important}
+</style><style>
+.actions{
+ position:relative!important; inset:auto!important; left:auto!important; right:auto!important;
+ bottom:auto!important; top:auto!important; transform:none!important; z-index:2!important;
+ display:flex!important; visibility:visible!important; opacity:1!important;
+ width:auto!important; max-width:1100px!important; margin:12px auto 8px!important;
+ padding:0 18px!important; gap:10px!important;
+}
+.actions button{display:block!important;flex:1 1 0!important;min-height:48px!important}
+@media(max-width:600px){.actions{padding:0 18px!important;margin:10px auto 8px!important}}
+</style><style>
+.gameid,.game-id,.code,.gamecode,[data-role="game-id"]{display:none!important}
+</style><style>
+/* Preview: acciones principales en azul */
+.actions #recommend,
+.actions #surprise{
+  background:#2563eb!important;
+  color:#fff!important;
+  border-color:#2563eb!important;
+}
+.actions #recommend:hover,
+.actions #surprise:hover{
+  background:#1d4ed8!important;
+  border-color:#1d4ed8!important;
+}
+</style><style>
+/* Preview: acciones principales en amarillo */
+.actions #recommend,
+.actions #surprise{
+  background:#f4b928!important;
+  color:#171717!important;
+  border-color:#f4b928!important;
+}
+.actions #recommend:hover,
+.actions #surprise:hover{
+  background:#e4a915!important;
+  border-color:#e4a915!important;
+}
+</style><style>
+.catalog-status{max-width:1100px;margin:6px auto 2px;padding:0 18px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13px;color:var(--muted)}
+#clearFilters{display:none;border:1px solid var(--line);background:transparent;color:var(--text);border-radius:999px;padding:7px 11px;font-weight:750}
+.expbadge{display:inline-flex;border-radius:999px;padding:3px 7px;margin-top:5px;font-size:10px;font-weight:900;background:#fff0b8;color:#6b4b00;border:1px solid #f4b928}
+.detail-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.favbtn,.playedbtn{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:12px;padding:10px 12px;font-weight:800}.favbtn.on{background:#fff0b8;border-color:#f4b928;color:#5d4300}
+.surprise-card{display:flex;gap:12px;align-items:center}.surprise-card img{width:88px;height:88px;object-fit:contain;border-radius:12px;background:#fff}.surprise-actions{display:flex;gap:8px;margin-top:12px}.surprise-actions button{flex:1}
+@media(max-width:600px){.catalog-status{padding:0 12px}.grid{gap:10px!important}.card{border-radius:14px!important}.card .meta{font-size:11px!important}}
+</style><style>
+.play-counter{
+ display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+ margin-top:10px;padding:10px 12px;border:1px solid var(--line);
+ border-radius:12px;background:var(--panel)
+}
+.play-counter strong{margin-right:auto}
+.play-counter button{
+ width:36px;height:36px;border-radius:10px;border:1px solid var(--line);
+ background:transparent;color:var(--text);font-size:20px;font-weight:800
+}
+.play-last{width:100%;font-size:12px;color:var(--muted)}
+</style>
+<style id="utility-hide-fix">[data-v8-utility-original="1"],#exportData,#importData,#toggleStats{display:none!important}</style>
+
+<style id="utility-menu-position-final">
+.v8-more-wrap{
+  position:fixed!important;
+  top:16px!important;
+  left:16px!important;
+  right:auto!important;
+  z-index:9999!important;
+}
+#v8MoreMenu{
+  left:0!important;
+  right:auto!important;
+  top:50px!important;
+}
+</style>
+
+
+
+<style id="utility-menu-button-unified">
+#v8MoreBtn.v8-menu-trigger{
+  font-family:inherit!important;
+  box-shadow:none!important;
+}
+</style>
+
+
+<style id="utility-menu-exact-size">
+#v8MoreBtn.v8-menu-trigger{
+  width:auto!important;
+  height:auto!important;
+  min-width:0!important;
+  padding:9px 11px!important;
+  font-size:17px!important;
+  line-height:normal!important;
+  border:1px solid var(--line)!important;
+  border-radius:13px!important;
+  background:var(--card)!important;
+  color:var(--text)!important;
+  box-shadow:none!important;
+}
+</style>
+
+</head><body class="dark">
+<header><div class="top"><div class="brand">
+<img class="brand-logo" src="covers/cover-01-e9db0b4d76f1.png" alt="Ludoteca de Hugo">
+
+</div><button class="iconbtn" id="theme">◐</button></div>
+<div class="controls"><input class="search" id="q" placeholder="Buscar juego…"><select id="players"><option value="">Jugadores</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option value="9">8+</option></select></div>
+<div class="tabs" id="tabs"><button class="tab active" data-style="">Todos</button><button class="tab" data-style="Favoritos">Favoritos ♥</button><button class="tab" data-style="NuncaJugados">Nunca jugados</button><button class="tab" data-style="Familiar">Familiar</button><button class="tab" data-style="Party">Party</button><button class="tab" data-style="Estrategia">Estrategia</button><button class="tab" data-style="Cooperativo">Cooperativo</button><button class="tab" data-style="Deducción">Deducción</button><button class="tab" data-style="Destreza">Destreza</button></div></header>
+<div class="actions"><button class="secondary" id="recommend">¿Qué jugamos?</button><button class="primary" id="surprise">🎲 Sorpréndeme</button></div>
+
+<section class="library-tools" id="libraryTools">
+  <button type="button" id="toggleStats" data-v8-utility-original="1">📊 Estadísticas</button>
+  <button type="button" id="exportData" data-v8-utility-original="1">⇩ Exportar datos</button>
+  <button type="button" id="importData" data-v8-utility-original="1">⇧ Importar datos</button>
+  <input type="file" id="importFile" accept="application/json,.json" hidden>
+  <div class="stats-panel" id="statsPanel" hidden></div>
+</section>
+<div class="catalog-status"><span id="catalogCount">34 juegos</span><button id="clearFilters">Limpiar filtros</button></div>
+<main><section class="grid" id="grid"></section><div class="empty" id="empty" hidden>No hay juegos que coincidan con esos filtros.</div></main>
+
+<dialog id="detail"><div id="detailContent"></div></dialog>
+<dialog id="reco"><div class="reco"><h2>¿Qué jugamos?</h2>
+<p class="recohint">Cuéntame la situación y te propongo las mejores opciones de tu ludoteca.</p>
+<div class="formgrid">
+<select id="rp"><option value="">¿Cuántos juegan?</option><option value="1">1 jugador</option><option value="2">2 jugadores</option><option value="3">3 jugadores</option><option value="4">4 jugadores</option><option value="5">5 jugadores</option><option value="6">6 jugadores</option><option value="7">7 jugadores</option><option value="8">8 jugadores</option><option value="9">8+ jugadores</option></select>
+<select id="rt"><option value="">Tiempo disponible</option><option value="15">Hasta 15 min</option><option value="30">Hasta 30 min</option><option value="60">Hasta 60 min</option><option value="999">Sin límite</option></select>
+<select id="rx"><option value="">Tipo de experiencia</option><option value="Familiar">Familiar / relajado</option><option value="Party">Risas / fiesta</option><option value="Estrategia">Pensar / estrategia</option><option value="Cooperativo">Cooperar</option><option value="Deducción">Deducción / misterio</option><option value="Destreza">Habilidad / destreza</option><option value="Duelo">Duelo</option><option value="Abstracto">Abstracto</option></select>
+<select id="rd"><option value="">Cualquier dificultad</option><option value="Muy ligera">Muy ligera</option><option value="Ligera">Ligera</option><option value="Ligera-media">Ligera-media</option><option value="Media">Media</option></select>
+</div>
+<label class="recoopt"><input type="checkbox" id="rex"> Incluir expansiones como opciones</label>
+<button class="go" id="find">Buscar recomendaciones</button>
+<button class="close" style="margin-top:8px" onclick="reco.close()">Cerrar</button>
+<div id="recoResults"></div></div></dialog>
+<script>const games=[{"id":"J001","title":"Wingspan","img":"covers/cover-02-282c796f9c56.jpg","players":"1–5","duration":"40–70 min","difficulty":"Media","style":"Estrategia","age":"10+","note":"Construye una reserva natural y desarrolla un motor de aves.","publisher":"Stonemaier Games","designer":"Elizabeth Hargrave","year":"2019","mechanics":"Motor de cartas · gestión de recursos"},{"id":"J002","title":"Coffee Rush","img":"covers/cover-03-d164a4e1d1e3.jpg","players":"2–4","duration":"30 min","difficulty":"Ligera-media","style":"Familiar","age":"8+","note":"Compite como barista reuniendo ingredientes y completando pedidos.","publisher":"Korea Boardgames","designer":"Euijin Han","year":"2023","mechanics":"Contratos · movimiento en cuadrícula"},{"id":"J003","title":"Alta Sociedad","img":"covers/cover-04-6f116f5cb2ae.jpg","players":"3–5","duration":"15–30 min","difficulty":"Ligera","style":"Estrategia","age":"10+","note":"Puja por lujos sin terminar siendo la persona más pobre.","publisher":"Edición en español","designer":"Reiner Knizia","year":"1995","mechanics":"Subastas · gestión de mano"},{"id":"J004","title":"Alebrijes","img":"covers/cover-05-e0f34e8ab828.jpg","players":"3–6","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Evita puntos negativos jugando cartas y efectos en el momento oportuno.","publisher":"Fractal Juegos","designer":"Joel Escalante y Rafael Escalante","year":"2025","mechanics":"Bazas · gestión de mano · comodines"},{"id":"J005","title":"Taco Gato Cabra Queso Pizza","img":"covers/cover-06-187a4c8c24a1.jpg","players":"2–8","duration":"10 min","difficulty":"Muy ligera","style":"Party","age":"8+","note":"Juego rápido de atención, palabras y reflejos.","publisher":"Blue Orange / La Casa de la Educadora","designer":"Dave Campbell","year":"2017","mechanics":"Reflejos · reconocimiento de patrones"},{"id":"J006","title":"Taco Vuelta Cabra Queso Pizza","img":"covers/cover-07-e80980cf8c96.jpg","players":"2–8","duration":"10 min","difficulty":"Muy ligera","style":"Party","age":"8+","note":"Versión independiente y combinable con Taco Gato Cabra Queso Pizza.","publisher":"La Casa de la Educadora","designer":"Dave Campbell","year":"2020","mechanics":"Reflejos · reconocimiento"},{"id":"J007","title":"Vintage","img":"covers/cover-08-ae40c6b65d22.jpg","players":"3–5","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Colecciona objetos vintage y optimiza tus conjuntos.","publisher":"Matagot","designer":"Bruno Faidutti","year":"2020","mechanics":"Colección de conjuntos · cartas"},{"id":"J008","title":"Cereal Killer","img":"covers/cover-09-bb182ff83c77.jpg","players":"2–3","duration":"15 min","difficulty":"Ligera","style":"Deducción","age":"14+","note":"Enfrentamiento asimétrico entre asesino y detective.","publisher":"Ediciones Primigenio","designer":"Julián Tunni","year":"2025","mechanics":"Movimiento oculto · deducción · preguntas y respuestas"},{"id":"J009","title":"TimeBomb Deluxe","img":"covers/cover-10-ec24e4c1b103.jpg","players":"4–8","duration":"15 min","difficulty":"Ligera","style":"Deducción","age":"8+","note":"Agentes y terroristas intentan desactivar o detonar la bomba sin conocer todas las identidades.","publisher":"Primigenio","designer":"Yusuke Sato","year":"2024","mechanics":"Roles ocultos · equipos · deducción"},{"id":"J010","title":"SOS Titanic","img":"covers/cover-11-c58074e257c2.jpg","players":"1–5","duration":"30 min","difficulty":"Ligera-media","style":"Cooperativo","age":"14+","note":"Colabora para salvar pasajeros mientras el Titanic se hunde.","publisher":"Matagot / Devir","designer":"Bruno Cathala y Ludovic Maublanc","year":"2013","mechanics":"Cooperativo · solitario · gestión de cartas"},{"id":"J011","title":"Duelo por Cardia","img":"covers/cover-12-4e8d850191b0.jpg","players":"2 (4)","duration":"15 min","difficulty":"Ligera-media","style":"Duelo","age":"9+","note":"Duelo estratégico para conseguir cinco sellos. Incluye variante para 4.","publisher":"Devir","designer":"Mathieu Rivero y Faouzi Boughida","year":"2025","mechanics":"Selección simultánea · gestión de cartas"},{"id":"J012","title":"Hila-Dos","img":"covers/cover-13-16791a17c4c7.jpg","players":"2–4","duration":"15 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Juego inspirado en textiles mexicanos. Datos de jugadores, tiempo y edad confirmados en tu caja.","publisher":"Puercomonte","designer":"Sofía Salas y Sonia Santiago","year":"2019","mechanics":"Patrones · seis modalidades de juego"},{"id":"J013","title":"Bandido","img":"covers/cover-14-6a81b94d59f3.jpg","players":"1–4","duration":"15 min","difficulty":"Ligera","style":"Cooperativo","age":"6+","note":"Coopera para bloquear todos los túneles de escape de Bandido.","publisher":"Helvetiq","designer":"Martin Nedergaard Andersen","year":"2016","mechanics":"Cooperativo · estrategia · observación"},{"id":"J014","title":"Barbecubes","img":"covers/cover-15-8658a3da38df.jpg","players":"2–6","duration":"3–15 min","difficulty":"Muy ligera","style":"Destreza","age":"8+","note":"Apila piezas de barbacoa sin derribar la estructura.","publisher":"Big Potato Games","designer":"Brett J. Gilbert y Rob Sparks","year":"2025","mechanics":"Destreza · equilibrio"},{"id":"J015","title":"El Camarero","img":"covers/cover-16-ea66767a39b3.jpg","players":"2–10","duration":"15 min","difficulty":"Ligera","style":"Party","age":"8+","note":"Recuerda los pedidos y sirve correctamente los platos. Ilustrado por Nacho Rodríguez.","publisher":"Maldón","designer":"Maldón","year":"2018","mechanics":"Memoria · party"},{"id":"J016","title":"Cards vs Gravity","img":"covers/cover-17-5302fa00eff7.jpg","players":"2–8","duration":"15 min","difficulty":"Muy ligera","style":"Destreza","age":"10+","note":"Construye una estructura de cartas desafiando la gravedad.","publisher":"Big Potato Games","designer":"Steve Howe","year":"2023","mechanics":"Destreza · equilibrio · cartas"},{"id":"J017","title":"Flip 7","img":"covers/cover-18-f448d4b39ba6.jpg","players":"3–18","duration":"20 min","difficulty":"Muy ligera","style":"Party","age":"8+","note":"Sigue pidiendo cartas para sumar puntos, pero repetir un número hace perder la ronda.","publisher":"The Op Games","designer":"Eric Olsen","year":"2024","mechanics":"Push your luck · cartas"},{"id":"J018","title":"Giant UNO","img":"covers/cover-19-d05dd49e07cd.jpg","players":"2–10","duration":"No especificado","difficulty":"Muy ligera","style":"Familiar","age":"7+","note":"UNO en formato gigante con cartas sobredimensionadas.","publisher":"Mattel","designer":"Merle Robbins (UNO original)","year":"2020","mechanics":"Gestión de mano · descarte"},{"id":"J019","title":"Hitster Original","img":"covers/cover-20-8413569bc404.jpg","players":"2–10","duration":"~30 min","difficulty":"Muy ligera","style":"Party","age":"16+","note":"Escucha canciones y colócalas correctamente en tu línea temporal.","publisher":"Jumbo","designer":"Marcus Carleson","year":"2022","mechanics":"Música · cronología · trivia"},{"id":"J020","title":"Yo Soy Tu Peli","img":"covers/cover-21-828388b9d925.jpg","players":"4+","duration":"30 min","difficulty":"Muy ligera","style":"Party","age":"14+","note":"Juego de películas por equipos con 200 cartas y seis categorías.","publisher":"HelloFun","designer":"Regalador","year":"2022","mechanics":"Equipos · cine · creatividad"},{"id":"J021","title":"Jardinero","img":"covers/cover-22-201abdc6c176.jpg","players":"2–5","duration":"15 min","difficulty":"Muy ligera","style":"Familiar","age":"6+","note":"Ordena tus cartas del 1 al 7 siguiendo el crecimiento de una planta.","publisher":"Maldón","designer":"Maldón","year":"2022","mechanics":"Dados · gestión de mano"},{"id":"J022","title":"Scream: The Game","img":"covers/cover-23-39e394b861ed.jpg","players":"3–8","duration":"20 min","difficulty":"Muy ligera","style":"Cooperativo","age":"13+","note":"Coopera contra Ghost Face. Requiere aplicación/audio complementario.","publisher":"Funko Games","designer":"Aaron Donogh / Prospero Hall","year":"2023","mechanics":"Tiempo real · cooperativo · aplicación"},{"id":"J023","title":"Shiki","img":"covers/cover-24-88d653f9c1c3.jpg","players":"2–5","duration":"15 min","difficulty":"Muy ligera","style":"Familiar","age":"4+","note":"Juego familiar de cartas y dados basado en las estaciones del año.","publisher":"Maldón","designer":"Maldón","year":"2020","mechanics":"Cartas · dados"},{"id":"J024","title":"Tacta","img":"covers/cover-25-9d1dabc67996.jpg","players":"2–6","duration":"20 min","difficulty":"Ligera","style":"Abstracto","age":"7+","note":"Gira y superpone cartas para conectar y cubrir formas geométricas.","publisher":"The Op Games","designer":"Jason Tremblay","year":2025,"mechanics":"Patrones · colocación de cartas · espacial"},{"id":"J025","title":"Trio","img":"covers/cover-26-3ed17056fec6.jpg","players":"3–6","duration":"15 min","difficulty":"Ligera","style":"Deducción","age":"7+","note":"Busca tres cartas iguales recordando las manos rivales y el centro de la mesa.","publisher":"Cocktail Games / Devir","designer":"Kaya Miyano","year":"2021","mechanics":"Deducción · memoria · colección de conjuntos"},{"id":"J026","title":"Virus!","img":"covers/cover-27-399ee54b1cfc.jpg","players":"2–6","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Completa un cuerpo sano mientras infectas y saboteas a tus rivales.","publisher":"Tranjis Games","designer":"Carlos López, Domingo Cabrero y Santi Santisteban","year":"2015","mechanics":"Gestión de mano · interacción directa"},{"id":"J027","title":"Virus! 2 Evolution","img":"covers/cover-28-308d64ec1bc3.jpg","players":"2–6","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Expansión de Virus! con nuevas cartas y efectos. Requiere el juego base.","publisher":"Tranjis Games","designer":"Carlos López, Domingo Cabrero y Santi Santisteban","year":"2018","mechanics":"Expansión · gestión de mano"},{"id":"J028","title":"Virus! Halloween","img":"covers/cover-29-8fe51a4c139d.jpg","players":"2–6","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Expansión de Virus! con cartas temáticas de Halloween. Requiere Virus! para jugar.","publisher":"Tranjis Games","designer":"Carlos López, Domingo Cabrero y Santi Santisteban","year":"2020","mechanics":"Expansión · gestión de mano"},{"id":"J029","title":"Terapeuta de Pacotilla","img":"covers/cover-30-7ceac92c77aa.jpg","players":"3–8","duration":"15 min","difficulty":"Muy ligera","style":"Party","age":"17+","note":"Crea cómics de tres escenas combinando preguntas, respuestas y tratamientos absurdos.","publisher":"Exploding Kittens / Asmodee","designer":"Matthew Inman","year":"2024","mechanics":"Creatividad · humor · party"},{"id":"J030","title":"Hake Pombero","img":"covers/cover-31-6ae06a0d9143.png","players":"2–5","duration":"No especificado","difficulty":"Ligera","style":"Party","age":"No especificado","note":"Evita al Pombero usando ofrendas y cartas especiales mientras manipulas el mazo y complicas a tus rivales.","publisher":"DuarGames","designer":"Por verificar","year":"—","mechanics":"Gestión de mano · eliminación · interacción directa · manipulación del mazo"},{"id":"J031","title":"Secret Hitler","img":"covers/cover-32-17fb27931723.png","players":"5–10","duration":"45 min","difficulty":"Ligera","style":"Deducción","age":"13+","note":"Liberales y fascistas compiten mediante elecciones, votaciones y roles ocultos para controlar el gobierno.","publisher":"Goat Wolf & Cabbage","designer":"Mike Boxleiter, Tommy Maranges y Max Temkin","year":"2016","mechanics":"Roles ocultos · votación · equipos · deducción social"},{"id":"J032","title":"Esquinados","img":"covers/cover-33-3f950932a50b.png","players":"2–5","duration":"5–10 min","difficulty":"Muy ligera","style":"Familiar","age":"7+","note":"Todos juegan a la vez buscando una esquina cuya forma y color coincidan con la figura central.","publisher":"Maldón","designer":"Martin Nedergaard Andersen","year":"2023","mechanics":"Reconocimiento de patrones · velocidad · juego simultáneo"},{"id":"J033","title":"Tembleque","img":"covers/cover-34-0a0d377a2f5a.png","players":"2+","duration":"Variable","difficulty":"Muy ligera","style":"Destreza","age":"8+","note":"Retira un bloque de la torre y colócalo arriba sin provocar el derrumbe.","publisher":"Juegos Chiche","designer":"Por verificar","year":"—","mechanics":"Destreza · apilamiento · equilibrio · extracción de bloques"},{"id":"J034","title":"UNO Paraguay","img":"covers/cover-35-uno-paraguay.png","players":"2–10","duration":"15–30 min","difficulty":"Muy ligera","style":"Familiar","age":"7+","note":"Edición paraguaya de UNO con ilustraciones inspiradas en símbolos y elementos del país.","publisher":"Naxa","designer":"Merle Robbins (juego original)","year":"—","mechanics":"Gestión de mano · descarte · coincidencia de color y número · interacción directa"}];
+games.sort((a,b)=>a.title.localeCompare(b.title,"es",{sensitivity:"base"}));
+let style="",visible=[...games];
+const $=s=>document.querySelector(s), grid=$("#grid");
+function supports(g,n){if(!n)return true;let s=g.players;if(s==="—")return true;let nums=(s.match(/\d+/g)||[]).map(Number);if(!nums.length)return true;if(s.includes("–"))return n>=nums[0]&&n<=nums[1];if(s.includes("+"))return n>=nums[0];return nums.includes(n)}
+function minutes(g){let m=(g.duration.match(/\d+/g)||[]).map(Number);return m.length?Math.max(...m):999}
+function render(){let q=$("#q").value.toLowerCase().trim(),p=+$("#players").value||0;visible=games.filter(g=>(!q||(g.title+" "+g.note+" "+g.style+" "+(g.mechanics||"")+" "+(g.publisher||"")+" "+(g.designer||"")).toLowerCase().includes(q))&&supports(g,p)&&(!style||g.style===style));grid.innerHTML=visible.map(g=>`<article class="card" data-id="${g.id}"><div class="pic"><img src="${g.img}" alt="${g.title}"></div><div class="info"><div class="title">${g.title}</div><div class="facts"><span class="chip">👥 ${g.players}</span><span class="chip">⏱ ${g.duration}</span><span class="chip">${g.difficulty}</span></div></div></article>`).join("");const countEl=$("#count");if(countEl)countEl.textContent=visible.length;$("#empty").hidden=visible.length>0}
+function openGame(g){$("#detailContent").innerHTML=`<div class="modalpic"><img src="${g.img}" alt="${g.title}"></div><div class="modalbody"><h2>${g.title}</h2><div class="detailgrid"><div class="detail"><small>Jugadores</small>${g.players}</div><div class="detail"><small>Duración</small>${g.duration}</div><div class="detail"><small>Edad</small>${g.age}</div><div class="detail"><small>Dificultad</small>${g.difficulty}</div><div class="detail"><small>Editorial</small>${g.publisher||"—"}</div><div class="detail"><small>Año</small>${g.year||"—"}</div></div><p><small style="color:var(--muted)">DISEÑO</small><br><b>${g.designer||"—"}</b></p><p><small style="color:var(--muted)">MECÁNICAS</small><br>${g.mechanics||g.style}</p><p>${g.note}</p><button class="close" onclick="detail.close()">Cerrar</button></div>`;lockPage();$("#detail").showModal();$("#detail").scrollTop=0;requestAnimationFrame(()=>$("#detail").scrollTop=0)}
+grid.onclick=e=>{let c=e.target.closest(".card");if(c)openGame(games.find(g=>g.id===c.dataset.id))}
+$("#q").oninput=render;$("#players").onchange=render;
+$("#tabs").onclick=e=>{if(!e.target.matches(".tab"))return;document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));e.target.classList.add("active");style=["Favoritos","NuncaJugados"].includes(e.target.dataset.style)?"":e.target.dataset.style;render()}
+$("#surprise").onclick=()=>{
+ const expansionIds=new Set(["J027","J028"]);
+ const pool=visible.filter(g=>!expansionIds.has(g.id));
+ const choices=pool.length?pool:visible;
+ if(!choices.length)return;
+ openGame(choices[Math.floor(Math.random()*choices.length)]);
+}
+$("#recommend").onclick=()=>{lockPage();$("#recoResults").innerHTML="";$("#reco").showModal();$("#reco").scrollTop=0;}
+$("#find").onclick=()=>{
+ let p=+$("#rp").value||0,t=+$("#rt").value||0,d=$("#rd").value,x=$("#rx").value,includeExp=$("#rex").checked;
+ const diffRank={"Muy ligera":1,"Ligera":2,"Ligera-media":3,"Media":4};
+ const expansionIds=new Set(["J027","J028"]);
+ let ranked=games.filter(g=>(includeExp||!expansionIds.has(g.id))&&supports(g,p)&&(!t||t===999||minutes(g)<=t)).map(g=>{
+   let score=0,reasons=[];
+   if(p){score+=4;reasons.push(p===9?"apto para 8+ jugadores":`ideal para ${p} jugador${p===1?"":"es"}`)}
+   if(t&&t!==999){let min=minutes(g);score+=min<=t?3:0;if(min<=t)reasons.push(`cabe en ${t} min`)}
+   if(x){
+     if(g.style===x){score+=6;reasons.push(`es ${x.toLowerCase()}`)}
+     else if((x==="Party"&&["Destreza","Deducción","Familiar"].includes(g.style))||(x==="Familiar"&&["Party","Cooperativo"].includes(g.style))){score+=2}
+   } else score+=1;
+   if(d){
+     let delta=Math.abs((diffRank[g.difficulty]||2)-(diffRank[d]||2));
+     if(delta===0){score+=4;reasons.push(`dificultad ${d.toLowerCase()}`)}
+     else if(delta===1)score+=1;
+   } else score+=1;
+   // Prefer base games over expansions and reward exact short-session fit.
+   if(!expansionIds.has(g.id))score+=1;
+   return {g,score,reasons}
+ }).filter(o=>(!x||o.g.style===x||o.score>=8)&&(!d||Math.abs((diffRank[o.g.difficulty]||2)-(diffRank[d]||2))<=1))
+ .sort((a,b)=>b.score-a.score||minutes(a.g)-minutes(b.g)||a.g.title.localeCompare(b.g.title)).slice(0,3);
+ let box=$("#recoResults");
+ if(!ranked.length){box.innerHTML='<div class="recoempty">No encontré una coincidencia suficientemente buena. Prueba ampliando el tiempo o dejando libre un criterio.</div>';return}
+ box.innerHTML='<div class="recolabel">Mis recomendaciones</div><div class="recoresults">'+ranked.map((o,i)=>`<button class="recopick" data-id="${o.g.id}"><img src="${o.g.img}"><span><b>${i+1}. ${o.g.title}</b><small>${o.g.players} jugadores · ${o.g.duration} · ${o.g.difficulty}</small><small>${o.reasons.length?o.reasons.join(" · "):o.g.style}</small></span></button>`).join("")+'</div>';
+ box.querySelectorAll(".recopick").forEach(b=>b.onclick=()=>{$("#reco").close();setTimeout(()=>openGame(games.find(g=>g.id===b.dataset.id)),0)})
+}
+$("#theme").onclick=()=>{document.body.classList.toggle("dark");localStorage.setItem("dark",document.body.classList.contains("dark")?"1":"0")};const savedTheme=localStorage.getItem("dark");
+if(savedTheme==="0") document.body.classList.remove("dark");
+else document.body.classList.add("dark");
+render();
+let __pageY=0;
+function lockPage(){
+  if(document.body.classList.contains("modal-open")) return;
+  __pageY=window.scrollY||document.documentElement.scrollTop||0;
+  document.documentElement.classList.add("modal-open");
+  document.body.classList.add("modal-open");
+  document.body.style.position="fixed";
+  document.body.style.top=(-__pageY)+"px";
+  document.body.style.left="0";
+  document.body.style.right="0";
+  document.body.style.width="100%";
+}
+function unlockPage(){
+  document.documentElement.classList.remove("modal-open");
+  document.body.classList.remove("modal-open");
+  document.body.style.position="";
+  document.body.style.top="";
+  document.body.style.left="";
+  document.body.style.right="";
+  document.body.style.width="";
+  window.scrollTo(0,__pageY);
+}
+["detail","reco"].forEach(id=>{
+  const d=document.getElementById(id);
+  if(!d)return;
+  d.addEventListener("close",()=>{
+    if(!document.querySelector("dialog[open]")) unlockPage();
+  });
+  d.addEventListener("cancel",()=>{
+    setTimeout(()=>{if(!document.querySelector("dialog[open]")) unlockPage()},0);
+  });
+});
+
+document.addEventListener("DOMContentLoaded",()=>{
+  const r=document.getElementById("reco");
+  if(r && r.open) r.close();
+});
+</script><script>
+(()=> {
+ const q=s=>document.querySelector(s), qa=s=>[...document.querySelectorAll(s)];
+ const ex={J027:"Virus!",J028:"Virus!"};
+ const favKey="ludoteca-favorites-v1",playKey="ludoteca-played-v1";
+ const favs=()=>new Set(JSON.parse(localStorage.getItem(favKey)||"[]"));
+ const played=()=>JSON.parse(localStorage.getItem(playKey)||"{}");
+ const visibleGames=()=>{let ids=new Set(qa(".card").filter(c=>getComputedStyle(c).display!=="none").map(c=>c.dataset.id));return games.filter(g=>ids.has(g.id))};
+ function count(){let n=visibleGames().length,total=games.length;q("#catalogCount").textContent=n===total?`${total} juegos`:`${n} de ${total} juegos`;let active=q(".tab.active"),search=q("#search")?.value.trim();q("#clearFilters").style.display=(search||(active&&!/todos/i.test(active.textContent)))?"inline-block":"none"}
+ function badges(){qa(".card").forEach(c=>{if(ex[c.dataset.id]&&!c.querySelector(".expbadge"))(c.querySelector(".meta")||c).insertAdjacentHTML("beforeend",'<span class="expbadge">Expansión</span>')})}
+ q("#search")?.addEventListener("input",()=>setTimeout(count));qa(".tab").forEach(b=>b.addEventListener("click",()=>setTimeout(count)));
+ q("#clearFilters")?.addEventListener("click",()=>{if(q("#search")){q("#search").value="";q("#search").dispatchEvent(new Event("input"))}qa(".tab").find(b=>/todos/i.test(b.textContent))?.click()});
+ const ft=qa(".tab").find(b=>b.dataset.style==="Favoritos");ft?.addEventListener("click",()=>setTimeout(()=>{let f=favs();qa(".card").forEach(c=>c.style.display=f.has(c.dataset.id)?"":"none");count()}));
+ const detail=q("#detail");if(detail)new MutationObserver(()=>{let c=q("#detailContent");if(!c)return;let g=games.find(x=>(c.textContent||"").includes(x.title));if(!g||c.dataset.v8===g.id)return;c.dataset.v8=g.id;if(ex[g.id])c.querySelector("h1,h2")?.insertAdjacentHTML("afterend",`<div class="expbadge">Expansión de ${ex[g.id]}</div>`);let f=favs(),pl=played();c.insertAdjacentHTML("beforeend",`<div class="detail-actions"><button class="favbtn ${f.has(g.id)?"on":""}" data-fav>${f.has(g.id)?"♥ Favorito":"♡ Añadir a favoritos"}</button><button class="playedbtn" data-play>✓ Jugamos hoy${pl[g.id]?` · ${new Date(pl[g.id]).toLocaleDateString("es")}`:""}</button></div>`);c.querySelector("[data-fav]").onclick=e=>{let s=favs();s.has(g.id)?s.delete(g.id):s.add(g.id);localStorage.setItem(favKey,JSON.stringify([...s]));e.currentTarget.classList.toggle("on",s.has(g.id));e.currentTarget.textContent=s.has(g.id)?"♥ Favorito":"♡ Añadir a favoritos"};c.querySelector("[data-play]").onclick=e=>{let o=played();o[g.id]=Date.now();localStorage.setItem(playKey,JSON.stringify(o));e.currentTarget.textContent="✓ Jugado hoy"}}).observe(detail,{childList:true,subtree:true});
+ const surprise=q("#surprise");if(surprise)surprise.onclick=()=>{let pool=visibleGames().filter(g=>!ex[g.id]);if(!pool.length)pool=games.filter(g=>!ex[g.id]);let pl=played(),fresh=pool.filter(g=>!pl[g.id]||pl[g.id]<Date.now()-604800000);if(fresh.length)pool=fresh;let dlg=q("#surpriseDlg");if(!dlg){dlg=document.createElement("dialog");dlg.id="surpriseDlg";dlg.innerHTML='<div id="surpriseBody"></div>';document.body.appendChild(dlg);dlg.addEventListener("close",()=>{try{unlockPage()}catch(e){}})}function draw(){let g=pool[Math.floor(Math.random()*pool.length)];dlg.dataset.pick=g.id;q("#surpriseBody").innerHTML=`<h2>🎲 Hoy jugamos…</h2><div class="surprise-card"><img src="${g.img}"><div><h3>${g.title}</h3><div>${g.players} jugadores · ${g.duration}</div></div></div><div class="surprise-actions"><button id="surOther">Otro</button><button id="surView">Ver juego</button></div>`;q("#surOther").onclick=draw;q("#surView").onclick=()=>{dlg.close();setTimeout(()=>openGame(games.find(x=>x.id===dlg.dataset.pick)),0)}}draw();try{lockPage()}catch(e){}dlg.showModal()};
+ const labels={Familiar:"Algo tranquilo",Party:"Reírnos",Estrategia:"Pensar un poco",Cooperativo:"Cooperar",Deducción:"Descubrir / deducir",Destreza:"Algo dinámico",Duelo:"Competir",Abstracto:"Pensar / abstracto"};let rx=q("#rx");if(rx)[...rx.options].forEach(o=>{if(labels[o.value])o.textContent=labels[o.value]});
+ setTimeout(()=>{badges();count()},100);
+})();
+</script>
+<script>
+(()=>{
+ const COUNT_KEY="ludoteca-play-count-v1";
+ const PLAY_KEY="ludoteca-played-v1";
+ const getCounts=()=>JSON.parse(localStorage.getItem(COUNT_KEY)||"{}");
+ const saveCounts=o=>localStorage.setItem(COUNT_KEY,JSON.stringify(o));
+ const getPlayed=()=>JSON.parse(localStorage.getItem(PLAY_KEY)||"{}");
+ const savePlayed=o=>localStorage.setItem(PLAY_KEY,JSON.stringify(o));
+ const detail=document.querySelector("#detail");
+ if(!detail)return;
+
+ function gameFromDetail(){
+   const c=document.querySelector("#detailContent");
+   if(!c)return null;
+   return games.find(g=>(c.textContent||"").includes(g.title))||null;
+ }
+ function renderCounter(){
+   const c=document.querySelector("#detailContent"), g=gameFromDetail();
+   if(!c||!g)return;
+   let box=c.querySelector(".play-counter");
+   if(!box){
+     box=document.createElement("div");
+     box.className="play-counter";
+     c.appendChild(box);
+   }
+   const counts=getCounts(), played=getPlayed(), n=counts[g.id]||0;
+   const last=played[g.id] ? new Date(played[g.id]).toLocaleDateString("es") : "";
+   box.innerHTML=`<strong>🎲 ${n} ${n===1?"partida jugada":"partidas jugadas"}</strong>
+     <button type="button" data-minus aria-label="Restar partida">−</button>
+     <button type="button" data-plus aria-label="Sumar partida">+</button>
+     <div class="play-last">${last?`Última partida: ${last}`:"Aún no registraste partidas"}</div>`;
+   box.querySelector("[data-minus]").onclick=()=>{
+     const o=getCounts(); o[g.id]=Math.max(0,(o[g.id]||0)-1); saveCounts(o); renderCounter();
+   };
+   box.querySelector("[data-plus]").onclick=()=>{
+     const o=getCounts(); o[g.id]=(o[g.id]||0)+1; saveCounts(o);
+     const pl=getPlayed(); pl[g.id]=Date.now(); savePlayed(pl); renderCounter();
+   };
+ }
+
+ // Observe each detail opening.
+ new MutationObserver(()=>{if(!detail.querySelector(".play-counter"))setTimeout(renderCounter,0)}).observe(detail,{childList:true,subtree:true});
+
+ // Existing "Jugamos hoy" now increments the count once per tap.
+ detail.addEventListener("click",e=>{
+   const btn=e.target.closest("[data-play]");
+   if(!btn)return;
+   const g=gameFromDetail(); if(!g)return;
+   const o=getCounts(); o[g.id]=(o[g.id]||0)+1; saveCounts(o);
+   setTimeout(renderCounter,0);
+ },true);
+})();
+</script>
+
+
+<style>
+/* Animación de azar para Sorpréndeme */
+.dice-stage{
+  min-width:min(78vw,340px);padding:20px 12px 14px;text-align:center
+}
+.dice-title{font-weight:900;font-size:18px;margin-bottom:14px}
+.dice-pair{display:flex;justify-content:center;gap:18px;margin:8px 0 12px}
+.random-die{
+  width:72px;height:72px;border-radius:16px;background:#fff;color:#171717;
+  display:grid;place-items:center;font-size:52px;line-height:1;
+  box-shadow:0 8px 20px rgba(0,0,0,.20);border:2px solid #ececec
+}
+.random-die.rolling{animation:diceRoll .18s linear infinite}
+.dice-caption{font-size:13px;color:var(--muted)}
+@keyframes diceRoll{
+  0%{transform:rotate(-10deg) translateY(0) scale(.96)}
+  35%{transform:rotate(12deg) translateY(-8px) scale(1.04)}
+  70%{transform:rotate(-6deg) translateY(2px) scale(.99)}
+  100%{transform:rotate(8deg) translateY(0) scale(1)}
+}
+@media(prefers-reduced-motion:reduce){
+ .random-die.rolling{animation:none}
+}
+</style>
+
+<script>
+(()=>{
+ const btn=document.querySelector("#surprise");
+ if(!btn || btn.dataset.diceEnhanced==="1") return;
+ btn.dataset.diceEnhanced="1";
+
+ /* Capture phase intercepts the previous Surprise handler without altering it. */
+ btn.addEventListener("click",ev=>{
+   ev.stopImmediatePropagation();
+   ev.preventDefault();
+
+   const ex={J027:1,J028:1};
+   const cards=[...document.querySelectorAll(".card")].filter(c=>getComputedStyle(c).display!=="none");
+   const ids=new Set(cards.map(c=>c.dataset.id).filter(Boolean));
+   let pool=games.filter(g=>ids.has(g.id) && !ex[g.id]);
+   if(!pool.length) pool=games.filter(g=>!ex[g.id]);
+
+   const played=JSON.parse(localStorage.getItem("ludoteca-played-v1")||"{}");
+   const fresh=pool.filter(g=>!played[g.id] || played[g.id] < Date.now()-604800000);
+   if(fresh.length) pool=fresh;
+   if(!pool.length) return;
+
+   let dlg=document.querySelector("#surpriseDlg");
+   if(!dlg){
+     dlg=document.createElement("dialog");
+     dlg.id="surpriseDlg";
+     dlg.innerHTML='<div id="surpriseBody"></div>';
+     document.body.appendChild(dlg);
+     dlg.addEventListener("close",()=>{try{unlockPage()}catch(e){}});
+   }
+   const body=dlg.querySelector("#surpriseBody");
+   body.innerHTML='<div class="dice-stage"><div class="dice-title">🎲 Buscando un juego al azar…</div><div class="dice-pair"><div class="random-die rolling" id="dieA">⚀</div><div class="random-die rolling" id="dieB">⚅</div></div><div class="dice-caption">Que decidan los dados…</div></div>';
+
+   try{lockPage()}catch(e){}
+   if(!dlg.open) dlg.showModal();
+
+   const faces=["⚀","⚁","⚂","⚃","⚄","⚅"];
+   const reduced=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+   let timer=null;
+   if(!reduced){
+     timer=setInterval(()=>{
+       const a=document.querySelector("#dieA"), b=document.querySelector("#dieB");
+       if(a)a.textContent=faces[Math.floor(Math.random()*6)];
+       if(b)b.textContent=faces[Math.floor(Math.random()*6)];
+     },90);
+   }
+
+   const delay=reduced?120:1250;
+   setTimeout(()=>{
+     if(timer)clearInterval(timer);
+     const pick=pool[Math.floor(Math.random()*pool.length)];
+     dlg.dataset.pick=pick.id;
+     body.innerHTML=`<h2>🎲 Hoy jugamos…</h2>
+       <div class="surprise-card"><img src="${pick.img}" alt=""><div><h3>${pick.title}</h3><div>${pick.players} jugadores · ${pick.duration}</div></div></div>
+       <div class="surprise-actions"><button type="button" id="surOther">Otro</button><button type="button" id="surView">Ver juego</button></div>`;
+     body.querySelector("#surOther").onclick=()=>{dlg.close();setTimeout(()=>btn.click(),80)};
+     body.querySelector("#surView").onclick=()=>{dlg.close();setTimeout(()=>openGame(pick),0)};
+   },delay);
+ },true);
+})();
+</script>
+
+
+<style>
+.library-tools{max-width:1100px;margin:8px auto 2px;padding:0 18px;display:flex;gap:8px;flex-wrap:wrap}
+.library-tools>button{border:1px solid var(--line);background:var(--panel);color:var(--text);border-radius:11px;padding:9px 11px;font-weight:800}
+.stats-panel{width:100%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:2px}
+.stats-panel[hidden]{display:none}
+.statbox{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:10px;min-width:0}
+.statbox b{display:block;font-size:20px}.statbox span{font-size:11px;color:var(--muted)}
+.history-block{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.history-block h4{margin:0 0 6px}.history-list{font-size:13px;color:var(--muted);line-height:1.6}
+.data-note{width:100%;font-size:11px;color:var(--muted)}
+@media(max-width:600px){
+ .library-tools{padding:0 12px}
+ .library-tools>button{flex:1 1 auto}
+ .stats-panel{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .stats-panel .statbox:last-child{grid-column:1/-1}
+}
+</style>
+
+<script>
+(()=>{
+ const HKEY="ludoteca-play-history-v1", CKEY="ludoteca-play-count-v1", PKEY="ludoteca-played-v1", FKEY="ludoteca-favorites-v1";
+ const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch(e){return d}};
+ const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+ const history=()=>read(HKEY,{});
+ const counts=()=>read(CKEY,{});
+ const titleOf=id=>games.find(g=>g.id===id)?.title||id;
+
+ function addHistory(id,ts=Date.now()){
+   let h=history(); (h[id]||(h[id]=[])).push(ts); write(HKEY,h);
+ }
+ function removeLatestHistory(id){
+   let h=history(); if(h[id]?.length){h[id].pop(); if(!h[id].length)delete h[id]; write(HKEY,h)}
+ }
+ function syncLastPlayed(id){
+   let h=history(), p=read(PKEY,{});
+   if(h[id]?.length)p[id]=h[id][h[id].length-1]; else delete p[id];
+   write(PKEY,p);
+ }
+
+ // Record history for existing play controls.
+ const detail=document.querySelector("#detail");
+ if(detail){
+   detail.addEventListener("click",e=>{
+     const g=games.find(x=>(document.querySelector("#detailContent")?.textContent||"").includes(x.title));
+     if(!g)return;
+     if(e.target.closest("[data-play]")) addHistory(g.id);
+     if(e.target.closest(".play-counter [data-plus]")) addHistory(g.id);
+     if(e.target.closest(".play-counter [data-minus]")){removeLatestHistory(g.id);syncLastPlayed(g.id)}
+   },false);
+
+   new MutationObserver(()=>{
+     const c=document.querySelector("#detailContent");
+     if(!c || c.querySelector(".history-block"))return;
+     const g=games.find(x=>(c.textContent||"").includes(x.title));
+     if(!g)return;
+     const h=(history()[g.id]||[]).slice().reverse().slice(0,8);
+     const block=document.createElement("div"); block.className="history-block";
+     block.innerHTML=`<h4>Historial de partidas</h4><div class="history-list">${h.length?h.map((t,i)=>`${i+1}. ${new Date(t).toLocaleDateString("es")} · ${new Date(t).toLocaleTimeString("es",{hour:"2-digit",minute:"2-digit"})}`).join("<br>"):"Todavía no hay partidas registradas."}</div>`;
+     c.appendChild(block);
+   }).observe(detail,{childList:true,subtree:true});
+ }
+
+ // Never-played filter.
+ const neverTab=[...document.querySelectorAll(".tab")].find(b=>b.dataset.style==="NuncaJugados");
+ neverTab?.addEventListener("click",()=>setTimeout(()=>{
+   const c=counts();
+   document.querySelectorAll(".card").forEach(card=>card.style.display=((c[card.dataset.id]||0)===0)?"":"none");
+   document.querySelector("#catalogCount")?.dispatchEvent(new Event("v8refresh"));
+   updateStats();
+ },0));
+
+ function stats(){
+   const c=counts(), totalPlays=Object.values(c).reduce((a,n)=>a+(Number(n)||0),0);
+   const playedIds=games.filter(g=>(c[g.id]||0)>0);
+   const never=games.length-playedIds.length;
+   let most=null;
+   playedIds.forEach(g=>{if(!most||(c[g.id]||0)>(c[most.id]||0))most=g});
+   return {totalPlays,played:playedIds.length,never,most,mostN:most?(c[most.id]||0):0};
+ }
+ function updateStats(){
+   const s=stats(), box=document.querySelector("#statsPanel"); if(!box)return;
+   box.innerHTML=`<div class="statbox"><b>${games.length}</b><span>juegos</span></div>
+   <div class="statbox"><b>${s.totalPlays}</b><span>partidas registradas</span></div>
+   <div class="statbox"><b>${s.played}</b><span>juegos jugados</span></div>
+   <div class="statbox"><b>${s.never}</b><span>nunca jugados</span></div>
+   <div class="statbox"><b>${s.most?s.most.title:"—"}</b><span>${s.most?`más jugado · ${s.mostN} partidas`:"más jugado"}</span></div>`;
+ }
+ document.querySelector("#toggleStats")?.addEventListener("click",()=>{
+   const p=document.querySelector("#statsPanel"); p.hidden=!p.hidden; updateStats();
+ });
+
+ // Backup/export of user-created local data only.
+ document.querySelector("#exportData")?.addEventListener("click",()=>{
+   const data={
+     app:"Ludoteca de Hugo",version:1,exportedAt:new Date().toISOString(),
+     favorites:read(FKEY,[]),playCounts:counts(),lastPlayed:read(PKEY,{}),playHistory:history()
+   };
+   const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+   const a=document.createElement("a"); a.href=URL.createObjectURL(blob);
+   a.download=`Ludoteca_de_Hugo_backup_${new Date().toISOString().slice(0,10)}.json`;
+   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+ });
+
+ const input=document.querySelector("#importFile");
+ document.querySelector("#importData")?.addEventListener("click",()=>input?.click());
+ input?.addEventListener("change",async()=>{
+   const f=input.files?.[0]; if(!f)return;
+   try{
+     const d=JSON.parse(await f.text());
+     if(d.app!=="Ludoteca de Hugo")throw new Error("Archivo no reconocido");
+     if(Array.isArray(d.favorites))write(FKEY,d.favorites);
+     if(d.playCounts&&typeof d.playCounts==="object")write(CKEY,d.playCounts);
+     if(d.lastPlayed&&typeof d.lastPlayed==="object")write(PKEY,d.lastPlayed);
+     if(d.playHistory&&typeof d.playHistory==="object")write(HKEY,d.playHistory);
+     updateStats(); alert("Datos importados correctamente.");
+   }catch(e){alert("No se pudo importar el archivo de respaldo.");}
+   input.value="";
+ });
+
+ updateStats();
+})();
+</script>
+
+
+<style>
+/* Pulido visual exclusivo de la ventana Sorpréndeme */
+#surpriseDlg{
+ width:min(92vw,430px)!important;
+ max-width:430px!important;
+ padding:0!important;
+ border:1px solid var(--line)!important;
+ border-radius:24px!important;
+ background:var(--panel)!important;
+ color:var(--text)!important;
+ overflow:hidden!important;
+ box-shadow:0 18px 55px rgba(0,0,0,.28)!important;
+}
+#surpriseDlg::backdrop{background:rgba(0,0,0,.48)}
+#surpriseBody{padding:22px!important}
+#surpriseBody h2{
+ margin:0 0 18px!important;
+ font-size:24px!important;
+ line-height:1.15!important;
+ font-weight:900!important;
+ letter-spacing:-.02em!important;
+}
+#surpriseBody .surprise-card{
+ display:grid!important;
+ grid-template-columns:112px minmax(0,1fr)!important;
+ gap:16px!important;
+ align-items:center!important;
+ padding:14px!important;
+ border:1px solid var(--line)!important;
+ border-radius:18px!important;
+ background:var(--bg)!important;
+}
+#surpriseBody .surprise-card img{
+ width:112px!important;height:112px!important;
+ object-fit:contain!important;border-radius:14px!important;
+ background:#fff!important;
+}
+#surpriseBody .surprise-card h3{
+ margin:0 0 8px!important;
+ font-size:21px!important;
+ line-height:1.15!important;
+}
+#surpriseBody .surprise-card h3+div{
+ color:var(--muted)!important;font-size:14px!important;line-height:1.45!important
+}
+#surpriseBody .surprise-actions{
+ display:grid!important;grid-template-columns:1fr 1.25fr!important;
+ gap:10px!important;margin-top:16px!important
+}
+#surpriseBody .surprise-actions button{
+ min-height:48px!important;border-radius:13px!important;
+ font-weight:850!important;font-size:15px!important;
+ border:1px solid var(--line)!important;
+}
+#surOther{background:transparent!important;color:var(--text)!important}
+#surView{
+ background:#f4b928!important;color:#171717!important;
+ border-color:#f4b928!important
+}
+#surpriseBody .dice-stage{padding:12px 4px 8px!important}
+@media(max-width:380px){
+ #surpriseBody{padding:18px!important}
+ #surpriseBody .surprise-card{grid-template-columns:92px minmax(0,1fr)!important;padding:12px!important}
+ #surpriseBody .surprise-card img{width:92px!important;height:92px!important}
+ #surpriseBody h2{font-size:22px!important}
+}
+</style>
+
+
+<style>
+/* Corrección: Sorpréndeme siempre debe ser una superficie opaca */
+body:not(.dark) #surpriseDlg{
+  background:#ffffff!important;
+  background-color:#ffffff!important;
+  opacity:1!important;
+}
+body.dark #surpriseDlg{
+  background:#202428!important;
+  background-color:#202428!important;
+  opacity:1!important;
+}
+#surpriseDlg #surpriseBody{
+  background:inherit!important;
+  border-radius:24px!important;
+  opacity:1!important;
+}
+body:not(.dark) #surpriseDlg .surprise-card{background:#f6f6f7!important}
+body.dark #surpriseDlg .surprise-card{background:#2a2f34!important}
+</style>
+
+
+<style>
+/* Rendimiento móvil: animación liviana */
+.random-die.rolling{
+  animation:diceRollLite .32s ease-in-out infinite!important;
+  will-change:transform;
+  box-shadow:none!important;
+}
+@keyframes diceRollLite{
+  0%{transform:rotate(-8deg) translate3d(0,0,0)}
+  50%{transform:rotate(8deg) translate3d(0,-5px,0)}
+  100%{transform:rotate(-8deg) translate3d(0,0,0)}
+}
+</style>
+<script>
+(()=>{
+ const b=document.querySelector("#surprise");
+ if(!b)return;
+ /* Avoid stacking timers/dialog work from rapid taps. */
+ b.addEventListener("click",()=>{
+   if(b.dataset.busy==="1")return;
+   b.dataset.busy="1";
+   b.disabled=true;
+   setTimeout(()=>{b.dataset.busy="0";b.disabled=false},1500);
+ },true);
+ /* Stop dice animation as soon as the result replaces the rolling state. */
+ const d=document.querySelector("#surpriseDlg");
+ if(d)new MutationObserver(()=>{
+   if(!d.querySelector(".random-die.rolling")){
+     document.querySelectorAll(".random-die").forEach(x=>x.style.willChange="auto");
+   }
+ }).observe(d,{childList:true,subtree:true});
+})();
+</script>
+
+
+<style>
+/* Separación visual de la etiqueta Expansión dentro de las tarjetas */
+.card .expbadge{
+  margin-top:12px!important;
+  margin-bottom:4px!important;
+}
+.card .meta .expbadge{
+  display:flex!important;
+  width:max-content!important;
+}
+</style>
+
+
+<script id="close-button-last-final">
+(function(){
+  const detail=document.getElementById("detail");
+  const content=document.getElementById("detailContent");
+  if(!detail||!content) return;
+
+  function moveCloseLast(){
+    const close=[...content.querySelectorAll("button")].find(b =>
+      (b.textContent||"").trim().toLowerCase()==="cerrar"
+    );
+    if(close && close !== content.lastElementChild){
+      content.appendChild(close);
+    }
+  }
+
+  const obs=new MutationObserver(()=>moveCloseLast());
+  obs.observe(content,{childList:true,subtree:false});
+  detail.addEventListener("toggle",()=>{ if(detail.open) setTimeout(moveCloseLast,0); });
+  detail.addEventListener("click",()=>setTimeout(moveCloseLast,0));
+})();
+</script>
+<style id="close-button-last-spacing">
+#detailContent > button:last-child{
+  margin-top:24px!important;
+  margin-bottom:24px!important;
+}
+</style>
+
+
+<script id="pwa-service-worker-registration">
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+}
+</script>
+
+
+<style id="utility-menu-v8">
+[data-v8-utility-original="1"]{display:none!important}
+.v8-more-wrap{position:absolute;top:16px;right:16px;z-index:30}
+#v8MoreBtn{
+  width:44px;height:44px;border:0;border-radius:14px;
+  font-size:28px;line-height:1;cursor:pointer;
+  background:var(--card,#fff);color:inherit;
+  box-shadow:0 3px 14px rgba(0,0,0,.14)
+}
+#v8MoreMenu{
+  position:absolute;right:0;top:50px;min-width:190px;padding:8px;
+  border-radius:14px;background:var(--card,#fff);
+  box-shadow:0 8px 28px rgba(0,0,0,.22)
+}
+body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#252a2f;color:#fff}
+#v8MoreMenu[hidden]{display:none}
+#v8MoreMenu button{
+  display:block;width:100%;padding:12px 14px;border:0;border-radius:10px;
+  background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer
+}
+#v8MoreMenu button:hover{background:rgba(127,127,127,.12)}
+</style>
+<script id="utility-menu-v8-js">
+(function(){
+ function init(){
+   if(document.getElementById("v8MoreBtn")) return;
+   const originals=[...document.querySelectorAll('[data-v8-utility-original="1"]')];
+   const find=(txt)=>originals.find(b=>(b.textContent||"").trim().toLowerCase().includes(txt));
+   const stats=find("estad");
+   const exp=find("export");
+   const imp=find("import");
+   if(!stats&&!exp&&!imp) return;
+
+   const wrap=document.createElement("div");
+   wrap.className="v8-more-wrap";
+   wrap.innerHTML='<button id="v8MoreBtn" class="iconbtn v8-menu-trigger" type="button" aria-label="Más opciones" aria-expanded="false">⋮</button>'+
+     '<div id="v8MoreMenu" hidden>'+
+     (stats?'<button type="button" data-act="stats">Estadísticas</button>':'')+
+     (exp?'<button type="button" data-act="export">Exportar datos</button>':'')+
+     (imp?'<button type="button" data-act="import">Importar datos</button>':'')+
+     '</div>';
+   document.body.appendChild(wrap);
+
+   const btn=wrap.querySelector("#v8MoreBtn"), menu=wrap.querySelector("#v8MoreMenu");
+   const close=()=>{menu.hidden=true;btn.setAttribute("aria-expanded","false")};
+   btn.addEventListener("click",e=>{e.stopPropagation();menu.hidden=!menu.hidden;btn.setAttribute("aria-expanded",String(!menu.hidden))});
+   menu.addEventListener("click",e=>{
+     const a=e.target.closest("[data-act]"); if(!a)return;
+     ({stats,export:exp,import:imp}[a.dataset.act])?.click(); close();
+   });
+   document.addEventListener("click",e=>{if(!wrap.contains(e.target))close()});
+   document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
+ }
+ if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
+})();
+</script>
+
+
+<script id="v11-smart-recommendations">
+(()=>{
+ const btn=document.querySelector("#find"); if(!btn||btn.dataset.v11==="1")return; btn.dataset.v11="1";
+ const DAY=86400000, expansionIds=new Set(["J027","J028"]);
+ const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch(e){return d}};
+ const diffRank={"Muy ligera":1,"Ligera":2,"Ligera-media":3,"Media":4};
+ const experienceMatch=(g,x)=>{
+   if(!x)return 1; const text=(g.style+" "+g.mechanics).toLowerCase();
+   const map={
+    "Party":["party","velocidad","reflejos","humor","música","creatividad","interacción directa","eliminación"],
+    "Familiar":["familiar","memoria","cartas","dados","patrones","colección"],
+    "Estrategia":["estrategia","gestión","motor","subastas","abstracto","espacial","selección simultánea"],
+    "Cooperativo":["cooperativo","solitario","tiempo real"],
+    "Deducción":["deducción","roles ocultos","movimiento oculto","memoria"],
+    "Destreza":["destreza","equilibrio","apilamiento","extracción"],
+    "Duelo":["duelo","selección simultánea"],
+    "Abstracto":["abstracto","patrones","espacial","colocación"]
+   };
+   if(g.style===x)return 3; return (map[x]||[]).some(k=>text.includes(k))?2:0;
+ };
+ btn.addEventListener("click",ev=>{
+   ev.stopImmediatePropagation(); ev.preventDefault();
+   const p=+document.querySelector("#rp").value||0,t=+document.querySelector("#rt").value||0,d=document.querySelector("#rd").value,x=document.querySelector("#rx").value,includeExp=document.querySelector("#rex").checked;
+   const last=read("ludoteca-played-v1",{}), counts=read("ludoteca-play-count-v1",{}), now=Date.now();
+   let ranked=games.filter(g=>(includeExp||!expansionIds.has(g.id))&&supports(g,p)&&(!t||t===999||minutes(g)<=t)).map(g=>{
+     let score=0,reasons=[];
+     if(p){score+=5;reasons.push(p===9?"apto para grupos grandes":`funciona con ${p} jugador${p===1?"":"es"}`)}
+     if(t&&t!==999){const m=minutes(g);if(m<=t){score+=4;reasons.push(`entra en ${t} min`)}}
+     const xm=experienceMatch(g,x); if(x){score+=xm*3;if(xm===3)reasons.push(`encaja en ${x.toLowerCase()}`)} else score+=1;
+     if(d){const delta=Math.abs((diffRank[g.difficulty]||2)-(diffRank[d]||2));if(delta===0){score+=4;reasons.push(`dificultad ${d.toLowerCase()}`)}else if(delta===1)score+=1;}else score+=1;
+     if(!expansionIds.has(g.id))score+=1;
+     const lp=last[g.id]||0, n=counts[g.id]||0, age=lp?now-lp:Infinity;
+     if(!lp){score+=3;reasons.push("todavía no jugado")}
+     else if(age>=60*DAY){score+=2;reasons.push("hace tiempo que no sale")}
+     else if(age<7*DAY){score-=8;reasons.push("jugado recientemente")}
+     else if(age<30*DAY){score-=3;}
+     score+=Math.max(0,2-Math.min(2,n));
+     return {g,score,reasons};
+   }).filter(o=>(!x||experienceMatch(o.g,x)>0)&&(!d||Math.abs((diffRank[o.g.difficulty]||2)-(diffRank[d]||2))<=1))
+     .sort((a,b)=>b.score-a.score||((counts[a.g.id]||0)-(counts[b.g.id]||0))||minutes(a.g)-minutes(b.g)||a.g.title.localeCompare(b.g.title)).slice(0,3);
+   const box=document.querySelector("#recoResults");
+   if(!ranked.length){box.innerHTML='<div class="recoempty">No encontré una coincidencia suficientemente buena. Prueba ampliando el tiempo o dejando libre un criterio.</div>';return}
+   box.innerHTML='<div class="recolabel">Mis recomendaciones <small style="display:block;font-weight:500;margin-top:3px">Se priorizan juegos poco jugados y se penalizan los jugados en los últimos 7 días.</small></div><div class="recoresults">'+ranked.map((o,i)=>`<button class="recopick" data-id="${o.g.id}"><img src="${o.g.img}"><span><b>${i+1}. ${o.g.title}</b><small>${o.g.players} jugadores · ${o.g.duration} · ${o.g.difficulty}</small><small>${o.reasons.slice(0,3).join(" · ")||o.g.style}</small></span></button>`).join("")+'</div>';
+   box.querySelectorAll(".recopick").forEach(b=>b.onclick=()=>{document.querySelector("#reco").close();setTimeout(()=>openGame(games.find(g=>g.id===b.dataset.id)),0)});
+ },true);
+})();
+</script>
+
+<script id="v12-integrity-patch">
+(()=>{
+  // Normalización de casos especiales. El conteo de partidas lo gestiona un único módulo.
+  const playerRules={J011:[2,4]};
+  supports=function(g,n){
+    if(!n)return true;
+    if(playerRules[g.id])return playerRules[g.id].includes(n);
+    const str=String(g.players||"");
+    const nums=(str.match(/\d+/g)||[]).map(Number);
+    if(!nums.length)return true;
+    if(str.includes("–")||str.includes("-"))return n>=nums[0]&&n<=nums[nums.length-1];
+    if(str.includes("+"))return n>=nums[0];
+    return nums.includes(n);
+  };
+  minutes=function(g){
+    const str=String(g.duration||"");
+    if(/no especificado|variable|^—$/i.test(str.trim()))return 999;
+    const m=(str.match(/\d+/g)||[]).map(Number);
+    return m.length?Math.max(...m):999;
+  };
+})();
+</script>
+</body></html>
