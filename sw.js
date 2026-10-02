@@ -1,4 +1,4 @@
-const CACHE='ludoteca-hugo-v15-corrected';
+const CACHE='ludoteca-hugo-v16-40-juegos';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./icon-maskable-512.png',
   "covers/cover-01-e9db0b4d76f1.png",
   "covers/cover-02-282c796f9c56.jpg",
@@ -34,7 +34,9 @@ const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./i
   "covers/cover-32-17fb27931723.png",
   "covers/cover-33-3f950932a50b.png",
   "covers/cover-34-0a0d377a2f5a.png",
-  "covers/cover-35-uno-paraguay.png"
+  "covers/cover-35-uno-paraguay.png",
+  "covers/cover-40-desconectados.png",
+  "covers/cover-41-flip7-vengeance.png"
 ];
 self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
