@@ -1,4 +1,4 @@
-const CACHE='ludoteca-hugo-v16-40-juegos-blue-final';
+const CACHE='ludoteca-hugo-v16-final-approved-detail';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./icon-maskable-512.png',
   "covers/cover-01-e9db0b4d76f1.png",
   "covers/cover-02-282c796f9c56.jpg",
