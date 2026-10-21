@@ -1,4 +1,4 @@
-const CACHE='ludoteca-hugo-v20-logo-v2';
+const CACHE='ludoteca-hugo-v20-final-v10';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./logo-ludoteca-hugo-v2.png',
   "covers/cover-01-e9db0b4d76f1.png",
   "covers/cover-02-282c796f9c56.jpg",
