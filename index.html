@@ -238,15 +238,6 @@ header img{object-fit:contain!important;background:transparent!important;border-
 .approved-cover img{
   width:100%;max-height:520px;object-fit:contain;display:block;border-radius:12px;background:white;
 }
-.approved-thumbs{
-  display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px;
-}
-.approved-thumb{
-  aspect-ratio:1;border:1px solid #254e77;border-radius:10px;background:#0b1a2d;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;color:#71839a;
-  font-size:11px;text-align:center;padding:6px;
-}
-.approved-thumb img{width:100%;height:100%;object-fit:cover}
 .approved-actions{display:grid;gap:10px;margin-top:16px}
 .approved-actions button{
   min-height:54px;border-radius:13px!important;font:inherit;font-weight:900!important;
@@ -302,6 +293,70 @@ header img{object-fit:contain!important;background:transparent!important;border-
 }
 </style>
 
+
+<style id="v20-final-css">
+:root{
+ --v20-bg:#07111f;--v20-card:#0d1929;--v20-card2:#101f33;--v20-line:#243852;
+ --v20-text:#f7f9ff;--v20-muted:#9caec4;--v20-blue:#1681ff;--v20-purple:#9b7cff;
+ --v20-green:#42d48a;--v20-gold:#ffb83d;--v20-red:#ff6b6b;
+}
+body.v20-mode{background:var(--v20-bg)!important}
+body.v20-mode>header,body.v20-mode>.actions,body.v20-mode>.library-tools,
+body.v20-mode>.catalog-status,body.v20-mode>main{display:none!important}
+#v20App{display:none;min-height:100vh;background:var(--v20-bg);color:var(--v20-text);font-family:inherit}
+#v20App.active{display:block}
+.v20-shell{max-width:1180px;margin:0 auto;padding:18px 18px 110px}
+.v20-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.v20-brand{display:flex;align-items:center;gap:10px}.v20-brand-mark{width:42px;height:42px;border-radius:13px;background:#0f2a4a;display:grid;place-items:center;font-size:24px}
+.v20-brand h1{font-size:21px;margin:0}.v20-sub{font-size:12px;color:var(--v20-muted)}
+.v20-icon{width:42px;height:42px;border-radius:13px;background:var(--v20-card);border:1px solid var(--v20-line);color:white;display:grid;place-items:center}
+.v20-page{display:none}.v20-page.active{display:block}
+.v20-hero{font-size:34px;font-weight:900;margin:8px 0 4px}.v20-muted{color:var(--v20-muted)}
+.v20-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.v20-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+.v20-stat{border-radius:18px;padding:18px;background:var(--v20-card);border:1px solid var(--v20-line)}
+.v20-stat.blue{border-color:#1b6fc5;background:linear-gradient(145deg,#0e2c4c,#0d1929)}
+.v20-stat.purple{border-color:#6146c8;background:linear-gradient(145deg,#271c58,#0d1929)}
+.v20-stat.green{border-color:#137953;background:linear-gradient(145deg,#0d3f31,#0d1929)}
+.v20-stat.gold{border-color:#9b6b12;background:linear-gradient(145deg,#4e3a10,#0d1929)}
+.v20-stat .n{font-size:36px;font-weight:950;line-height:1}.v20-stat .l{font-size:13px;color:#d9e2ef;margin-top:7px}
+.v20-stat .s{font-size:12px;color:var(--v20-muted);margin-top:6px}
+.v20-btn{border:0;border-radius:13px;padding:12px 15px;font-weight:850;background:var(--v20-blue);color:white;cursor:pointer}
+.v20-btn.alt{background:#10243c;border:1px solid #2d5d8f}.v20-btn.ghost{background:transparent;border:1px solid var(--v20-line)}
+.v20-widebtn{width:100%;min-height:52px}
+.v20-section{margin-top:22px}.v20-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.v20-section h2{font-size:21px;margin:0}
+.v20-list{background:var(--v20-card);border:1px solid var(--v20-line);border-radius:16px;overflow:hidden}
+.v20-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--v20-line)}
+.v20-row:last-child{border-bottom:0}.v20-thumb{width:50px;height:50px;border-radius:10px;background:#fff;object-fit:contain;padding:2px}
+.v20-row-main{min-width:0;flex:1}.v20-row-title{font-weight:850}.v20-row-meta{font-size:12px;color:var(--v20-muted);margin-top:3px}
+.v20-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:10020;width:min(94vw,680px);background:#0b1728ee;border:1px solid #223a57;backdrop-filter:blur(14px);border-radius:22px;padding:8px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.v20-nav button{border:0;background:transparent;color:#9fb0c7;border-radius:14px;padding:9px 4px;font-size:11px;font-weight:800}
+.v20-nav button.active{background:#0e2d50;color:#55a9ff}.v20-nav .plus{background:#2b96ff;color:white;font-size:24px;line-height:1}
+.v20-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.v20-pill{border:1px solid var(--v20-line);background:#101b2b;color:#d6dfeb;border-radius:999px;padding:9px 13px;font-weight:800;font-size:12px}
+.v20-pill.active{background:var(--v20-blue);border-color:var(--v20-blue);color:white}
+.v20-search{width:100%;border:1px solid var(--v20-line);background:#0f1d2f;color:white;border-radius:14px;padding:13px 14px;margin:6px 0 14px}
+.v20-collection-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.v20-game{display:flex;gap:12px;align-items:center;background:var(--v20-card);border:1px solid var(--v20-line);border-radius:14px;padding:10px}
+.v20-game img{width:58px;height:58px;object-fit:contain;border-radius:10px;background:white;padding:2px}
+.v20-game .name{font-weight:900}.v20-game .meta{font-size:11px;color:var(--v20-muted);margin-top:4px}
+.v20-chart{background:var(--v20-card);border:1px solid var(--v20-line);border-radius:18px;padding:16px}
+.v20-bars{height:220px;display:flex;align-items:flex-end;gap:14px;padding:18px 6px 0;border-bottom:1px solid #29415f}
+.v20-barwrap{flex:1;text-align:center}.v20-bar{background:linear-gradient(180deg,#4da7ff,#1678dd);border-radius:8px 8px 2px 2px;min-height:4px}
+.v20-barlabel{font-size:11px;color:var(--v20-muted);margin-top:7px}.v20-barvalue{font-size:11px;margin-bottom:5px}
+.v20-modal{position:fixed;inset:0;z-index:12000;background:#000b;display:none;align-items:center;justify-content:center;padding:14px}
+.v20-modal.open{display:flex}.v20-dialog{width:min(94vw,720px);max-height:94vh;overflow:auto;background:#081829;border:1px solid #2a527c;border-radius:22px;padding:20px}
+.v20-dialog h2{margin:0 0 4px}.v20-step{font-size:12px;color:#6db3ff;font-weight:900;margin-bottom:15px}
+.v20-formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.v20-field label{display:block;font-size:12px;color:#b9c5d6;margin-bottom:6px}
+.v20-field input,.v20-field select,.v20-field textarea{width:100%;background:#0e1e32;color:white;border:1px solid #28405f;border-radius:12px;padding:12px}
+.v20-players{display:grid;gap:8px}.v20-player{display:grid;grid-template-columns:1fr 110px 90px;gap:8px;align-items:center;background:#0e1e32;border:1px solid #243b58;border-radius:12px;padding:9px}
+.v20-player input[type="text"],.v20-player input[type="number"]{background:#091627;border:1px solid #29425f;color:white;border-radius:9px;padding:9px;width:100%}
+.v20-actions2{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
+.v20-hidden{display:none!important}
+.v20-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(135deg,#0e2a48,#12213a);border:1px solid #2a5f93;border-radius:16px;padding:16px;margin:16px 0}
+.v20-mini{font-size:12px;color:var(--v20-muted)}
+@media(max-width:780px){.v20-grid4,.v20-grid3{grid-template-columns:repeat(2,1fr)}.v20-formgrid{grid-template-columns:1fr}.v20-player{grid-template-columns:1fr 90px}.v20-player .winner{grid-column:1/-1}.v20-hero{font-size:29px}.v20-shell{padding-left:12px;padding-right:12px}}
+</style>
+
 </head><body class="dark">
 <header><div class="top"><div class="brand">
 <img class="brand-logo" src="covers/cover-01-e9db0b4d76f1.png" alt="Ludoteca de Hugo">
@@ -318,7 +373,7 @@ header img{object-fit:contain!important;background:transparent!important;border-
   <input type="file" id="importFile" accept="application/json,.json" hidden>
   <div class="stats-panel" id="statsPanel" hidden></div>
 </section>
-<div class="catalog-status"><span id="catalogCount">40 juegos</span><button id="clearFilters">Limpiar filtros</button></div>
+<div class="catalog-status"><span id="catalogCount">43 juegos</span><button id="clearFilters">Limpiar filtros</button></div>
 <main><section class="grid" id="grid"></section><div class="empty" id="empty" hidden>No hay juegos que coincidan con esos filtros.</div></main>
 
 <dialog id="detail"><div id="detailContent"></div></dialog>
@@ -334,7 +389,7 @@ header img{object-fit:contain!important;background:transparent!important;border-
 <button class="go" id="find">Buscar recomendaciones</button>
 <button class="close" style="margin-top:8px" onclick="reco.close()">Cerrar</button>
 <div id="recoResults"></div></div></dialog>
-<script>const games=[{"id":"J001","title":"Wingspan","img":"covers/cover-02-282c796f9c56.jpg","players":"1–5","duration":"40–70 min","difficulty":"Media","style":"Estrategia","age":"10+","note":"Construye una reserva natural y desarrolla un motor de aves.","publisher":"Stonemaier Games","designer":"Elizabeth Hargrave","year":"2019","mechanics":"Motor de cartas · gestión de recursos"},{"id":"J002","title":"Coffee Rush","img":"covers/cover-03-d164a4e1d1e3.jpg","players":"2–4","duration":"30 min","difficulty":"Ligera-media","style":"Familiar","age":"8+","note":"Compite como barista reuniendo ingredientes y completando pedidos.","publisher":"Korea Boardgames","designer":"Euijin Han","year":"2023","mechanics":"Contratos · movimiento en cuadrícula"},{"id":"J003","title":"Alta Sociedad","img":"covers/cover-04-6f116f5cb2ae.jpg","players":"3–5","duration":"15–30 min","difficulty":"Ligera","style":"Estrategia","age":"10+","note":"Puja por lujos sin terminar siendo la persona más pobre.","publisher":"Edición en español","designer":"Reiner Knizia","year":"1995","mechanics":"Subastas · gestión de mano"},{"id":"J004","title":"Alebrijes","img":"covers/cover-05-e0f34e8ab828.jpg","players":"3–6","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Evita puntos negativos jugando cartas y efectos en el momento oportuno.","publisher":"Fractal Juegos","designer":"Joel Escalante y Rafael Escalante","year":"2025","mechanics":"Bazas · gestión de mano · comodines"},{"id":"J005","title":"Taco Gato Cabra Queso Pizza","img":"covers/cover-06-187a4c8c24a1.jpg","players":"2–8","duration":"10 min","difficulty":"Muy ligera","style":"Party","age":"8+","note":"Juego rápido de atención, palabras y reflejos.","publisher":"Blue Orange / La Casa de la Educadora","designer":"Dave Campbell","year":"2017","mechanics":"Reflejos · reconocimiento de patrones"},{"id":"J006","title":"Taco Vuelta Cabra Queso Pizza","img":"covers/cover-07-e80980cf8c96.jpg","players":"2–8","duration":"10 min","difficulty":"Muy ligera","style":"Party","age":"8+","note":"Versión independiente y combinable con Taco Gato Cabra Queso Pizza.","publisher":"La Casa de la Educadora","designer":"Dave Campbell","year":"2020","mechanics":"Reflejos · reconocimiento"},{"id":"J007","title":"Vintage","img":"covers/cover-08-ae40c6b65d22.jpg","players":"3–5","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Colecciona objetos vintage y optimiza tus conjuntos.","publisher":"Matagot","designer":"Bruno Faidutti","year":"2020","mechanics":"Colección de conjuntos · cartas"},{"id":"J008","title":"Cereal Killer","img":"covers/cover-09-bb182ff83c77.png","players":"2–3","duration":"15 min","difficulty":"Ligera","style":"Deducción","age":"14+","note":"Enfrentamiento asimétrico entre asesino y detective.","publisher":"Ediciones Primigenio","designer":"Julián Tunni","year":"2025","mechanics":"Movimiento oculto · deducción · preguntas y respuestas"},{"id":"J009","title":"TimeBomb Deluxe","img":"covers/cover-10-ec24e4c1b103.png","players":"4–8","duration":"15 min","difficulty":"Ligera","style":"Deducción","age":"8+","note":"Agentes y terroristas intentan desactivar o detonar la bomba sin conocer todas las identidades.","publisher":"Primigenio","designer":"Yusuke Sato","year":"2024","mechanics":"Roles ocultos · equipos · deducción"},{"id":"J010","title":"SOS Titanic","img":"covers/cover-11-c58074e257c2.jpg","players":"1–5","duration":"30 min","difficulty":"Ligera-media","style":"Cooperativo","age":"14+","note":"Colabora para salvar pasajeros mientras el Titanic se hunde.","publisher":"Matagot / Devir","designer":"Bruno Cathala y Ludovic Maublanc","year":"2013","mechanics":"Cooperativo · solitario · gestión de cartas"},{"id":"J011","title":"Duelo por Cardia","img":"covers/cover-12-4e8d850191b0.jpg","players":"2 (4)","duration":"15 min","difficulty":"Ligera-media","style":"Duelo","age":"9+","note":"Duelo estratégico para conseguir cinco sellos. Incluye variante para 4.","publisher":"Devir","designer":"Mathieu Rivero y Faouzi Boughida","year":"2025","mechanics":"Selección simultánea · gestión de cartas"},{"id":"J012","title":"Hila-Dos","img":"covers/cover-13-16791a17c4c7.jpg","players":"2–4","duration":"15 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Juego inspirado en textiles mexicanos. Datos de jugadores, tiempo y edad confirmados en tu caja.","publisher":"Puercomonte","designer":"Sofía Salas y Sonia Santiago","year":"2019","mechanics":"Patrones · seis modalidades de juego"},{"id":"J013","title":"Bandido","img":"covers/cover-14-6a81b94d59f3.jpg","players":"1–4","duration":"15 min","difficulty":"Ligera","style":"Cooperativo","age":"6+","note":"Trabajen en equipo para bloquear los túneles y evitar que Bandido escape de prisión. Juego independiente; puede combinarse opcionalmente con Bandida.","publisher":"Helvetiq","designer":"Martin Nedergaard Andersen","year":"2016","mechanics":"Cooperativo · construcción de rutas · colocación de cartas · conexiones"},{"id":"J014","title":"Barbecubes","img":"covers/cover-15-8658a3da38df.jpg","players":"2–6","duration":"3–15 min","difficulty":"Muy ligera","style":"Destreza","age":"8+","note":"Apila piezas de barbacoa sin derribar la estructura.","publisher":"Big Potato Games","designer":"Brett J. Gilbert y Rob Sparks","year":"2025","mechanics":"Destreza · equilibrio"},{"id":"J015","title":"El Camarero","img":"covers/cover-16-ea66767a39b3.jpg","players":"2–10","duration":"15 min","difficulty":"Ligera","style":"Party","age":"8+","note":"Recuerda los pedidos y sirve correctamente los platos. Ilustrado por Nacho Rodríguez.","publisher":"Maldón","designer":"Maldón","year":"2018","mechanics":"Memoria · party"},{"id":"J016","title":"Cards vs Gravity","img":"covers/cover-17-5302fa00eff7.jpg","players":"2–8","duration":"15 min","difficulty":"Muy ligera","style":"Destreza","age":"10+","note":"Construye una estructura de cartas desafiando la gravedad.","publisher":"Big Potato Games","designer":"Steve Howe","year":"2023","mechanics":"Destreza · equilibrio · cartas"},{"id":"J017","title":"Flip 7","img":"covers/cover-18-f448d4b39ba6.jpg","players":"3–18","duration":"20 min","difficulty":"Muy ligera","style":"Party","age":"8+","note":"Sigue pidiendo cartas para sumar puntos, pero repetir un número hace perder la ronda.","publisher":"The Op Games","designer":"Eric Olsen","year":"2024","mechanics":"Push your luck · cartas"},{"id":"J018","title":"Giant UNO","img":"covers/cover-19-d05dd49e07cd.jpg","players":"2–10","duration":"No especificado","difficulty":"Muy ligera","style":"Familiar","age":"7+","note":"UNO en formato gigante con cartas sobredimensionadas.","publisher":"Mattel","designer":"Merle Robbins (UNO original)","year":"2020","mechanics":"Gestión de mano · descarte"},{"id":"J019","title":"Hitster Original","img":"covers/cover-20-8413569bc404.jpg","players":"2–10","duration":"~30 min","difficulty":"Muy ligera","style":"Party","age":"16+","note":"Escucha canciones y colócalas correctamente en tu línea temporal.","publisher":"Jumbo","designer":"Marcus Carleson","year":"2022","mechanics":"Música · cronología · trivia"},{"id":"J020","title":"Yo Soy Tu Peli","img":"covers/cover-21-828388b9d925.jpg","players":"4+","duration":"30 min","difficulty":"Muy ligera","style":"Party","age":"14+","note":"Juego de películas por equipos con 200 cartas y seis categorías.","publisher":"HelloFun","designer":"Regalador","year":"2022","mechanics":"Equipos · cine · creatividad"},{"id":"J021","title":"Jardinero","img":"covers/cover-22-201abdc6c176.jpg","players":"2–5","duration":"15 min","difficulty":"Muy ligera","style":"Familiar","age":"6+","note":"Ordena tus cartas del 1 al 7 siguiendo el crecimiento de una planta.","publisher":"Maldón","designer":"Maldón","year":"2022","mechanics":"Dados · gestión de mano"},{"id":"J022","title":"Scream: The Game","img":"covers/cover-23-39e394b861ed.png","players":"3–8","duration":"20 min","difficulty":"Muy ligera","style":"Cooperativo","age":"13+","note":"Coopera contra Ghost Face. Requiere aplicación/audio complementario.","publisher":"Funko Games","designer":"Aaron Donogh / Prospero Hall","year":"2023","mechanics":"Tiempo real · cooperativo · aplicación"},{"id":"J023","title":"Shiki","img":"covers/cover-24-88d653f9c1c3.jpg","players":"2–5","duration":"15 min","difficulty":"Muy ligera","style":"Familiar","age":"4+","note":"Juego familiar de cartas y dados basado en las estaciones del año.","publisher":"Maldón","designer":"Maldón","year":"2020","mechanics":"Cartas · dados"},{"id":"J024","title":"Tacta","img":"covers/cover-25-9d1dabc67996.jpg","players":"2–6","duration":"20 min","difficulty":"Ligera","style":"Abstracto","age":"7+","note":"Gira y superpone cartas para conectar y cubrir formas geométricas.","publisher":"The Op Games","designer":"Jason Tremblay","year":2025,"mechanics":"Patrones · colocación de cartas · espacial"},{"id":"J025","title":"Trio","img":"covers/cover-26-3ed17056fec6.jpg","players":"3–6","duration":"15 min","difficulty":"Ligera","style":"Deducción","age":"7+","note":"Busca tres cartas iguales recordando las manos rivales y el centro de la mesa.","publisher":"Cocktail Games / Devir","designer":"Kaya Miyano","year":"2021","mechanics":"Deducción · memoria · colección de conjuntos"},{"id":"J026","title":"Virus!","img":"covers/cover-27-399ee54b1cfc.jpg","players":"2–6","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Completa un cuerpo sano mientras infectas y saboteas a tus rivales.","publisher":"Tranjis Games","designer":"Carlos López, Domingo Cabrero y Santi Santisteban","year":"2015","mechanics":"Gestión de mano · interacción directa"},{"id":"J027","title":"Virus! 2 Evolution","img":"covers/cover-28-308d64ec1bc3.jpg","players":"2–6","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Expansión de Virus! con nuevas cartas y efectos. Requiere el juego base.","publisher":"Tranjis Games","designer":"Carlos López, Domingo Cabrero y Santi Santisteban","year":"2018","mechanics":"Expansión · gestión de mano"},{"id":"J028","title":"Virus! Halloween","img":"covers/cover-29-8fe51a4c139d.png","players":"2–6","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Expansión de Virus! con cartas temáticas de Halloween. Requiere Virus! para jugar.","publisher":"Tranjis Games","designer":"Carlos López, Domingo Cabrero y Santi Santisteban","year":"2020","mechanics":"Expansión · gestión de mano"},{"id":"J029","title":"Terapeuta de Pacotilla","img":"covers/cover-30-7ceac92c77aa.jpg","players":"3–8","duration":"15 min","difficulty":"Muy ligera","style":"Party","age":"17+","note":"Crea cómics de tres escenas combinando preguntas, respuestas y tratamientos absurdos.","publisher":"Exploding Kittens / Asmodee","designer":"Matthew Inman","year":"2024","mechanics":"Creatividad · humor · party"},{"id":"J030","title":"Hake Pombero","img":"covers/cover-31-6ae06a0d9143.png","players":"2–5","duration":"No especificado","difficulty":"Ligera","style":"Party","age":"No especificado","note":"Evita al Pombero usando ofrendas y cartas especiales mientras manipulas el mazo y complicas a tus rivales.","publisher":"DuarGames","designer":"Por verificar","year":"—","mechanics":"Gestión de mano · eliminación · interacción directa · manipulación del mazo"},{"id":"J031","title":"Secret Hitler","img":"covers/cover-32-17fb27931723.png","players":"5–10","duration":"45 min","difficulty":"Ligera","style":"Deducción","age":"13+","note":"Liberales y fascistas compiten mediante elecciones, votaciones y roles ocultos para controlar el gobierno.","publisher":"Goat Wolf & Cabbage","designer":"Mike Boxleiter, Tommy Maranges y Max Temkin","year":"2016","mechanics":"Roles ocultos · votación · equipos · deducción social"},{"id":"J032","title":"Esquinados","img":"covers/cover-33-3f950932a50b.png","players":"2–5","duration":"5–10 min","difficulty":"Muy ligera","style":"Familiar","age":"7+","note":"Todos juegan a la vez buscando una esquina cuya forma y color coincidan con la figura central.","publisher":"Maldón","designer":"Martin Nedergaard Andersen","year":"2023","mechanics":"Reconocimiento de patrones · velocidad · juego simultáneo"},{"id":"J033","title":"Tembleque","img":"covers/cover-34-0a0d377a2f5a.png","players":"2+","duration":"Variable","difficulty":"Muy ligera","style":"Destreza","age":"8+","note":"Retira un bloque de la torre y colócalo arriba sin provocar el derrumbe.","publisher":"Juegos Chiche","designer":"Por verificar","year":"—","mechanics":"Destreza · apilamiento · equilibrio · extracción de bloques"},{"id":"J034","title":"UNO Paraguay","img":"covers/cover-35-uno-paraguay.png","players":"2–10","duration":"15–30 min","difficulty":"Muy ligera","style":"Familiar","age":"7+","note":"Edición paraguaya de UNO con ilustraciones inspiradas en símbolos y elementos del país.","publisher":"Naxa","designer":"Merle Robbins (juego original)","year":"—","mechanics":"Gestión de mano · descarte · coincidencia de color y número · interacción directa"},{"id":"J035","title":"The Mind","img":"covers/cover-36-the-mind.png","players":"2–4","duration":"20 min","difficulty":"Ligera","style":"Cooperativo","age":"8+","note":"Jueguen cartas en orden ascendente sin hablar ni intercambiar información, sincronizando al grupo.","publisher":"Maldón","designer":"Wolfgang Warsch","year":"2018","mechanics":"Cooperación · ordenación · comunicación restringida · gestión de mano"},{"id":"J036","title":"Bandida","img":"covers/cover-37-bandida.png","players":"1–4","duration":"15 min","difficulty":"Ligera","style":"Cooperativo","age":"6+","note":"Juego independiente con tres modos de juego. Puede combinarse opcionalmente con Bandido.","publisher":"Helvetiq / BÜRO","designer":"Martin Nedergaard Andersen","year":"2020","mechanics":"Cooperativo · construcción de rutas · colocación de cartas · conexiones"},{"id":"J037","title":"Sushi Express","img":"covers/cover-38-sushi-express.png","players":"2–4","duration":"20 min","difficulty":"Muy ligera","style":"Velocidad","age":"6+","note":"Todos juegan a la vez para reproducir el pedido de sushi y ser los primeros en tocar el timbre.","publisher":"Maldón","designer":"Jean-Claude Pellin","year":"—","mechanics":"Reconocimiento de patrones · velocidad · percepción visual · juego simultáneo"},{"id":"J038","title":"Saboteur","img":"covers/cover-39-saboteur.png","players":"3–10","duration":"30 min","difficulty":"Ligera","style":"Deducción","age":"8+","note":"Mineros y saboteadores construyen túneles hacia el oro mientras ocultan sus verdaderas intenciones.","publisher":"AMIGO / BÜRO","designer":"Frédéric Moyersoen","year":"2004","mechanics":"Roles ocultos · construcción de rutas · gestión de mano · traición · equipos"},{"id":"J039","title":"En Palabras: Desconectados","img":"covers/cover-40-desconectados.png","players":"2+","duration":"Variable","difficulty":"Muy ligera","style":"Conversación","age":"16+","note":"Una experiencia de conversación con preguntas para conectar, conocerse y profundizar, sin ganadores ni perdedores.","publisher":"En Palabras","designer":"En Palabras","year":"—","mechanics":"Conversación · preguntas · interacción social · autoconocimiento"},{"id":"J040","title":"Flip 7: With A Vengeance","img":"covers/cover-41-flip7-vengeance.png","players":"3–28","duration":"20 min","difficulty":"Muy ligera","style":"Party","age":"8+","note":"Juego independiente basado en Flip 7, con nuevas formas de interacción y venganza entre jugadores.","publisher":"The Op Games","designer":"Eric Olsen y Alyssa Swatek","year":"2026","mechanics":"Push your luck · gestión de riesgo · interacción directa · interrupciones · puntuación por rondas"}];
+<script>const games=[{"id":"J001","title":"Wingspan","img":"covers/cover-02-282c796f9c56.jpg","players":"1–5","duration":"40–70 min","difficulty":"Media","style":"Estrategia","age":"10+","note":"Construye una reserva natural y desarrolla un motor de aves.","publisher":"Stonemaier Games","designer":"Elizabeth Hargrave","year":"2019","mechanics":"Motor de cartas · gestión de recursos"},{"id":"J002","title":"Coffee Rush","img":"covers/cover-03-d164a4e1d1e3.jpg","players":"2–4","duration":"30 min","difficulty":"Ligera-media","style":"Familiar","age":"8+","note":"Compite como barista reuniendo ingredientes y completando pedidos.","publisher":"Korea Boardgames","designer":"Euijin Han","year":"2023","mechanics":"Contratos · movimiento en cuadrícula"},{"id":"J003","title":"Alta Sociedad","img":"covers/cover-04-6f116f5cb2ae.jpg","players":"3–5","duration":"15–30 min","difficulty":"Ligera","style":"Estrategia","age":"10+","note":"Puja por lujos sin terminar siendo la persona más pobre.","publisher":"Edición en español","designer":"Reiner Knizia","year":"1995","mechanics":"Subastas · gestión de mano"},{"id":"J004","title":"Alebrijes","img":"covers/cover-05-e0f34e8ab828.jpg","players":"3–6","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Evita puntos negativos jugando cartas y efectos en el momento oportuno.","publisher":"Fractal Juegos","designer":"Joel Escalante y Rafael Escalante","year":"2025","mechanics":"Bazas · gestión de mano · comodines"},{"id":"J005","title":"Taco Gato Cabra Queso Pizza","img":"covers/cover-06-187a4c8c24a1.jpg","players":"2–8","duration":"10 min","difficulty":"Muy ligera","style":"Party","age":"8+","note":"Juego rápido de atención, palabras y reflejos.","publisher":"Blue Orange / La Casa de la Educadora","designer":"Dave Campbell","year":"2017","mechanics":"Reflejos · reconocimiento de patrones"},{"id":"J006","title":"Taco Vuelta Cabra Queso Pizza","img":"covers/cover-07-e80980cf8c96.jpg","players":"2–8","duration":"10 min","difficulty":"Muy ligera","style":"Party","age":"8+","note":"Versión independiente y combinable con Taco Gato Cabra Queso Pizza.","publisher":"La Casa de la Educadora","designer":"Dave Campbell","year":"2020","mechanics":"Reflejos · reconocimiento"},{"id":"J007","title":"Vintage","img":"covers/cover-08-ae40c6b65d22.jpg","players":"3–5","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Colecciona objetos vintage y optimiza tus conjuntos.","publisher":"Matagot","designer":"Bruno Faidutti","year":"2020","mechanics":"Colección de conjuntos · cartas"},{"id":"J008","title":"Cereal Killer","img":"covers/cover-09-bb182ff83c77.png","players":"2–3","duration":"15 min","difficulty":"Ligera","style":"Deducción","age":"14+","note":"Enfrentamiento asimétrico entre asesino y detective.","publisher":"Ediciones Primigenio","designer":"Julián Tunni","year":"2025","mechanics":"Movimiento oculto · deducción · preguntas y respuestas"},{"id":"J009","title":"TimeBomb Deluxe","img":"covers/cover-10-ec24e4c1b103.png","players":"4–8","duration":"15 min","difficulty":"Ligera","style":"Deducción","age":"8+","note":"Agentes y terroristas intentan desactivar o detonar la bomba sin conocer todas las identidades.","publisher":"Primigenio","designer":"Yusuke Sato","year":"2024","mechanics":"Roles ocultos · equipos · deducción"},{"id":"J010","title":"SOS Titanic","img":"covers/cover-11-c58074e257c2.jpg","players":"1–5","duration":"30 min","difficulty":"Ligera-media","style":"Cooperativo","age":"14+","note":"Colabora para salvar pasajeros mientras el Titanic se hunde.","publisher":"Matagot / Devir","designer":"Bruno Cathala y Ludovic Maublanc","year":"2013","mechanics":"Cooperativo · solitario · gestión de cartas"},{"id":"J011","title":"Duelo por Cardia","img":"covers/cover-12-4e8d850191b0.jpg","players":"2 (4)","duration":"15 min","difficulty":"Ligera-media","style":"Duelo","age":"9+","note":"Duelo estratégico para conseguir cinco sellos. Incluye variante para 4.","publisher":"Devir","designer":"Mathieu Rivero y Faouzi Boughida","year":"2025","mechanics":"Selección simultánea · gestión de cartas"},{"id":"J012","title":"Hila-Dos","img":"covers/cover-13-16791a17c4c7.jpg","players":"2–4","duration":"15 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Juego inspirado en textiles mexicanos. Datos de jugadores, tiempo y edad confirmados en tu caja.","publisher":"Puercomonte","designer":"Sofía Salas y Sonia Santiago","year":"2019","mechanics":"Patrones · seis modalidades de juego"},{"id":"J013","title":"Bandido","img":"covers/cover-14-6a81b94d59f3.jpg","players":"1–4","duration":"15 min","difficulty":"Ligera","style":"Cooperativo","age":"6+","note":"Trabajen en equipo para bloquear los túneles y evitar que Bandido escape de prisión. Juego independiente; puede combinarse opcionalmente con Bandida.","publisher":"Helvetiq","designer":"Martin Nedergaard Andersen","year":"2016","mechanics":"Cooperativo · construcción de rutas · colocación de cartas · conexiones"},{"id":"J014","title":"Barbecubes","img":"covers/cover-15-8658a3da38df.jpg","players":"2–6","duration":"3–15 min","difficulty":"Muy ligera","style":"Destreza","age":"8+","note":"Apila piezas de barbacoa sin derribar la estructura.","publisher":"Big Potato Games","designer":"Brett J. Gilbert y Rob Sparks","year":"2025","mechanics":"Destreza · equilibrio"},{"id":"J015","title":"El Camarero","img":"covers/cover-16-ea66767a39b3.jpg","players":"2–10","duration":"15 min","difficulty":"Ligera","style":"Party","age":"8+","note":"Recuerda los pedidos y sirve correctamente los platos. Ilustrado por Nacho Rodríguez.","publisher":"Maldón","designer":"Maldón","year":"2018","mechanics":"Memoria · party"},{"id":"J016","title":"Cards vs Gravity","img":"covers/cover-17-5302fa00eff7.jpg","players":"2–8","duration":"15 min","difficulty":"Muy ligera","style":"Destreza","age":"10+","note":"Construye una estructura de cartas desafiando la gravedad.","publisher":"Big Potato Games","designer":"Steve Howe","year":"2023","mechanics":"Destreza · equilibrio · cartas"},{"id":"J017","title":"Flip 7","img":"covers/cover-18-f448d4b39ba6.jpg","players":"3–18","duration":"20 min","difficulty":"Muy ligera","style":"Party","age":"8+","note":"Sigue pidiendo cartas para sumar puntos, pero repetir un número hace perder la ronda.","publisher":"The Op Games","designer":"Eric Olsen","year":"2024","mechanics":"Push your luck · cartas"},{"id":"J018","title":"Giant UNO","img":"covers/cover-19-d05dd49e07cd.jpg","players":"2–10","duration":"No especificado","difficulty":"Muy ligera","style":"Familiar","age":"7+","note":"UNO en formato gigante con cartas sobredimensionadas.","publisher":"Mattel","designer":"Merle Robbins (UNO original)","year":"2020","mechanics":"Gestión de mano · descarte"},{"id":"J019","title":"Hitster Original","img":"covers/cover-20-8413569bc404.jpg","players":"2–10","duration":"~30 min","difficulty":"Muy ligera","style":"Party","age":"16+","note":"Escucha canciones y colócalas correctamente en tu línea temporal.","publisher":"Jumbo","designer":"Marcus Carleson","year":"2022","mechanics":"Música · cronología · trivia"},{"id":"J020","title":"Yo Soy Tu Peli","img":"covers/cover-21-828388b9d925.jpg","players":"4+","duration":"30 min","difficulty":"Muy ligera","style":"Party","age":"14+","note":"Juego de películas por equipos con 200 cartas y seis categorías.","publisher":"HelloFun","designer":"Regalador","year":"2022","mechanics":"Equipos · cine · creatividad"},{"id":"J021","title":"Jardinero","img":"covers/cover-22-201abdc6c176.jpg","players":"2–5","duration":"15 min","difficulty":"Muy ligera","style":"Familiar","age":"6+","note":"Ordena tus cartas del 1 al 7 siguiendo el crecimiento de una planta.","publisher":"Maldón","designer":"Maldón","year":"2022","mechanics":"Dados · gestión de mano"},{"id":"J022","title":"Scream: The Game","img":"covers/cover-23-39e394b861ed.png","players":"3–8","duration":"20 min","difficulty":"Muy ligera","style":"Cooperativo","age":"13+","note":"Coopera contra Ghost Face. Requiere aplicación/audio complementario.","publisher":"Funko Games","designer":"Aaron Donogh / Prospero Hall","year":"2023","mechanics":"Tiempo real · cooperativo · aplicación"},{"id":"J023","title":"Shiki","img":"covers/cover-24-88d653f9c1c3.jpg","players":"2–5","duration":"15 min","difficulty":"Muy ligera","style":"Familiar","age":"4+","note":"Juego familiar de cartas y dados basado en las estaciones del año.","publisher":"Maldón","designer":"Maldón","year":"2020","mechanics":"Cartas · dados"},{"id":"J024","title":"Tacta","img":"covers/cover-25-9d1dabc67996.jpg","players":"2–6","duration":"20 min","difficulty":"Ligera","style":"Abstracto","age":"7+","note":"Gira y superpone cartas para conectar y cubrir formas geométricas.","publisher":"The Op Games","designer":"Jason Tremblay","year":2025,"mechanics":"Patrones · colocación de cartas · espacial"},{"id":"J025","title":"Trio","img":"covers/cover-26-3ed17056fec6.jpg","players":"3–6","duration":"15 min","difficulty":"Ligera","style":"Deducción","age":"7+","note":"Busca tres cartas iguales recordando las manos rivales y el centro de la mesa.","publisher":"Cocktail Games / Devir","designer":"Kaya Miyano","year":"2021","mechanics":"Deducción · memoria · colección de conjuntos"},{"id":"J026","title":"Virus!","img":"covers/cover-27-399ee54b1cfc.jpg","players":"2–6","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Completa un cuerpo sano mientras infectas y saboteas a tus rivales.","publisher":"Tranjis Games","designer":"Carlos López, Domingo Cabrero y Santi Santisteban","year":"2015","mechanics":"Gestión de mano · interacción directa"},{"id":"J027","title":"Virus! 2 Evolution","img":"covers/cover-28-308d64ec1bc3.jpg","players":"2–6","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Expansión de Virus! con nuevas cartas y efectos. Requiere el juego base.","publisher":"Tranjis Games","designer":"Carlos López, Domingo Cabrero y Santi Santisteban","year":"2018","mechanics":"Expansión · gestión de mano"},{"id":"J028","title":"Virus! Halloween","img":"covers/cover-29-8fe51a4c139d.png","players":"2–6","duration":"20 min","difficulty":"Ligera","style":"Familiar","age":"8+","note":"Expansión de Virus! con cartas temáticas de Halloween. Requiere Virus! para jugar.","publisher":"Tranjis Games","designer":"Carlos López, Domingo Cabrero y Santi Santisteban","year":"2020","mechanics":"Expansión · gestión de mano"},{"id":"J029","title":"Terapeuta de Pacotilla","img":"covers/cover-30-7ceac92c77aa.jpg","players":"3–8","duration":"15 min","difficulty":"Muy ligera","style":"Party","age":"17+","note":"Crea cómics de tres escenas combinando preguntas, respuestas y tratamientos absurdos.","publisher":"Exploding Kittens / Asmodee","designer":"Matthew Inman","year":"2024","mechanics":"Creatividad · humor · party"},{"id":"J030","title":"Hake Pombero","img":"covers/cover-31-6ae06a0d9143.png","players":"2–5","duration":"No especificado","difficulty":"Ligera","style":"Party","age":"No especificado","note":"Evita al Pombero usando ofrendas y cartas especiales mientras manipulas el mazo y complicas a tus rivales.","publisher":"DuarGames","designer":"Por verificar","year":"—","mechanics":"Gestión de mano · eliminación · interacción directa · manipulación del mazo"},{"id":"J031","title":"Secret Hitler","img":"covers/cover-32-17fb27931723.png","players":"5–10","duration":"45 min","difficulty":"Ligera","style":"Deducción","age":"13+","note":"Liberales y fascistas compiten mediante elecciones, votaciones y roles ocultos para controlar el gobierno.","publisher":"Goat Wolf & Cabbage","designer":"Mike Boxleiter, Tommy Maranges y Max Temkin","year":"2016","mechanics":"Roles ocultos · votación · equipos · deducción social"},{"id":"J032","title":"Esquinados","img":"covers/cover-33-3f950932a50b.png","players":"2–5","duration":"5–10 min","difficulty":"Muy ligera","style":"Familiar","age":"7+","note":"Todos juegan a la vez buscando una esquina cuya forma y color coincidan con la figura central.","publisher":"Maldón","designer":"Martin Nedergaard Andersen","year":"2023","mechanics":"Reconocimiento de patrones · velocidad · juego simultáneo"},{"id":"J033","title":"Tembleque","img":"covers/cover-34-0a0d377a2f5a.png","players":"2+","duration":"Variable","difficulty":"Muy ligera","style":"Destreza","age":"8+","note":"Retira un bloque de la torre y colócalo arriba sin provocar el derrumbe.","publisher":"Juegos Chiche","designer":"Por verificar","year":"—","mechanics":"Destreza · apilamiento · equilibrio · extracción de bloques"},{"id":"J034","title":"UNO Paraguay","img":"covers/cover-35-uno-paraguay.png","players":"2–10","duration":"15–30 min","difficulty":"Muy ligera","style":"Familiar","age":"7+","note":"Edición paraguaya de UNO con ilustraciones inspiradas en símbolos y elementos del país.","publisher":"Naxa","designer":"Merle Robbins (juego original)","year":"—","mechanics":"Gestión de mano · descarte · coincidencia de color y número · interacción directa"},{"id":"J035","title":"The Mind","img":"covers/cover-36-the-mind.png","players":"2–4","duration":"20 min","difficulty":"Ligera","style":"Cooperativo","age":"8+","note":"Jueguen cartas en orden ascendente sin hablar ni intercambiar información, sincronizando al grupo.","publisher":"Maldón","designer":"Wolfgang Warsch","year":"2018","mechanics":"Cooperación · ordenación · comunicación restringida · gestión de mano"},{"id":"J036","title":"Bandida","img":"covers/cover-37-bandida.png","players":"1–4","duration":"15 min","difficulty":"Ligera","style":"Cooperativo","age":"6+","note":"Juego independiente con tres modos de juego. Puede combinarse opcionalmente con Bandido.","publisher":"Helvetiq / BÜRO","designer":"Martin Nedergaard Andersen","year":"2020","mechanics":"Cooperativo · construcción de rutas · colocación de cartas · conexiones"},{"id":"J037","title":"Sushi Express","img":"covers/cover-38-sushi-express.png","players":"2–4","duration":"20 min","difficulty":"Muy ligera","style":"Velocidad","age":"6+","note":"Todos juegan a la vez para reproducir el pedido de sushi y ser los primeros en tocar el timbre.","publisher":"Maldón","designer":"Jean-Claude Pellin","year":"—","mechanics":"Reconocimiento de patrones · velocidad · percepción visual · juego simultáneo"},{"id":"J038","title":"Saboteur","img":"covers/cover-39-saboteur.png","players":"3–10","duration":"30 min","difficulty":"Ligera","style":"Deducción","age":"8+","note":"Mineros y saboteadores construyen túneles hacia el oro mientras ocultan sus verdaderas intenciones.","publisher":"AMIGO / BÜRO","designer":"Frédéric Moyersoen","year":"2004","mechanics":"Roles ocultos · construcción de rutas · gestión de mano · traición · equipos"},{"id":"J039","title":"En Palabras: Desconectados","img":"covers/cover-40-desconectados.png","players":"2+","duration":"Variable","difficulty":"Muy ligera","style":"Conversación","age":"16+","note":"Una experiencia de conversación con preguntas para conectar, conocerse y profundizar, sin ganadores ni perdedores.","publisher":"En Palabras","designer":"En Palabras","year":"—","mechanics":"Conversación · preguntas · interacción social · autoconocimiento"},{"id":"J040","title":"Flip 7: With A Vengeance","img":"covers/cover-41-flip7-vengeance.png","players":"3–28","duration":"20 min","difficulty":"Muy ligera","style":"Party","age":"8+","note":"Juego independiente basado en Flip 7, con nuevas formas de interacción y venganza entre jugadores.","publisher":"The Op Games","designer":"Eric Olsen y Alyssa Swatek","year":"2026","mechanics":"Push your luck · gestión de riesgo · interacción directa · interrupciones · puntuación por rondas"},{"id":"J041","title":"Ñembo Tabu","img":"covers/cover-42-nembo-tabu.png","players":"4–20","duration":"Variable","difficulty":"Muy ligera","style":"Party","age":"—","note":"Juego paraguayo de adivinanzas por equipos: da pistas para que tu equipo descubra la palabra sin mencionar las palabras tabú indicadas en la carta.","publisher":"DAR-PY","designer":"Por verificar","year":"2019","mechanics":"Equipos · adivinanzas · pistas restringidas · comunicación · palabras tabú"},{"id":"J042","title":"Catan Big Box","img":"covers/cover-43-catan-plus.png","players":"3–6","duration":"90 min","difficulty":"Ligera-media","style":"Estrategia","age":"10+","note":"Edición Big Box de Catan que reúne el juego base junto con contenido extra para ampliar la experiencia.","publisher":"Devir","designer":"Klaus Teuber","year":"2023","mechanics":"Negociación · gestión de recursos · construcción de rutas · tirada de dados · comercio"},{"id":"J043","title":"Azul","img":"covers/cover-44-azul.png","players":"2–4","duration":"30–45 min","difficulty":"Ligera-media","style":"Abstracto / Estrategia","age":"8+","note":"Juego abstracto de colocación de losetas inspirado en los azulejos portugueses. Los jugadores seleccionan fichas de colores para decorar su muro y sumar puntos.","publisher":"Plan B Games","designer":"Michael Kiesling","year":"2017","mechanics":"Draft de fichas · colección de sets · colocación de patrones · puntuación por adyacencia"}];
 games.sort((a,b)=>a.title.localeCompare(b.title,"es",{sensitivity:"base"}));
 let style="",visible=[...games];
 const $=s=>document.querySelector(s), grid=$("#grid");
@@ -1104,18 +1159,10 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
     const hh=hist()[g.id]||[];
     const last=hh.length?new Date(hh[hh.length-1]).toLocaleDateString("es"):null;
 
-    const thumbs=[
-      `<div class="approved-thumb"><img src="${g.img}" alt="${g.title}"></div>`,
-      `<div class="approved-thumb">Sin imagen adicional</div>`,
-      `<div class="approved-thumb">Sin imagen adicional</div>`,
-      `<div class="approved-thumb">Sin imagen adicional</div>`
-    ].join("");
-
     c.innerHTML=`
       <div class="approved-detail">
         <section class="approved-left">
           <div class="approved-cover"><img src="${g.img}" alt="${g.title}"></div>
-          <div class="approved-thumbs">${thumbs}</div>
           <div class="approved-actions">
             <button class="approved-fav" data-approved-fav>${isFav?"♥ En favoritos":"♡ Añadir a favoritos"}</button>
             <button class="approved-play" data-approved-play>▶ Jugamos hoy</button>
@@ -1151,11 +1198,6 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
           </div>
 
           <div class="approved-panel">
-            <h3>Componentes</h3>
-            <p>Información no cargada específicamente para este juego.</p>
-          </div>
-
-          <div class="approved-panel">
             <h3>Mecánicas</h3>
             <p>${g.mechanics||"—"}</p>
           </div>
@@ -1184,6 +1226,212 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
 
   try{ openGame = approvedOpenGame; }catch(e){}
   window.openGame = approvedOpenGame;
+})();
+</script>
+
+
+<script id="v20-final-js">
+(()=>{
+const app=document.createElement('div');app.id='v20App';app.innerHTML=`
+<div class="v20-shell">
+ <div class="v20-top">
+  <div class="v20-brand"><div class="v20-brand-mark">🎲</div><div><h1>Ludoteca de Hugo</h1><div class="v20-sub">V20</div></div></div>
+  <button class="v20-icon" id="v20Legacy" title="Abrir catálogo clásico">☰</button>
+ </div>
+
+ <section class="v20-page active" data-page="inicio">
+  <div class="v20-hero">¡Hola, Hugo!</div><div class="v20-muted">Tu ludoteca en números</div>
+  <div class="v20-grid4">
+   <div class="v20-stat blue"><div class="n" id="v20Owned">43</div><div class="l">Juegos en colección</div><div class="s" id="v20OwnedSub">—</div></div>
+   <div class="v20-stat purple"><div class="n" id="v20PlayedGames">0</div><div class="l">Juegos jugados</div><div class="s" id="v20Unplayed">—</div></div>
+   <div class="v20-stat green"><div class="n" id="v20TotalPlays">0</div><div class="l">Partidas registradas</div><div class="s">Historial local</div></div>
+   <div class="v20-stat gold"><div class="n" id="v20WinRate">—</div><div class="l">Tasa de victorias</div><div class="s" id="v20WinsSub">Sin datos aún</div></div>
+  </div>
+  <button class="v20-btn v20-widebtn" data-goto="stats">▥ Ver estadísticas</button>
+
+  <div class="v20-section">
+   <div class="v20-section-head"><h2>Actividad reciente</h2><span class="v20-mini">Últimas 5</span></div>
+   <div class="v20-list" id="v20Recent"></div>
+  </div>
+  <div class="v20-section">
+   <div class="v20-section-head"><h2>Tus juegos más jugados</h2><span class="v20-mini">Top 5</span></div>
+   <div class="v20-list" id="v20TopGames"></div>
+  </div>
+  <div class="v20-banner"><div><b>¿No sabés qué jugar?</b><div class="v20-mini">Tus funciones clásicas siguen disponibles.</div></div><div style="display:flex;gap:8px"><button class="v20-btn alt" id="v20What">¿Qué jugamos?</button><button class="v20-btn" id="v20Random">🎲 Sorpréndeme</button></div></div>
+ </section>
+
+ <section class="v20-page" data-page="stats">
+  <div class="v20-hero">Estadísticas</div><div class="v20-muted">Resumen de tu ludoteca</div>
+  <div class="v20-tabs"><button class="v20-pill active">General</button><button class="v20-pill">Juegos</button><button class="v20-pill">Jugadores</button><button class="v20-pill">Lugares</button></div>
+  <div class="v20-grid4">
+   <div class="v20-stat blue"><div class="n" id="sTotal">0</div><div class="l">Partidas</div></div>
+   <div class="v20-stat purple"><div class="n" id="sGames">0</div><div class="l">Juegos jugados</div></div>
+   <div class="v20-stat green"><div class="n">43</div><div class="l">En colección</div></div>
+   <div class="v20-stat gold"><div class="n" id="sRate">—</div><div class="l">Win rate</div></div>
+  </div>
+  <div class="v20-section"><div class="v20-section-head"><h2>Partidas por mes</h2><span class="v20-mini">2026</span></div>
+   <div class="v20-chart"><div class="v20-bars" id="v20Bars"></div></div>
+  </div>
+  <div class="v20-section"><div class="v20-section-head"><h2>Jugadores habituales</h2><button class="v20-btn alt" id="v20AddPlayer">+ Agregar</button></div><div class="v20-list" id="v20People"></div></div>
+  <div class="v20-section"><div class="v20-section-head"><h2>Lugares frecuentes</h2><button class="v20-btn alt" id="v20AddPlace">+ Agregar</button></div><div class="v20-list" id="v20Places"></div></div>
+ </section>
+
+ <section class="v20-page" data-page="collection">
+  <div class="v20-hero">Mi colección</div><div class="v20-muted">Gestioná tus juegos</div>
+  <div class="v20-tabs" id="v20CollectionTabs">
+   <button class="v20-pill active" data-filter="all">Todos</button><button class="v20-pill" data-filter="owned">En colección</button>
+   <button class="v20-pill" data-filter="exp">Expansiones</button>
+  </div>
+  <input class="v20-search" id="v20Search" placeholder="Buscar juegos...">
+  <div class="v20-grid3"><div class="v20-stat blue"><div class="n" id="cOwned">43</div><div class="l">En colección</div></div><div class="v20-stat gold"><div class="n" id="cExp">0</div><div class="l">Expansiones</div></div><div class="v20-stat purple"><div class="n" id="cBase">43</div><div class="l">Juegos base</div></div></div>
+  <div class="v20-collection-grid" id="v20CollectionGrid"></div>
+ </section>
+</div>
+<nav class="v20-nav">
+ <button class="active" data-nav="inicio">⌂<br>Inicio</button>
+ <button data-nav="collection">◈<br>Juegos</button>
+ <button class="plus" id="v20Plus">＋</button>
+ <button data-nav="stats">▥<br>Estadísticas</button>
+ <button data-nav="collection">▦<br>Colección</button>
+</nav>
+
+<div class="v20-modal" id="v20PlayModal"><div class="v20-dialog">
+ <div class="v20-step" id="v20StepLabel">PASO 1 DE 4</div><h2>Registrar partida</h2><div class="v20-muted" id="v20StepHelp">Seleccioná el juego que jugaste.</div>
+ <div id="v20Step1" style="margin-top:16px">
+  <input class="v20-search" id="v20GameSearch" placeholder="Buscar juego...">
+  <div class="v20-list" id="v20GamePicker"></div>
+ </div>
+ <div id="v20Step2" class="v20-hidden" style="margin-top:16px">
+  <div class="v20-formgrid">
+   <div class="v20-field"><label>Juego</label><input id="v20SelectedGame" disabled></div>
+   <div class="v20-field"><label>Fecha</label><input type="date" id="v20Date"></div>
+   <div class="v20-field"><label>N.º de partidas</label><input type="number" id="v20Qty" min="1" value="1"></div>
+   <div class="v20-field"><label>Lugar</label><select id="v20Location"></select></div>
+  </div>
+ </div>
+ <div id="v20Step3" class="v20-hidden" style="margin-top:16px">
+  <div class="v20-section-head"><h2 style="font-size:18px">Jugadores</h2><button class="v20-btn alt" id="v20AddPlayerRow">+ Agregar</button></div>
+  <div class="v20-players" id="v20PlayerRows"></div>
+  <div class="v20-mini" style="margin-top:8px">Marcá el ganador. La puntuación es opcional.</div>
+ </div>
+ <div id="v20Step4" class="v20-hidden" style="margin-top:16px">
+  <div class="v20-field"><label>Notas (opcional)</label><textarea id="v20Notes" rows="4" placeholder="Ej.: partida muy reñida..."></textarea></div>
+  <div class="v20-stat" id="v20Confirm" style="margin-top:14px"></div>
+ </div>
+ <div class="v20-actions2"><button class="v20-btn ghost" id="v20Back">Cancelar</button><button class="v20-btn" id="v20Next">Siguiente</button></div>
+</div></div>`;
+document.body.appendChild(app);
+
+const LS_PLAYS='ludoteca-v20-plays', LS_PEOPLE='ludoteca-v20-people', LS_PLACES='ludoteca-v20-places';
+const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch(e){return d}}
+const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+let plays=read(LS_PLAYS,[]), people=read(LS_PEOPLE,['Hugo']), places=read(LS_PLACES,['Casa','Amigos','Evento','Viaje','Café / Bar']);
+let selected=null,step=1;
+const EXPANSIONS=new Set(['J027','J028']);
+
+function gameById(id){return games.find(g=>g.id===id)}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function countBase(){return games.filter(g=>!EXPANSIONS.has(g.id)).length}
+function countExp(){return games.filter(g=>EXPANSIONS.has(g.id)).length}
+function winnerStats(){let wins=0,total=0;plays.forEach(p=>{if(p.players?.length){total++;if(p.players.some(x=>x.winner&&x.name==='Hugo'))wins++}});return {wins,total,rate:total?Math.round(wins/total*100):null}}
+function refresh(){
+ const counts={};plays.forEach(p=>counts[p.gameId]=(counts[p.gameId]||0)+(p.qty||1));
+ const playedIds=Object.keys(counts),ws=winnerStats(),ownedCount=games.length;
+ v20Owned.textContent=ownedCount;v20OwnedSub.textContent=`${countBase()} base + ${countExp()} expansiones`;
+ v20PlayedGames.textContent=playedIds.length;v20Unplayed.textContent=`${Math.max(0,ownedCount-playedIds.length)} sin estrenar`;
+ v20TotalPlays.textContent=plays.reduce((a,p)=>a+(p.qty||1),0);
+ v20WinRate.textContent=ws.rate==null?'—':ws.rate+'%';v20WinsSub.textContent=ws.rate==null?'Sin datos aún':`${ws.wins} de ${ws.total} ganadas`;
+ sTotal.textContent=v20TotalPlays.textContent;sGames.textContent=playedIds.length;sRate.textContent=v20WinRate.textContent;
+ cOwned.textContent=ownedCount;cExp.textContent=countExp();cBase.textContent=countBase();
+ renderRecent();renderTop(counts);renderBars();renderPeople();renderPlaces();renderCollection();
+}
+function renderRecent(){
+ const rows=[...plays].sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,5);
+ if(!rows.length){v20Recent.innerHTML='<div class="v20-row"><div class="v20-row-main"><div class="v20-row-title">Todavía no hay partidas registradas</div><div class="v20-row-meta">Usá el botón + para registrar la primera.</div></div></div>';return}
+ v20Recent.innerHTML=rows.map(p=>{const g=gameById(p.gameId);return `<div class="v20-row"><img class="v20-thumb" src="${g?.img||''}"><div class="v20-row-main"><div class="v20-row-title">${escapeHtml(g?.title||'Juego')}</div><div class="v20-row-meta">${p.date} · ${escapeHtml(p.location||'—')} · ${p.players?.length||0} jugadores</div></div></div>`}).join('');
+}
+function renderTop(counts){
+ const arr=Object.entries(counts).sort((a,b)=>b[1]-a[1]).slice(0,5);
+ if(!arr.length){v20TopGames.innerHTML='<div class="v20-row"><div class="v20-row-main"><div class="v20-row-title">Sin ranking todavía</div><div class="v20-row-meta">Aparecerá cuando registres partidas.</div></div></div>';return}
+ v20TopGames.innerHTML=arr.map(([id,n],i)=>{const g=gameById(id);return `<div class="v20-row"><b style="width:22px">${i+1}</b><img class="v20-thumb" src="${g?.img||''}"><div class="v20-row-main"><div class="v20-row-title">${escapeHtml(g?.title||id)}</div><div class="v20-row-meta">${n} partida${n===1?'':'s'}</div></div></div>`}).join('');
+}
+function renderBars(){
+ const months=Array(12).fill(0);plays.forEach(p=>{const d=new Date(p.date+'T12:00:00');if(d.getFullYear()===2026)months[d.getMonth()]+=(p.qty||1)});
+ const max=Math.max(...months,1),labels=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+ v20Bars.innerHTML=months.map((v,i)=>`<div class="v20-barwrap"><div class="v20-barvalue">${v||''}</div><div class="v20-bar" style="height:${Math.max(4,(v/max)*175)}px"></div><div class="v20-barlabel">${labels[i]}</div></div>`).join('');
+}
+function renderPeople(){
+ const stats={};people.forEach(n=>stats[n]={p:0,w:0});plays.forEach(p=>(p.players||[]).forEach(x=>{if(!stats[x.name])stats[x.name]={p:0,w:0};stats[x.name].p++;if(x.winner)stats[x.name].w++}));
+ v20People.innerHTML=Object.entries(stats).map(([n,s])=>`<div class="v20-row"><div class="v20-row-main"><div class="v20-row-title">${escapeHtml(n)}</div><div class="v20-row-meta">${s.p} partidas · ${s.w} victorias</div></div></div>`).join('');
+}
+function renderPlaces(){
+ const stats={};places.forEach(n=>stats[n]=0);plays.forEach(p=>stats[p.location]=(stats[p.location]||0)+1);
+ v20Places.innerHTML=Object.entries(stats).map(([n,c])=>`<div class="v20-row"><div class="v20-row-main"><div class="v20-row-title">${escapeHtml(n)}</div><div class="v20-row-meta">${c} partidas</div></div></div>`).join('');
+}
+function renderCollection(){
+ const q=(v20Search.value||'').toLowerCase(),active=document.querySelector('#v20CollectionTabs .active')?.dataset.filter||'all';
+ let arr=games.filter(g=>g.title.toLowerCase().includes(q));
+ if(active==='exp')arr=arr.filter(g=>EXPANSIONS.has(g.id));
+ v20CollectionGrid.innerHTML=arr.map(g=>`<div class="v20-game"><img src="${g.img}"><div style="flex:1"><div class="name">${escapeHtml(g.title)}</div><div class="meta">${escapeHtml(g.players)} · ${escapeHtml(g.duration)} · ${escapeHtml(g.age)}</div></div></div>`).join('');
+}
+function goto(page){
+ document.body.classList.add('v20-mode');app.classList.add('active');
+ document.querySelectorAll('.v20-page').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
+ document.querySelectorAll('.v20-nav [data-nav]').forEach(x=>x.classList.toggle('active',x.dataset.nav===page));
+ refresh();
+}
+document.querySelectorAll('[data-nav],[data-goto]').forEach(b=>b.onclick=()=>goto(b.dataset.nav||b.dataset.goto));
+v20Legacy.onclick=()=>{app.classList.remove('active');document.body.classList.remove('v20-mode')};
+v20Search.oninput=renderCollection;
+document.querySelectorAll('#v20CollectionTabs .v20-pill').forEach(b=>b.onclick=()=>{document.querySelectorAll('#v20CollectionTabs .v20-pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderCollection()});
+v20AddPlayer.onclick=()=>{const n=prompt('Nombre del jugador habitual:');if(n&&!people.includes(n)){people.push(n);write(LS_PEOPLE,people);renderPeople()}};
+v20AddPlace.onclick=()=>{const n=prompt('Nombre del lugar:');if(n&&!places.includes(n)){places.push(n);write(LS_PLACES,places);renderPlaces()}};
+
+function syncLocationOptions(){v20Location.innerHTML=places.map(p=>`<option>${escapeHtml(p)}</option>`).join('')}
+function openPlay(){
+ selected=null;step=1;v20PlayModal.classList.add('open');v20Date.value=new Date().toISOString().slice(0,10);
+ v20PlayerRows.innerHTML='';v20Notes.value='';v20Qty.value=1;syncLocationOptions();renderPicker();showStep();
+}
+function renderPicker(){
+ const q=(v20GameSearch.value||'').toLowerCase();const list=games.filter(g=>g.title.toLowerCase().includes(q)).slice(0,12);
+ v20GamePicker.innerHTML=list.map(g=>`<button class="v20-row" style="width:100%;background:transparent;color:white;text-align:left;border:0" data-pick="${g.id}"><img class="v20-thumb" src="${g.img}"><div class="v20-row-main"><div class="v20-row-title">${escapeHtml(g.title)}</div><div class="v20-row-meta">${g.players} · ${g.duration}</div></div><div>›</div></button>`).join('');
+ document.querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>{selected=gameById(b.dataset.pick);step=2;v20SelectedGame.value=selected.title;showStep()});
+}
+v20GameSearch.oninput=renderPicker;
+function showStep(){
+ [1,2,3,4].forEach(i=>document.querySelector('#v20Step'+i).classList.toggle('v20-hidden',i!==step));
+ v20StepLabel.textContent=`PASO ${step} DE 4`;
+ v20StepHelp.textContent=['Seleccioná el juego que jugaste.','Completá fecha, cantidad y lugar.','Agregá participantes y marcá el ganador.','Revisá y guardá la partida.'][step-1];
+ v20Back.textContent=step===1?'Cancelar':'Atrás';v20Next.textContent=step===4?'Guardar partida':'Siguiente';
+ if(step===3&&!v20PlayerRows.children.length){people.slice(0,2).forEach(addPlayerRow);if(!v20PlayerRows.children.length)addPlayerRow('Hugo')}
+ if(step===4)buildConfirm();
+}
+function addPlayerRow(name=''){
+ const row=document.createElement('div');row.className='v20-player';row.innerHTML=`<input type="text" value="${escapeHtml(name)}" placeholder="Jugador"><input type="number" placeholder="Puntos"><label class="winner"><input type="radio" name="v20Winner"> Ganador</label>`;v20PlayerRows.appendChild(row);
+}
+v20AddPlayerRow.onclick=()=>addPlayerRow('');
+function collectPlayers(){return [...v20PlayerRows.querySelectorAll('.v20-player')].map(r=>({name:r.querySelector('input[type="text"]').value.trim(),score:r.querySelector('input[type="number"]').value||null,winner:r.querySelector('input[type="radio"]').checked})).filter(x=>x.name)}
+function buildConfirm(){
+ const ps=collectPlayers();v20Confirm.innerHTML=`<div class="v20-row-title">${escapeHtml(selected?.title||'')}</div><div class="v20-row-meta" style="margin-top:8px">${v20Date.value} · ${escapeHtml(v20Location.value)} · ${ps.length} jugadores</div><div class="v20-row-meta" style="margin-top:8px">${ps.map(p=>escapeHtml(p.name)+(p.winner?' 🏆':'')).join(' · ')}</div>`;
+}
+v20Back.onclick=()=>{if(step===1){v20PlayModal.classList.remove('open')}else{step--;showStep()}};
+v20Next.onclick=()=>{
+ if(step===1)return;
+ if(step<4){step++;showStep();return}
+ const ps=collectPlayers();if(!selected||!ps.length){alert('Seleccioná un juego y al menos un jugador.');return}
+ const loc=v20Location.value;
+ if(loc&&!places.includes(loc)){places.push(loc);write(LS_PLACES,places)}
+ ps.forEach(p=>{if(!people.includes(p.name))people.push(p.name)});
+ write(LS_PEOPLE,people);
+ plays.push({id:'p'+Date.now(),gameId:selected.id,date:v20Date.value,qty:+v20Qty.value||1,location:loc,players:ps,notes:v20Notes.value});
+ write(LS_PLAYS,plays);v20PlayModal.classList.remove('open');refresh();goto('inicio');
+};
+v20Plus.onclick=openPlay;
+v20What.onclick=()=>{app.classList.remove('active');document.body.classList.remove('v20-mode');setTimeout(()=>document.querySelector('#recommend')?.click(),50)};
+v20Random.onclick=()=>{app.classList.remove('active');document.body.classList.remove('v20-mode');setTimeout(()=>document.querySelector('#surprise')?.click(),50)};
+
+// Start in V20 home.
+goto('inicio');
 })();
 </script>
 
