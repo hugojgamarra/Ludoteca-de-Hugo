@@ -308,7 +308,7 @@ body.v20-mode>.catalog-status,body.v20-mode>main{display:none!important}
 .v20-shell{max-width:1180px;margin:0 auto;padding:18px 18px 110px}
 .v20-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
 .v20-brand{display:flex;align-items:center;gap:10px}.v20-brand-mark{width:42px;height:42px;border-radius:13px;background:#0f2a4a;display:grid;place-items:center;font-size:24px}
-.v20-brand h1{font-size:21px;margin:0}.v20-sub{font-size:12px;color:var(--v20-muted)}
+.v20-brand h1{font-size:21px;margin:0}.v20-sub{font-size:12px;color:var(--v20-muted)}.v20-brand-logo-only{display:flex;align-items:center}.v20-main-logo{width:180px;max-width:46vw;height:auto;display:block;border-radius:18px}
 .v20-icon{width:42px;height:42px;border-radius:13px;background:var(--v20-card);border:1px solid var(--v20-line);color:white;display:grid;place-items:center}
 .v20-page{display:none}.v20-page.active{display:block}
 .v20-hero{font-size:34px;font-weight:900;margin:8px 0 4px}.v20-muted{color:var(--v20-muted)}
@@ -1235,7 +1235,7 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
 const app=document.createElement('div');app.id='v20App';app.innerHTML=`
 <div class="v20-shell">
  <div class="v20-top">
-  <div class="v20-brand"><div class="v20-brand-mark">🎲</div><div><h1>Ludoteca de Hugo</h1><div class="v20-sub">V20</div></div></div>
+  <div class="v20-brand v20-brand-logo-only"><img src="logo-ludoteca-hugo.png" alt="Ludoteca de Hugo" class="v20-main-logo"></div>
   <button class="v20-icon" id="v20Legacy" title="Abrir catálogo clásico">☰</button>
  </div>
 
