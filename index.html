@@ -169,46 +169,14 @@ header img{object-fit:contain!important;background:transparent!important;border-
 </style>
 <style id="utility-hide-fix">[data-v8-utility-original="1"],#exportData,#importData,#toggleStats{display:none!important}</style>
 
-<style id="utility-menu-position-final">
-.v8-more-wrap{
-  position:fixed!important;
-  top:16px!important;
-  left:16px!important;
-  right:auto!important;
-  z-index:9999!important;
-}
-#v8MoreMenu{
-  left:0!important;
-  right:auto!important;
-  top:50px!important;
-}
-</style>
 
 
 
-<style id="utility-menu-button-unified">
-#v8MoreBtn.v8-menu-trigger{
-  font-family:inherit!important;
-  box-shadow:none!important;
-}
-</style>
 
 
-<style id="utility-menu-exact-size">
-#v8MoreBtn.v8-menu-trigger{
-  width:auto!important;
-  height:auto!important;
-  min-width:0!important;
-  padding:9px 11px!important;
-  font-size:17px!important;
-  line-height:normal!important;
-  border:1px solid var(--line)!important;
-  border-radius:13px!important;
-  background:var(--card)!important;
-  color:var(--text)!important;
-  box-shadow:none!important;
-}
-</style>
+
+
+
 
 
 <style id="final-approved-detail-v2">
@@ -309,7 +277,7 @@ body.v20-mode>.catalog-status,body.v20-mode>main{display:none!important}
 .v20-top{position:relative;display:flex;align-items:center;justify-content:center;gap:12px;min-height:76px;margin-bottom:18px}
 .v20-brand{display:flex;align-items:center;gap:10px}.v20-brand-mark{width:42px;height:42px;border-radius:13px;background:#0f2a4a;display:grid;place-items:center;font-size:24px}
 .v20-brand h1{font-size:21px;margin:0}.v20-sub{font-size:12px;color:var(--v20-muted)}.v20-brand-logo-only{width:100%;display:flex;align-items:center;justify-content:center}.v20-main-logo{width:180px;max-width:46vw;height:auto;display:block;border-radius:0;background:transparent!important;padding:0!important;box-shadow:none!important}
-.v20-icon{width:42px;height:42px;border-radius:13px;background:var(--v20-card);border:1px solid var(--v20-line);color:white;display:grid;place-items:center}.v20-top>.v20-icon{position:absolute;right:0;top:50%;transform:translateY(-50%)}
+.v20-icon{width:42px;height:42px;border-radius:13px;background:var(--v20-card);border:1px solid var(--v20-line);color:white;display:grid;place-items:center}
 .v20-page{display:none}.v20-page.active{display:block}
 .v20-hero{font-size:34px;font-weight:900;margin:8px 0 4px}.v20-muted{color:var(--v20-muted)}
 .v20-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}.v20-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
@@ -329,7 +297,7 @@ body.v20-mode>.catalog-status,body.v20-mode>main{display:none!important}
 .v20-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--v20-line)}
 .v20-row:last-child{border-bottom:0}.v20-thumb{width:50px;height:50px;border-radius:10px;background:#fff;object-fit:contain;padding:2px}
 .v20-row-main{min-width:0;flex:1}.v20-row-title{font-weight:850}.v20-row-meta{font-size:12px;color:var(--v20-muted);margin-top:3px}
-.v20-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:10020;width:min(94vw,680px);background:#0b1728ee;border:1px solid #223a57;backdrop-filter:blur(14px);border-radius:22px;padding:8px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.v20-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:12px;z-index:10020;width:min(94vw,680px);background:#0b1728ee;border:1px solid #223a57;backdrop-filter:blur(14px);border-radius:22px;padding:8px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
 .v20-nav button{border:0;background:transparent;color:#9fb0c7;border-radius:14px;padding:9px 4px;font-size:11px;font-weight:800}
 .v20-nav button.active{background:#0e2d50;color:#55a9ff}.v20-nav .plus{background:#2b96ff;color:white;font-size:24px;line-height:1}
 .v20-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}.v20-pill{border:1px solid var(--v20-line);background:#101b2b;color:#d6dfeb;border-radius:999px;padding:9px 13px;font-weight:800;font-size:12px}
@@ -355,15 +323,6 @@ body.v20-mode>.catalog-status,body.v20-mode>main{display:none!important}
 .v20-banner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:linear-gradient(135deg,#0e2a48,#12213a);border:1px solid #2a5f93;border-radius:20px;padding:22px 18px;margin:16px 0;text-align:center}.v20-banner-title{font-size:24px;font-weight:900;line-height:1.15}.v20-banner-actions{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px}.v20-banner-actions .v20-btn{min-height:64px;font-size:18px}@media(max-width:480px){.v20-banner{padding:20px 14px}.v20-banner-title{font-size:22px}.v20-banner-actions{gap:8px}.v20-banner-actions .v20-btn{font-size:17px;padding:10px 8px}}
 .v20-mini{font-size:12px;color:var(--v20-muted)}
 @media(max-width:780px){.v20-grid4,.v20-grid3{grid-template-columns:repeat(2,1fr)}.v20-formgrid{grid-template-columns:1fr}.v20-player{grid-template-columns:1fr 90px}.v20-player .winner{grid-column:1/-1}.v20-hero{font-size:29px}.v20-shell{padding-left:12px;padding-right:12px}}
-</style>
-
-
-<style id="v20-header-centering-fix">
-body.v20-mode #utilityMenuWrap,
-body.v20-mode #v8UtilityMenu,
-body.v20-mode #v8MoreBtn{
-  display:none !important;
-}
 @media(max-width:780px){
   .v20-top{min-height:72px}
   .v20-main-logo{width:168px;max-width:52vw}
@@ -469,6 +428,82 @@ body.v20-mode #v8MoreBtn{
   .v20-catalog-copy{max-width:66%;font-size:14px}
   .v20-catalog-card::after{font-size:74px;right:18px;bottom:18px}
   .v20-catalog-cta{min-width:210px;font-size:16px}
+}
+</style>
+
+
+<style id="global-logo-home-fix">
+.v20-logo-home{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border:0;
+  background:transparent;
+  padding:0;
+  margin:0;
+  cursor:pointer;
+}
+.v20-logo-home:active{transform:scale(.985)}
+.v20-logo-home:focus-visible{
+  outline:2px solid var(--v20-blue);
+  outline-offset:5px;
+  border-radius:18px;
+}
+</style>
+
+
+<style id="bottom-nav-final-approved">
+.v20-nav-final{
+  grid-template-columns:1fr 96px 1fr !important;
+  align-items:end;
+  gap:10px !important;
+  padding:10px 14px 12px !important;
+  border-radius:28px !important;
+}
+.v20-nav-final .v20-side-tab{
+  min-height:62px;
+  border-radius:20px !important;
+  font-size:12px !important;
+}
+.v20-nav-final .v20-side-tab.active{
+  background:#10375c !important;
+  color:#30a4ff !important;
+}
+.v20-nav-final .v20-plus-floating{
+  width:82px;
+  height:82px;
+  min-height:82px;
+  justify-self:center;
+  align-self:center;
+  margin-top:-32px;
+  border-radius:50% !important;
+  border:3px solid #60c6ff !important;
+  background:linear-gradient(180deg,#2694ff,#1475eb) !important;
+  color:#fff !important;
+  font-size:40px !important;
+  line-height:1 !important;
+  box-shadow:0 0 0 7px #07111f,0 12px 28px rgba(22,129,255,.38);
+  padding:0 !important;
+}
+.v20-nav-final .v20-plus-floating:active{transform:scale(.96)}
+@media(max-width:520px){
+  .v20-nav-final{
+    grid-template-columns:1fr 84px 1fr !important;
+    gap:7px !important;
+    padding:9px 10px 10px !important;
+  }
+  .v20-nav-final .v20-plus-floating{
+    width:74px;
+    height:74px;
+    min-height:74px;
+    margin-top:-29px;
+    font-size:36px !important;
+  }
+  .v20-nav-final .v20-side-tab{
+    min-height:58px;
+    font-size:11px !important;
+  }
 }
 </style>
 
@@ -1058,62 +1093,8 @@ if ("serviceWorker" in navigator) {
 </script>
 
 
-<style id="utility-menu-v8">
-[data-v8-utility-original="1"]{display:none!important}
-.v8-more-wrap{position:absolute;top:16px;right:16px;z-index:30}
-#v8MoreBtn{
-  width:44px;height:44px;border:0;border-radius:14px;
-  font-size:28px;line-height:1;cursor:pointer;
-  background:var(--card,#fff);color:inherit;
-  box-shadow:0 3px 14px rgba(0,0,0,.14)
-}
-#v8MoreMenu{
-  position:absolute;right:0;top:50px;min-width:190px;padding:8px;
-  border-radius:14px;background:var(--card,#fff);
-  box-shadow:0 8px 28px rgba(0,0,0,.22)
-}
-body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#252a2f;color:#fff}
-#v8MoreMenu[hidden]{display:none}
-#v8MoreMenu button{
-  display:block;width:100%;padding:12px 14px;border:0;border-radius:10px;
-  background:transparent;color:inherit;text-align:left;font:inherit;cursor:pointer
-}
-#v8MoreMenu button:hover{background:rgba(127,127,127,.12)}
-</style>
-<script id="utility-menu-v8-js">
-(function(){
- function init(){
-   if(document.getElementById("v8MoreBtn")) return;
-   const originals=[...document.querySelectorAll('[data-v8-utility-original="1"]')];
-   const find=(txt)=>originals.find(b=>(b.textContent||"").trim().toLowerCase().includes(txt));
-   const stats=find("estad");
-   const exp=find("export");
-   const imp=find("import");
-   if(!stats&&!exp&&!imp) return;
 
-   const wrap=document.createElement("div");
-   wrap.className="v8-more-wrap";
-   wrap.innerHTML='<button id="v8MoreBtn" class="iconbtn v8-menu-trigger" type="button" aria-label="Más opciones" aria-expanded="false">⋮</button>'+
-     '<div id="v8MoreMenu" hidden>'+
-     (stats?'<button type="button" data-act="stats">Estadísticas</button>':'')+
-     (exp?'<button type="button" data-act="export">Exportar datos</button>':'')+
-     (imp?'<button type="button" data-act="import">Importar datos</button>':'')+
-     '</div>';
-   document.body.appendChild(wrap);
 
-   const btn=wrap.querySelector("#v8MoreBtn"), menu=wrap.querySelector("#v8MoreMenu");
-   const close=()=>{menu.hidden=true;btn.setAttribute("aria-expanded","false")};
-   btn.addEventListener("click",e=>{e.stopPropagation();menu.hidden=!menu.hidden;btn.setAttribute("aria-expanded",String(!menu.hidden))});
-   menu.addEventListener("click",e=>{
-     const a=e.target.closest("[data-act]"); if(!a)return;
-     ({stats,export:exp,import:imp}[a.dataset.act])?.click(); close();
-   });
-   document.addEventListener("click",e=>{if(!wrap.contains(e.target))close()});
-   document.addEventListener("keydown",e=>{if(e.key==="Escape")close()});
- }
- if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",init);else init();
-})();
-</script>
 
 
 <script id="v11-smart-recommendations">
@@ -1220,7 +1201,6 @@ body.dark #detailContent > button:last-child:hover{background:#314969!important}
 body.dark #surpriseDlg{background:#0d1929!important}
 body.dark #surpriseDlg .surprise-card{background:#101e31!important}
 body.dark #surView{background:#1681ff!important;color:#fff!important;border-color:#1681ff!important}
-body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#fff!important;border-color:#263a55!important}
 @media(max-width:600px){
   .facts .chip-age,.facts .chip-difficulty{display:none!important}
 }
@@ -1398,8 +1378,7 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
 const app=document.createElement('div');app.id='v20App';app.innerHTML=`
 <div class="v20-shell">
  <div class="v20-top">
-  <div class="v20-brand v20-brand-logo-only"><img src="logo-ludoteca-hugo-v2.png" alt="Ludoteca de Hugo" class="v20-main-logo"></div>
-  <button class="v20-icon" id="v20Legacy" title="Abrir catálogo clásico">☰</button>
+  <button class="v20-logo-home" id="v20LogoHome" type="button" aria-label="Ir al inicio"><img src="logo-ludoteca-hugo-v2.png" alt="Ludoteca de Hugo" class="v20-main-logo"></button>
  </div>
 
  <section class="v20-page active" data-page="inicio">
@@ -1457,13 +1436,11 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
   <div class="v20-collection-grid" id="v20CollectionGrid"></div>
  </section>
 </div>
-<nav class="v20-nav">
- <button class="active" data-nav="inicio">⌂<br>Inicio</button>
- <button data-nav="collection">◈<br>Juegos</button>
- <button class="plus" id="v20Plus">＋</button>
- <button data-nav="stats">▥<br>Estadísticas</button>
- <button data-nav="collection">▦<br>Colección</button>
-</nav>
+<nav class="v20-nav v20-nav-final">
+ <button data-nav="collection" class="v20-side-tab">◈<br>Juegos</button>
+ <button class="plus v20-plus-floating" id="v20Plus" aria-label="Registrar partida">＋</button>
+ <button data-nav="stats" class="v20-side-tab">▥<br>Estadísticas</button>
+ </nav>
 
 <div class="v20-modal" id="v20PlayModal"><div class="v20-dialog">
  <div class="v20-step" id="v20StepLabel">PASO 1 DE 4</div><h2>Registrar partida</h2><div class="v20-muted" id="v20StepHelp">Seleccioná el juego que jugaste.</div>
@@ -1560,9 +1537,10 @@ function backToV20Home(){
  document.body.classList.add('v20-mode');
  app.classList.add('active');
  goto('inicio');
+ document.querySelectorAll('.v20-nav-final [data-nav]').forEach(x=>x.classList.remove('active'));
  window.scrollTo({top:0,behavior:'instant'});
 }
-v20Legacy.onclick=openClassicCatalog;
+document.querySelector('#v20LogoHome').onclick=backToV20Home;
 document.querySelector('#v20CatalogCard').onclick=openClassicCatalog;
 document.querySelector('#classicHome').onclick=backToV20Home;
 v20Search.oninput=renderCollection;
