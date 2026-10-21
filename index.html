@@ -352,7 +352,7 @@ body.v20-mode>.catalog-status,body.v20-mode>main{display:none!important}
 .v20-player input[type="text"],.v20-player input[type="number"]{background:#091627;border:1px solid #29425f;color:white;border-radius:9px;padding:9px;width:100%}
 .v20-actions2{display:flex;justify-content:space-between;gap:10px;margin-top:16px}
 .v20-hidden{display:none!important}
-.v20-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(135deg,#0e2a48,#12213a);border:1px solid #2a5f93;border-radius:16px;padding:16px;margin:16px 0}
+.v20-banner{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:linear-gradient(135deg,#0e2a48,#12213a);border:1px solid #2a5f93;border-radius:20px;padding:22px 18px;margin:16px 0;text-align:center}.v20-banner-title{font-size:24px;font-weight:900;line-height:1.15}.v20-banner-actions{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:10px}.v20-banner-actions .v20-btn{min-height:64px;font-size:18px}@media(max-width:480px){.v20-banner{padding:20px 14px}.v20-banner-title{font-size:22px}.v20-banner-actions{gap:8px}.v20-banner-actions .v20-btn{font-size:17px;padding:10px 8px}}
 .v20-mini{font-size:12px;color:var(--v20-muted)}
 @media(max-width:780px){.v20-grid4,.v20-grid3{grid-template-columns:repeat(2,1fr)}.v20-formgrid{grid-template-columns:1fr}.v20-player{grid-template-columns:1fr 90px}.v20-player .winner{grid-column:1/-1}.v20-hero{font-size:29px}.v20-shell{padding-left:12px;padding-right:12px}}
 </style>
@@ -382,9 +382,99 @@ body.v20-mode #v8MoreBtn{
 }
 </style>
 
+
+<style id="catalogo-premium-fix">
+.brand-home{
+  border:0;
+  background:transparent;
+  padding:0;
+  margin:0;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.brand-home:active{transform:scale(.97)}
+.v20-catalog-card{
+  position:relative;
+  overflow:hidden;
+  margin:22px 0;
+  min-height:240px;
+  border-radius:24px;
+  border:1px solid #316fc4;
+  background:
+    radial-gradient(circle at 85% 25%,rgba(87,79,255,.35),transparent 28%),
+    radial-gradient(circle at 72% 80%,rgba(0,145,255,.20),transparent 34%),
+    linear-gradient(135deg,#0b2545 0%,#0b1830 56%,#121a3e 100%);
+  box-shadow:0 14px 34px rgba(0,0,0,.28), inset 0 0 35px rgba(30,127,255,.06);
+  padding:24px;
+}
+.v20-catalog-card::after{
+  content:"🎲";
+  position:absolute;
+  right:26px;
+  bottom:18px;
+  font-size:86px;
+  transform:rotate(-10deg);
+  filter:drop-shadow(0 10px 18px rgba(0,0,0,.35));
+  opacity:.95;
+}
+.v20-catalog-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:6px 11px;
+  border-radius:999px;
+  background:linear-gradient(180deg,#6c4b00,#3b2700);
+  border:1px solid #ffbd32;
+  color:#ffe49a;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.v20-catalog-title{
+  max-width:68%;
+  margin-top:16px;
+  font-size:30px;
+  line-height:1.06;
+  font-weight:950;
+}
+.v20-catalog-title span{color:#ffb51f}
+.v20-catalog-copy{
+  max-width:58%;
+  margin-top:12px;
+  color:#b8c9df;
+  font-size:15px;
+  line-height:1.45;
+}
+.v20-catalog-cta{
+  margin-top:18px;
+  min-width:230px;
+  min-height:52px;
+  padding:0 18px;
+  border:1px solid #5fd4ff;
+  border-radius:999px;
+  background:linear-gradient(180deg,#168cff,#116ee4);
+  color:white;
+  font-weight:900;
+  font-size:17px;
+  box-shadow:0 0 0 3px rgba(22,129,255,.15),0 8px 20px rgba(22,129,255,.28);
+  cursor:pointer;
+}
+.v20-catalog-cta:active{transform:scale(.98)}
+@media(max-width:560px){
+  .v20-catalog-card{min-height:228px;padding:20px}
+  .v20-catalog-title{max-width:72%;font-size:26px}
+  .v20-catalog-copy{max-width:66%;font-size:14px}
+  .v20-catalog-card::after{font-size:74px;right:18px;bottom:18px}
+  .v20-catalog-cta{min-width:210px;font-size:16px}
+}
+</style>
+
 </head><body class="dark">
 <header><div class="top"><div class="brand">
-<img class="brand-logo" src="covers/cover-01-e9db0b4d76f1.png" alt="Ludoteca de Hugo">
+<button class="brand-home" id="classicHome" type="button" aria-label="Volver al inicio"><img class="brand-logo" src="logo-ludoteca-hugo-v2.png" alt="Ludoteca de Hugo"></button>
 
 </div><button class="iconbtn" id="theme">◐</button></div>
 <div class="controls"><input class="search" id="q" placeholder="Buscar juego…"><select id="players"><option value="">Jugadores</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option value="9">8+</option></select></div>
@@ -1025,7 +1115,54 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#252a2f;color:#fff}
 })();
 </script>
 
-\n<script id="v11-smart-recommendations">\n(()=>{\n const btn=document.querySelector("#find"); if(!btn||btn.dataset.v11==="1")return; btn.dataset.v11="1";\n const DAY=86400000, expansionIds=new Set(["J027","J028"]);\n const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch(e){return d}};\n const diffRank={"Muy ligera":1,"Ligera":2,"Ligera-media":3,"Media":4};\n const experienceMatch=(g,x)=>{\n   if(!x)return 1; const text=(g.style+" "+g.mechanics).toLowerCase();\n   const map={\n    "Party":["party","velocidad","reflejos","humor","música","creatividad","interacción directa","eliminación"],\n    "Familiar":["familiar","memoria","cartas","dados","patrones","colección"],\n    "Estrategia":["estrategia","gestión","motor","subastas","abstracto","espacial","selección simultánea"],\n    "Cooperativo":["cooperativo","solitario","tiempo real"],\n    "Deducción":["deducción","roles ocultos","movimiento oculto","memoria"],\n    "Destreza":["destreza","equilibrio","apilamiento","extracción"],\n    "Duelo":["duelo","selección simultánea"],\n    "Abstracto":["abstracto","patrones","espacial","colocación"]\n   };\n   if(g.style===x)return 3; return (map[x]||[]).some(k=>text.includes(k))?2:0;\n };\n btn.addEventListener("click",ev=>{\n   ev.stopImmediatePropagation(); ev.preventDefault();\n   const p=+document.querySelector("#rp").value||0,t=+document.querySelector("#rt").value||0,d=document.querySelector("#rd").value,x=document.querySelector("#rx").value,includeExp=document.querySelector("#rex").checked;\n   const last=read("ludoteca-played-v1",{}), counts=read("ludoteca-play-count-v1",{}), now=Date.now();\n   let ranked=games.filter(g=>(includeExp||!expansionIds.has(g.id))&&supports(g,p)&&(!t||t===999||minutes(g)<=t)).map(g=>{\n     let score=0,reasons=[];\n     if(p){score+=5;reasons.push(p===9?"apto para grupos grandes":`funciona con ${p} jugador${p===1?"":"es"}`)}\n     if(t&&t!==999){const m=minutes(g);if(m<=t){score+=4;reasons.push(`entra en ${t} min`)}}\n     const xm=experienceMatch(g,x); if(x){score+=xm*3;if(xm===3)reasons.push(`encaja en ${x.toLowerCase()}`)} else score+=1;\n     if(d){const delta=Math.abs((diffRank[g.difficulty]||2)-(diffRank[d]||2));if(delta===0){score+=4;reasons.push(`dificultad ${d.toLowerCase()}`)}else if(delta===1)score+=1;}else score+=1;\n     if(!expansionIds.has(g.id))score+=1;\n     const lp=last[g.id]||0, n=counts[g.id]||0, age=lp?now-lp:Infinity;\n     if(!lp){score+=3;reasons.push("todavía no jugado")}\n     else if(age>=60*DAY){score+=2;reasons.push("hace tiempo que no sale")}\n     else if(age<7*DAY){score-=8;reasons.push("jugado recientemente")}\n     else if(age<30*DAY){score-=3;}\n     score+=Math.max(0,2-Math.min(2,n));\n     return {g,score,reasons};\n   }).filter(o=>(!x||experienceMatch(o.g,x)>0)&&(!d||Math.abs((diffRank[o.g.difficulty]||2)-(diffRank[d]||2))<=1))\n     .sort((a,b)=>b.score-a.score||((counts[a.g.id]||0)-(counts[b.g.id]||0))||minutes(a.g)-minutes(b.g)||a.g.title.localeCompare(b.g.title)).slice(0,3);\n   const box=document.querySelector("#recoResults");\n   if(!ranked.length){box.innerHTML='<div class="recoempty">No encontré una coincidencia suficientemente buena. Prueba ampliando el tiempo o dejando libre un criterio.</div>';return}\n   box.innerHTML='<div class="recolabel">Mis recomendaciones <small style="display:block;font-weight:500;margin-top:3px">Se priorizan juegos poco jugados y se penalizan los jugados en los últimos 7 días.</small></div><div class="recoresults">'+ranked.map((o,i)=>`<button class="recopick" data-id="${o.g.id}"><img src="${o.g.img}"><span><b>${i+1}. ${o.g.title}</b><small>${o.g.players} jugadores · ${o.g.duration} · ${o.g.difficulty}</small><small>${o.reasons.slice(0,3).join(" · ")||o.g.style}</small></span></button>`).join("")+'</div>';\n   box.querySelectorAll(".recopick").forEach(b=>b.onclick=()=>{document.querySelector("#reco").close();setTimeout(()=>openGame(games.find(g=>g.id===b.dataset.id)),0)});\n },true);\n})();\n</script><script id="v12-integrity-patch">
+
+<script id="v11-smart-recommendations">
+(()=>{
+ const btn=document.querySelector("#find"); if(!btn||btn.dataset.v11==="1")return; btn.dataset.v11="1";
+ const DAY=86400000, expansionIds=new Set(["J027","J028"]);
+ const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch(e){return d}};
+ const diffRank={"Muy ligera":1,"Ligera":2,"Ligera-media":3,"Media":4};
+ const experienceMatch=(g,x)=>{
+   if(!x)return 1; const text=(g.style+" "+g.mechanics).toLowerCase();
+   const map={
+    "Party":["party","velocidad","reflejos","humor","música","creatividad","interacción directa","eliminación"],
+    "Familiar":["familiar","memoria","cartas","dados","patrones","colección"],
+    "Estrategia":["estrategia","gestión","motor","subastas","abstracto","espacial","selección simultánea"],
+    "Cooperativo":["cooperativo","solitario","tiempo real"],
+    "Deducción":["deducción","roles ocultos","movimiento oculto","memoria"],
+    "Destreza":["destreza","equilibrio","apilamiento","extracción"],
+    "Duelo":["duelo","selección simultánea"],
+    "Abstracto":["abstracto","patrones","espacial","colocación"]
+   };
+   if(g.style===x)return 3; return (map[x]||[]).some(k=>text.includes(k))?2:0;
+ };
+ btn.addEventListener("click",ev=>{
+   ev.stopImmediatePropagation(); ev.preventDefault();
+   const p=+document.querySelector("#rp").value||0,t=+document.querySelector("#rt").value||0,d=document.querySelector("#rd").value,x=document.querySelector("#rx").value,includeExp=document.querySelector("#rex").checked;
+   const last=read("ludoteca-played-v1",{}), counts=read("ludoteca-play-count-v1",{}), now=Date.now();
+   let ranked=games.filter(g=>(includeExp||!expansionIds.has(g.id))&&supports(g,p)&&(!t||t===999||minutes(g)<=t)).map(g=>{
+     let score=0,reasons=[];
+     if(p){score+=5;reasons.push(p===9?"apto para grupos grandes":`funciona con ${p} jugador${p===1?"":"es"}`)}
+     if(t&&t!==999){const m=minutes(g);if(m<=t){score+=4;reasons.push(`entra en ${t} min`)}}
+     const xm=experienceMatch(g,x); if(x){score+=xm*3;if(xm===3)reasons.push(`encaja en ${x.toLowerCase()}`)} else score+=1;
+     if(d){const delta=Math.abs((diffRank[g.difficulty]||2)-(diffRank[d]||2));if(delta===0){score+=4;reasons.push(`dificultad ${d.toLowerCase()}`)}else if(delta===1)score+=1;}else score+=1;
+     if(!expansionIds.has(g.id))score+=1;
+     const lp=last[g.id]||0, n=counts[g.id]||0, age=lp?now-lp:Infinity;
+     if(!lp){score+=3;reasons.push("todavía no jugado")}
+     else if(age>=60*DAY){score+=2;reasons.push("hace tiempo que no sale")}
+     else if(age<7*DAY){score-=8;reasons.push("jugado recientemente")}
+     else if(age<30*DAY){score-=3;}
+     score+=Math.max(0,2-Math.min(2,n));
+     return {g,score,reasons};
+   }).filter(o=>(!x||experienceMatch(o.g,x)>0)&&(!d||Math.abs((diffRank[o.g.difficulty]||2)-(diffRank[d]||2))<=1))
+     .sort((a,b)=>b.score-a.score||((counts[a.g.id]||0)-(counts[b.g.id]||0))||minutes(a.g)-minutes(b.g)||a.g.title.localeCompare(b.g.title)).slice(0,3);
+   const box=document.querySelector("#recoResults");
+   if(!ranked.length){box.innerHTML='<div class="recoempty">No encontré una coincidencia suficientemente buena. Prueba ampliando el tiempo o dejando libre un criterio.</div>';return}
+   box.innerHTML='<div class="recolabel">Mis recomendaciones <small style="display:block;font-weight:500;margin-top:3px">Se priorizan juegos poco jugados y se penalizan los jugados en los últimos 7 días.</small></div><div class="recoresults">'+ranked.map((o,i)=>`<button class="recopick" data-id="${o.g.id}"><img src="${o.g.img}"><span><b>${i+1}. ${o.g.title}</b><small>${o.g.players} jugadores · ${o.g.duration} · ${o.g.difficulty}</small><small>${o.reasons.slice(0,3).join(" · ")||o.g.style}</small></span></button>`).join("")+'</div>';
+   box.querySelectorAll(".recopick").forEach(b=>b.onclick=()=>{document.querySelector("#reco").close();setTimeout(()=>openGame(games.find(g=>g.id===b.dataset.id)),0)});
+ },true);
+})();
+</script><script id="v12-integrity-patch">
 (()=>{
   // Normalización de casos especiales. El conteo de partidas lo gestiona un único módulo.
   const playerRules={J011:[2,4]};
@@ -1046,7 +1183,8 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#252a2f;color:#fff}
     return m.length?Math.max(...m):999;
   };
 })();
-</script>\n
+</script>
+
 <style id="blue-theme-final">
 /* Paleta final aprobada: azul oscuro, sin amarillo */
 body.dark{
@@ -1273,6 +1411,13 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
    <div class="v20-stat gold"><div class="n" id="v20WinRate">—</div><div class="l">Tasa de victorias</div><div class="s" id="v20WinsSub">Sin datos aún</div></div>
   </div>
   <button class="v20-btn v20-widebtn" data-goto="stats">▥ Ver estadísticas</button>
+  <div class="v20-catalog-card">
+    <div class="v20-catalog-eyebrow">📖 Catálogo clásico</div>
+    <div class="v20-catalog-title">Explorá el catálogo de <span>juegos de mesa</span></div>
+    <div class="v20-catalog-copy">Descubrí y buscá todos los juegos de tu colección.</div>
+    <button class="v20-catalog-cta" id="v20CatalogCard">Explorar catálogo&nbsp;&nbsp;›</button>
+  </div>
+
 
   <div class="v20-section">
    <div class="v20-section-head"><h2>Actividad reciente</h2><span class="v20-mini">Últimas 5</span></div>
@@ -1282,7 +1427,7 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
    <div class="v20-section-head"><h2>Tus juegos más jugados</h2><span class="v20-mini">Top 5</span></div>
    <div class="v20-list" id="v20TopGames"></div>
   </div>
-  <div class="v20-banner"><div><b>¿No sabés qué jugar?</b><div class="v20-mini">Tus funciones clásicas siguen disponibles.</div></div><div style="display:flex;gap:8px"><button class="v20-btn alt" id="v20What">¿Qué jugamos?</button><button class="v20-btn" id="v20Random">🎲 Sorpréndeme</button></div></div>
+  <div class="v20-banner"><div class="v20-banner-title">¿No sabés qué jugar?</div><div class="v20-banner-actions"><button class="v20-btn alt" id="v20What">¿Qué jugamos?</button><button class="v20-btn" id="v20Random">🎲 Sorpréndeme</button></div></div>
  </section>
 
  <section class="v20-page" data-page="stats">
@@ -1406,7 +1551,20 @@ function goto(page){
  refresh();
 }
 document.querySelectorAll('[data-nav],[data-goto]').forEach(b=>b.onclick=()=>goto(b.dataset.nav||b.dataset.goto));
-v20Legacy.onclick=()=>{app.classList.remove('active');document.body.classList.remove('v20-mode')};
+function openClassicCatalog(){
+ app.classList.remove('active');
+ document.body.classList.remove('v20-mode');
+ window.scrollTo({top:0,behavior:'instant'});
+}
+function backToV20Home(){
+ document.body.classList.add('v20-mode');
+ app.classList.add('active');
+ goto('inicio');
+ window.scrollTo({top:0,behavior:'instant'});
+}
+v20Legacy.onclick=openClassicCatalog;
+document.querySelector('#v20CatalogCard').onclick=openClassicCatalog;
+document.querySelector('#classicHome').onclick=backToV20Home;
 v20Search.oninput=renderCollection;
 document.querySelectorAll('#v20CollectionTabs .v20-pill').forEach(b=>b.onclick=()=>{document.querySelectorAll('#v20CollectionTabs .v20-pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderCollection()});
 v20AddPlayer.onclick=()=>{const n=prompt('Nombre del jugador habitual:');if(n&&!people.includes(n)){people.push(n);write(LS_PEOPLE,people);renderPeople()}};
@@ -1452,8 +1610,8 @@ v20Next.onclick=()=>{
  write(LS_PLAYS,plays);v20PlayModal.classList.remove('open');refresh();goto('inicio');
 };
 v20Plus.onclick=openPlay;
-v20What.onclick=()=>{app.classList.remove('active');document.body.classList.remove('v20-mode');setTimeout(()=>document.querySelector('#recommend')?.click(),50)};
-v20Random.onclick=()=>{app.classList.remove('active');document.body.classList.remove('v20-mode');setTimeout(()=>document.querySelector('#surprise')?.click(),50)};
+v20What.onclick=()=>{openClassicCatalog();setTimeout(()=>document.querySelector('#recommend')?.click(),50)};
+v20Random.onclick=()=>{openClassicCatalog();setTimeout(()=>document.querySelector('#surprise')?.click(),50)};
 
 // Start in V20 home.
 goto('inicio');
