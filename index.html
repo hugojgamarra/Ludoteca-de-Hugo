@@ -382,6 +382,95 @@ body.v20-mode #v8MoreBtn{
 }
 </style>
 
+
+<style id="catalogo-premium-fix">
+.v20-catalog-card{
+  position:relative;overflow:hidden;margin:22px 0;min-height:240px;border-radius:24px;
+  border:1px solid #316fc4;
+  background:radial-gradient(circle at 85% 25%,rgba(87,79,255,.35),transparent 28%),
+             radial-gradient(circle at 72% 80%,rgba(0,145,255,.20),transparent 34%),
+             linear-gradient(135deg,#0b2545 0%,#0b1830 56%,#121a3e 100%);
+  box-shadow:0 14px 34px rgba(0,0,0,.28), inset 0 0 35px rgba(30,127,255,.06);
+  padding:24px;
+}
+.v20-catalog-card::after{content:"";position:absolute;right:0;top:0;bottom:0;width:48%;background:linear-gradient(90deg,rgba(11,37,69,0) 0%,rgba(11,37,69,.18) 16%,rgba(11,37,69,.08) 100%),url("catalogo-estante-dado.jpg") center/cover no-repeat;opacity:.96;pointer-events:none}
+.v20-catalog-eyebrow{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:999px;background:linear-gradient(180deg,#6c4b00,#3b2700);border:1px solid #ffbd32;color:#ffe49a;font-size:12px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.v20-catalog-title{max-width:68%;margin-top:16px;font-size:30px;line-height:1.06;font-weight:950}
+.v20-catalog-title span{color:#ffb51f}
+.v20-catalog-copy{max-width:58%;margin-top:12px;color:#b8c9df;font-size:15px;line-height:1.45}
+.v20-catalog-cta{margin-top:18px;min-width:230px;min-height:52px;padding:0 18px;border:1px solid #5fd4ff;border-radius:999px;background:linear-gradient(180deg,#168cff,#116ee4);color:white;font-weight:900;font-size:17px;box-shadow:0 0 0 3px rgba(22,129,255,.15),0 8px 20px rgba(22,129,255,.28);cursor:pointer}
+.v20-catalog-cta:active{transform:scale(.98)}
+@media(max-width:560px){
+ .v20-catalog-card{min-height:228px;padding:20px}
+ .v20-catalog-title{max-width:72%;font-size:26px}
+ .v20-catalog-copy{max-width:66%;font-size:14px}
+ .v20-catalog-card::after{font-size:74px;right:18px;bottom:18px}
+ .v20-catalog-cta{min-width:210px;font-size:16px}
+}
+.v20-logo-home{width:100%;display:flex;align-items:center;justify-content:center;border:0;background:transparent;padding:0;margin:0;cursor:pointer}
+.v20-logo-home:active{transform:scale(.985)}
+.v20-logo-home:focus-visible{outline:2px solid var(--v20-blue);outline-offset:5px;border-radius:18px}
+</style>
+
+<style id="bottom-nav-final-approved">
+.v20-nav-final{grid-template-columns:1fr 96px 1fr !important;align-items:end;gap:10px !important;padding:10px 14px 12px !important;border-radius:28px !important}
+.v20-nav-final .v20-side-tab{min-height:62px;border-radius:20px !important;font-size:12px !important}
+.v20-nav-final .v20-side-tab.active{background:#10375c !important;color:#30a4ff !important}
+.v20-nav-final .v20-plus-floating{width:82px;height:82px;min-height:82px;justify-self:center;align-self:center;margin-top:-32px;border-radius:50% !important;border:3px solid #60c6ff !important;background:linear-gradient(180deg,#2694ff,#1475eb) !important;color:#fff !important;font-size:40px !important;line-height:1 !important;box-shadow:0 0 0 7px #07111f,0 12px 28px rgba(22,129,255,.38);padding:0 !important}
+.v20-nav-final .v20-plus-floating:active{transform:scale(.96)}
+@media(max-width:520px){
+ .v20-nav-final{grid-template-columns:1fr 84px 1fr !important;gap:7px !important;padding:9px 10px 10px !important}
+ .v20-nav-final .v20-plus-floating{width:74px;height:74px;min-height:74px;margin-top:-29px;font-size:36px !important}
+ .v20-nav-final .v20-side-tab{min-height:58px;font-size:11px !important}
+}
+</style>
+
+
+<style id="catalog-and-nav-icons-approved">
+.v20-catalog-card > *{position:relative;z-index:2}
+.v20-catalog-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(90deg,rgba(7,17,31,.96) 0%,rgba(7,17,31,.90) 42%,rgba(7,17,31,.18) 70%,rgba(7,17,31,.04) 100%);
+}
+.v20-nav-final .v20-side-tab{
+  display:flex!important;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+}
+.v20-nav-svg{
+  width:26px;
+  height:26px;
+  display:block;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.9;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.v20-nav-final .v20-side-tab:last-child .v20-nav-svg{
+  fill:currentColor;
+  stroke:currentColor;
+  stroke-width:1.3;
+}
+.v20-nav-final .v20-side-tab span{
+  display:block;
+  line-height:1.1;
+}
+@media(max-width:560px){
+  .v20-catalog-card::after{width:52%}
+  .v20-catalog-card::before{
+    background:linear-gradient(90deg,rgba(7,17,31,.97) 0%,rgba(7,17,31,.91) 46%,rgba(7,17,31,.28) 70%,rgba(7,17,31,.07) 100%);
+  }
+  .v20-nav-svg{width:24px;height:24px}
+}
+</style>
+
 </head><body class="dark">
 <header><div class="top"><div class="brand">
 <img class="brand-logo" src="covers/cover-01-e9db0b4d76f1.png" alt="Ludoteca de Hugo">
@@ -1308,8 +1397,7 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
 const app=document.createElement('div');app.id='v20App';app.innerHTML=`
 <div class="v20-shell">
  <div class="v20-top">
-  <div class="v20-brand v20-brand-logo-only"><img src="logo-ludoteca-hugo-v2.png" alt="Ludoteca de Hugo" class="v20-main-logo"></div>
-  <button class="v20-icon" id="v20Legacy" title="Abrir catálogo clásico">☰</button>
+  <button class="v20-logo-home" id="v20LogoHome" type="button" aria-label="Ir al inicio"><img src="logo-ludoteca-hugo-v2.png" alt="Ludoteca de Hugo" class="v20-main-logo"></button>
  </div>
 
  <section class="v20-page active" data-page="inicio">
@@ -1321,6 +1409,12 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
    <div class="v20-stat gold"><div class="n" id="v20WinRate">—</div><div class="l">Tasa de victorias</div><div class="s" id="v20WinsSub">Sin datos aún</div></div>
   </div>
   <button class="v20-btn v20-widebtn" data-goto="stats">▥ Ver estadísticas</button>
+  <div class="v20-catalog-card">
+    <div class="v20-catalog-eyebrow">📖 Catálogo clásico</div>
+    <div class="v20-catalog-title">Explorá el catálogo de <span>juegos de mesa</span></div>
+    <div class="v20-catalog-copy">Descubrí y buscá todos los juegos de tu colección.</div>
+    <button class="v20-catalog-cta" id="v20CatalogCard">Explorar catálogo&nbsp;&nbsp;›</button>
+  </div>
 
   <div class="v20-section">
    <div class="v20-section-head"><h2>Actividad reciente</h2><span class="v20-mini">Últimas 5</span></div>
@@ -1360,12 +1454,23 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
   <div class="v20-collection-grid" id="v20CollectionGrid"></div>
  </section>
 </div>
-<nav class="v20-nav">
- <button class="active" data-nav="inicio">⌂<br>Inicio</button>
- <button data-nav="collection">◈<br>Juegos</button>
- <button class="plus" id="v20Plus">＋</button>
- <button data-nav="stats">▥<br>Estadísticas</button>
- <button data-nav="collection">▦<br>Colección</button>
+<nav class="v20-nav v20-nav-final">
+ <button data-nav="collection" class="v20-side-tab" aria-label="Juegos">
+  <svg class="v20-nav-svg" viewBox="0 0 24 24" aria-hidden="true">
+   <path d="M4 7.5h11.5a2.5 2.5 0 0 1 2.5 2.5v7.5H6.5A2.5 2.5 0 0 1 4 15V7.5Z"/>
+   <path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V14h-3V10a2.5 2.5 0 0 0-2.5-2.5H7V4Z"/>
+   <path d="M8 11.5h6M8 14.5h4"/>
+  </svg>
+  <span>Juegos</span>
+ </button>
+ <button class="plus v20-plus-floating" id="v20Plus" aria-label="Registrar partida">＋</button>
+ <button data-nav="stats" class="v20-side-tab" aria-label="Estadísticas">
+  <svg class="v20-nav-svg" viewBox="0 0 24 24" aria-hidden="true">
+   <path d="M5 19V11h3v8H5Zm5.5 0V5h3v14h-3Zm5.5 0V8h3v11h-3Z"/>
+   <path d="M4 21h16"/>
+  </svg>
+  <span>Estadísticas</span>
+ </button>
 </nav>
 
 <div class="v20-modal" id="v20PlayModal"><div class="v20-dialog">
@@ -1454,7 +1559,20 @@ function goto(page){
  refresh();
 }
 document.querySelectorAll('[data-nav],[data-goto]').forEach(b=>b.onclick=()=>goto(b.dataset.nav||b.dataset.goto));
-v20Legacy.onclick=()=>{app.classList.remove('active');document.body.classList.remove('v20-mode')};
+function openClassicCatalog(){
+ app.classList.remove('active');
+ document.body.classList.remove('v20-mode');
+ window.scrollTo({top:0,behavior:'instant'});
+}
+function backToV20Home(){
+ document.body.classList.add('v20-mode');
+ app.classList.add('active');
+ goto('inicio');
+ document.querySelectorAll('.v20-nav-final [data-nav]').forEach(x=>x.classList.remove('active'));
+ window.scrollTo({top:0,behavior:'instant'});
+}
+document.querySelector('#v20LogoHome').onclick=backToV20Home;
+document.querySelector('#v20CatalogCard').onclick=openClassicCatalog;
 v20Search.oninput=renderCollection;
 document.querySelectorAll('#v20CollectionTabs .v20-pill').forEach(b=>b.onclick=()=>{document.querySelectorAll('#v20CollectionTabs .v20-pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderCollection()});
 v20AddPlayer.onclick=()=>{const n=prompt('Nombre del jugador habitual:');if(n&&!people.includes(n)){people.push(n);write(LS_PEOPLE,people);renderPeople()}};
