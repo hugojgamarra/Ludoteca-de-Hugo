@@ -471,9 +471,101 @@ body.v20-mode #v8MoreBtn{
 }
 </style>
 
+
+<style id="classic-logo-home-click">
+#classicHome{cursor:pointer}
+</style>
+
+
+<style id="desktop-detail-layout-fix">
+@media (min-width: 861px){
+  dialog#detail{
+    width:min(94vw,1120px)!important;
+    max-width:1120px!important;
+    max-height:92vh!important;
+    overflow:hidden!important;
+  }
+  dialog#detail .approved-detail{
+    display:grid!important;
+    grid-template-columns:minmax(360px,44%) minmax(0,56%)!important;
+    gap:28px!important;
+    align-items:start!important;
+    max-width:100%!important;
+    overflow:hidden!important;
+  }
+  dialog#detail .approved-left,
+  dialog#detail .approved-right{
+    min-width:0!important;
+    max-width:100%!important;
+  }
+  dialog#detail .approved-cover{
+    width:100%!important;
+    max-width:100%!important;
+  }
+  dialog#detail .approved-cover img{
+    width:100%!important;
+    max-width:100%!important;
+    height:auto!important;
+    max-height:520px!important;
+    object-fit:contain!important;
+  }
+  dialog#detail .approved-right{
+    overflow:visible!important;
+  }
+  dialog#detail .approved-metrics{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:12px!important;
+  }
+  dialog#detail .approved-metric{
+    min-width:0!important;
+  }
+  dialog#detail .approved-close{
+    width:auto!important;
+    min-width:150px!important;
+    display:block!important;
+    margin:18px auto 0!important;
+  }
+  dialog#detail .approved-actions{
+    width:100%!important;
+  }
+  dialog#detail .approved-section,
+  dialog#detail .approved-history{
+    width:100%!important;
+    min-width:0!important;
+    overflow-wrap:anywhere!important;
+  }
+}
+@media (max-width: 860px){
+  dialog#detail{
+    width:min(94vw,620px)!important;
+    max-height:92vh!important;
+    overflow:auto!important;
+  }
+  dialog#detail .approved-detail{
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+
+
+<style id="detail-overflow-safety">
+dialog#detail,
+dialog#detail *{
+  box-sizing:border-box;
+}
+dialog#detail{
+  overflow-x:hidden!important;
+}
+dialog#detail #detailContent{
+  overflow-x:hidden!important;
+  max-width:100%!important;
+}
+</style>
+
 </head><body class="dark">
 <header><div class="top"><div class="brand">
-<img class="brand-logo" src="covers/cover-01-e9db0b4d76f1.png" alt="Ludoteca de Hugo">
+<img class="brand-logo" id="classicHome" src="covers/cover-01-e9db0b4d76f1.png" alt="Ludoteca de Hugo" role="button" tabindex="0" aria-label="Volver al inicio">
 
 </div><button class="iconbtn" id="theme">◐</button></div>
 <div class="controls"><input class="search" id="q" placeholder="Buscar juego…"><select id="players"><option value="">Jugadores</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option value="9">8+</option></select></div>
@@ -1573,6 +1665,11 @@ function backToV20Home(){
 }
 document.querySelector('#v20LogoHome').onclick=backToV20Home;
 document.querySelector('#v20CatalogCard').onclick=openClassicCatalog;
+const classicHome=document.querySelector('#classicHome');
+if(classicHome){
+ classicHome.onclick=backToV20Home;
+ classicHome.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();backToV20Home();}};
+}
 v20Search.oninput=renderCollection;
 document.querySelectorAll('#v20CollectionTabs .v20-pill').forEach(b=>b.onclick=()=>{document.querySelectorAll('#v20CollectionTabs .v20-pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderCollection()});
 v20AddPlayer.onclick=()=>{const n=prompt('Nombre del jugador habitual:');if(n&&!people.includes(n)){people.push(n);write(LS_PEOPLE,people);renderPeople()}};
