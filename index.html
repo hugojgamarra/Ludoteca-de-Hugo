@@ -563,6 +563,39 @@ dialog#detail #detailContent{
 }
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style id="v20-sync-css">
+.v20-sync-card{
+  margin-top:22px;padding:18px;border:1px solid #285b89;border-radius:18px;
+  background:linear-gradient(145deg,#0d2238,#0d1929);
+}
+.v20-sync-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.v20-sync-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:900}
+.v20-sync-cloud{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#102f4e;color:#6bc3ff;font-size:21px}
+.v20-sync-status{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:#c7d5e5}
+.v20-sync-dot{width:9px;height:9px;border-radius:50%;background:#77879b;box-shadow:0 0 0 4px rgba(119,135,155,.10)}
+.v20-sync-dot.ok{background:#42d48a;box-shadow:0 0 0 4px rgba(66,212,138,.12)}
+.v20-sync-dot.warn{background:#ffb83d;box-shadow:0 0 0 4px rgba(255,184,61,.12)}
+.v20-sync-dot.err{background:#ff6b6b;box-shadow:0 0 0 4px rgba(255,107,107,.12)}
+.v20-sync-copy{margin:12px 0;color:var(--v20-muted);font-size:13px;line-height:1.45}
+.v20-sync-meta{font-size:12px;color:#9fb3ca;margin-top:8px}
+.v20-sync-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.v20-sync-actions .v20-btn{min-width:145px}
+.v20-sync-login{margin-top:14px;display:grid;grid-template-columns:1fr 1fr auto;gap:9px}
+.v20-sync-login input{width:100%;border:1px solid var(--v20-line);background:#071422;color:#fff;border-radius:12px;padding:11px 12px}
+.v20-sync-login input::placeholder{color:#71859b}
+.v20-sync-msg{margin-top:10px;font-size:12px;color:#b8c9db;min-height:17px}
+.v20-sync-msg.error{color:#ff9b9b}
+.v20-sync-msg.success{color:#77e0a7}
+@media(max-width:680px){
+ .v20-sync-head{align-items:flex-start}
+ .v20-sync-login{grid-template-columns:1fr}
+ .v20-sync-actions{display:grid;grid-template-columns:1fr}
+ .v20-sync-actions .v20-btn{width:100%}
+}
+</style>
+
 </head><body class="dark">
 <header><div class="top"><div class="brand">
 <img class="brand-logo" id="classicHome" src="covers/cover-01-e9db0b4d76f1.png" alt="Ludoteca de Hugo" role="button" tabindex="0" aria-label="Volver al inicio">
@@ -1533,6 +1566,24 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
   </div>
   <div class="v20-section"><div class="v20-section-head"><h2>Jugadores habituales</h2><button class="v20-btn alt" id="v20AddPlayer">+ Agregar</button></div><div class="v20-list" id="v20People"></div></div>
   <div class="v20-section"><div class="v20-section-head"><h2>Lugares frecuentes</h2><button class="v20-btn alt" id="v20AddPlace">+ Agregar</button></div><div class="v20-list" id="v20Places"></div></div>
+  <div class="v20-sync-card" id="v20SyncCard">
+   <div class="v20-sync-head">
+    <div class="v20-sync-title"><span class="v20-sync-cloud">☁</span><span>Sincronización</span></div>
+    <div class="v20-sync-status"><span class="v20-sync-dot" id="v20SyncDot"></span><span id="v20SyncState">Sin conectar</span></div>
+   </div>
+   <div class="v20-sync-copy" id="v20SyncCopy">Conectá tu cuenta para ver las mismas partidas en tu celular y en la computadora.</div>
+   <div class="v20-sync-login" id="v20SyncLogin">
+    <input type="email" id="v20SyncEmail" autocomplete="email" placeholder="Correo">
+    <input type="password" id="v20SyncPassword" autocomplete="current-password" placeholder="Contraseña">
+    <button class="v20-btn" id="v20SyncLoginBtn" type="button">Iniciar sesión</button>
+   </div>
+   <div class="v20-sync-actions v20-hidden" id="v20SyncActions">
+    <button class="v20-btn" id="v20SyncNow" type="button">☁ Sincronizar ahora</button>
+    <button class="v20-btn alt" id="v20SyncLogout" type="button">Cerrar sesión</button>
+   </div>
+   <div class="v20-sync-meta v20-hidden" id="v20SyncMeta"></div>
+   <div class="v20-sync-msg" id="v20SyncMsg"></div>
+  </div>
  </section>
 
  <section class="v20-page" data-page="collection">
@@ -1596,6 +1647,142 @@ const LS_PLAYS='ludoteca-v20-plays', LS_PEOPLE='ludoteca-v20-people', LS_PLACES=
 const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch(e){return d}}
 const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 let plays=read(LS_PLAYS,[]), people=read(LS_PEOPLE,['Hugo']), places=read(LS_PLACES,['Casa','Amigos','Evento','Viaje','Café / Bar']);
+
+const SUPABASE_URL='https://wfhbdolaljfnwypusfuj.supabase.co';
+const SUPABASE_KEY='sb_publishable_MPlrqYzPqruEfbYundUBuw_lmiBaIWK';
+const cloud=(window.supabase&&window.supabase.createClient)?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY):null;
+let cloudSession=null,cloudBusy=false;
+
+function isUuid(v){return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(String(v||''))}
+function ensurePlayIds(){
+ let changed=false;
+ plays=plays.map(p=>{
+   if(isUuid(p.id)) return p;
+   changed=true;
+   return {...p,id:crypto.randomUUID()};
+ });
+ if(changed) write(LS_PLAYS,plays);
+ return changed;
+}
+function cloudSetState(state,label){
+ const dot=document.querySelector('#v20SyncDot'),txt=document.querySelector('#v20SyncState');
+ if(!dot||!txt)return;
+ dot.className='v20-sync-dot'+(state?' '+state:'');
+ txt.textContent=label;
+}
+function cloudMessage(msg,type=''){
+ const el=document.querySelector('#v20SyncMsg');if(!el)return;
+ el.className='v20-sync-msg'+(type?' '+type:'');el.textContent=msg||'';
+}
+function cloudRender(){
+ const login=document.querySelector('#v20SyncLogin'),actions=document.querySelector('#v20SyncActions'),meta=document.querySelector('#v20SyncMeta'),copy=document.querySelector('#v20SyncCopy');
+ if(!login||!actions||!meta||!copy)return;
+ if(cloudSession?.user){
+   login.classList.add('v20-hidden');actions.classList.remove('v20-hidden');meta.classList.remove('v20-hidden');
+   cloudSetState('ok','Conectado');
+   const email=cloudSession.user.email||'Cuenta conectada';
+   copy.textContent='Tus partidas se guardan localmente y también en la nube.';
+   meta.textContent=email+(localStorage.getItem('ludoteca-v20-last-sync')?' · Última sincronización: '+localStorage.getItem('ludoteca-v20-last-sync'):'');
+ }else{
+   login.classList.remove('v20-hidden');actions.classList.add('v20-hidden');meta.classList.add('v20-hidden');
+   cloudSetState('','Sin conectar');
+   copy.textContent='Conectá tu cuenta para ver las mismas partidas en tu celular y en la computadora.';
+ }
+}
+async function cloudLogin(){
+ if(!cloud)return cloudMessage('No se pudo cargar el servicio de sincronización.','error');
+ const email=document.querySelector('#v20SyncEmail').value.trim();
+ const password=document.querySelector('#v20SyncPassword').value;
+ if(!email||!password)return cloudMessage('Ingresá tu correo y contraseña.','error');
+ cloudSetState('warn','Conectando…');cloudMessage('');
+ const {data,error}=await cloud.auth.signInWithPassword({email,password});
+ if(error){cloudSession=null;cloudRender();return cloudMessage('No se pudo iniciar sesión. Revisá el correo y la contraseña.','error')}
+ cloudSession=data.session;cloudRender();cloudMessage('Sesión iniciada. Ahora podés sincronizar.','success');
+ await cloudSync();
+}
+async function cloudLogout(){
+ if(!cloud)return;
+ await cloud.auth.signOut();cloudSession=null;cloudRender();cloudMessage('Sesión cerrada.');
+}
+async function cloudSync(){
+ if(!cloud||!cloudSession?.user||cloudBusy)return;
+ cloudBusy=true;cloudSetState('warn','Sincronizando…');cloudMessage('');
+ try{
+   ensurePlayIds();
+   const uid=cloudSession.user.id;
+   const {data:remotePlays,error:readErr}=await cloud.from('partidas').select('id,game_id,fecha,cantidad,lugar,notas,created_at');
+   if(readErr)throw readErr;
+   const {data:remotePeople,error:peopleErr}=await cloud.from('participantes').select('partida_id,nombre,ganador,puntuacion');
+   if(peopleErr)throw peopleErr;
+   const remoteById=new Map((remotePlays||[]).map(r=>[r.id,r]));
+   const remotePlayers=new Map();
+   (remotePeople||[]).forEach(r=>{
+     if(!remotePlayers.has(r.partida_id))remotePlayers.set(r.partida_id,[]);
+     remotePlayers.get(r.partida_id).push({name:r.nombre,score:r.puntuacion==null?null:String(r.puntuacion),winner:!!r.ganador});
+   });
+
+   // Upload local plays that do not exist in the cloud yet.
+   for(const p of plays){
+     if(remoteById.has(p.id))continue;
+     const {error:insertErr}=await cloud.from('partidas').insert({
+       id:p.id,user_id:uid,game_id:p.gameId,fecha:p.date,cantidad:p.qty||1,lugar:p.location||null,notas:p.notes||null
+     });
+     if(insertErr)throw insertErr;
+     const participants=(p.players||[]).map(x=>({
+       partida_id:p.id,nombre:x.name,ganador:!!x.winner,puntuacion:(x.score===''||x.score==null)?null:Number(x.score)
+     }));
+     if(participants.length){
+       const {error:partErr}=await cloud.from('participantes').insert(participants);
+       if(partErr)throw partErr;
+     }
+   }
+
+   // Re-read cloud after upload and merge cloud-only plays into local storage.
+   const {data:allRemote,error:r2}=await cloud.from('partidas').select('id,game_id,fecha,cantidad,lugar,notas,created_at');
+   if(r2)throw r2;
+   const {data:allParticipants,error:p2}=await cloud.from('participantes').select('partida_id,nombre,ganador,puntuacion');
+   if(p2)throw p2;
+   const allPlayers=new Map();
+   (allParticipants||[]).forEach(r=>{
+     if(!allPlayers.has(r.partida_id))allPlayers.set(r.partida_id,[]);
+     allPlayers.get(r.partida_id).push({name:r.nombre,score:r.puntuacion==null?null:String(r.puntuacion),winner:!!r.ganador});
+   });
+   const localIds=new Set(plays.map(p=>p.id));
+   let added=0;
+   for(const r of (allRemote||[])){
+     if(localIds.has(r.id))continue;
+     plays.push({
+       id:r.id,gameId:r.game_id,date:r.fecha,qty:r.cantidad||1,location:r.lugar||'',players:allPlayers.get(r.id)||[],notes:r.notas||''
+     });
+     localIds.add(r.id);added++;
+   }
+   // Keep players and places useful on every device, deriving them from synchronized plays.
+   plays.forEach(p=>{
+     if(p.location&&!places.includes(p.location))places.push(p.location);
+     (p.players||[]).forEach(x=>{if(x.name&&!people.includes(x.name))people.push(x.name)});
+   });
+   write(LS_PLAYS,plays);write(LS_PEOPLE,people);write(LS_PLACES,places);
+   const stamp=new Date().toLocaleString('es-PY',{dateStyle:'short',timeStyle:'short'});
+   localStorage.setItem('ludoteca-v20-last-sync',stamp);
+   cloudRender();refresh();
+   cloudSetState('ok','Sincronizado');
+   cloudMessage(added?`Sincronización completa. Se descargaron ${added} partida${added===1?'':'s'} de la nube.`:'Todo está sincronizado.','success');
+ }catch(err){
+   console.error('Sync error',err);
+   cloudSetState('err','Error');
+   cloudMessage('No se pudo sincronizar. Revisá tu conexión y volvé a intentar.','error');
+ }finally{
+   cloudBusy=false;
+ }
+}
+async function cloudInit(){
+ if(!cloud){cloudSetState('err','No disponible');return}
+ const {data}=await cloud.auth.getSession();
+ cloudSession=data.session||null;cloudRender();
+ if(cloudSession?.user) await cloudSync();
+ cloud.auth.onAuthStateChange((_event,session)=>{cloudSession=session;cloudRender()});
+}
+
 let selected=null,step=1;
 const EXPANSIONS=new Set(['J027','J028']);
 
@@ -1717,9 +1904,14 @@ v20Next.onclick=()=>{
 v20Plus.onclick=openPlay;
 v20What.onclick=()=>{app.classList.remove('active');document.body.classList.remove('v20-mode');setTimeout(()=>document.querySelector('#recommend')?.click(),50)};
 v20Random.onclick=()=>{app.classList.remove('active');document.body.classList.remove('v20-mode');setTimeout(()=>document.querySelector('#surprise')?.click(),50)};
+document.querySelector('#v20SyncLoginBtn').onclick=cloudLogin;
+document.querySelector('#v20SyncNow').onclick=cloudSync;
+document.querySelector('#v20SyncLogout').onclick=cloudLogout;
+document.querySelector('#v20SyncPassword').addEventListener('keydown',e=>{if(e.key==='Enter')cloudLogin()});
 
 // Start in V20 home.
 goto('inicio');
+cloudInit();
 })();
 </script>
 
