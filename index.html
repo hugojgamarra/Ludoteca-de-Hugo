@@ -596,6 +596,30 @@ dialog#detail #detailContent{
 }
 </style>
 
+
+<style id="v20-finger-chooser-css">
+body.v20-fc-open{overflow:hidden!important;touch-action:none!important}
+.v20-finger-launch{background:linear-gradient(135deg,#1681ff,#0a66df)!important}
+.v20-fc{position:fixed;inset:0;z-index:30000;background:radial-gradient(circle at 50% 0,#0a2947 0,#07182b 35%,#06111f 100%);color:#f7f9ff;display:none;overflow:hidden}
+.v20-fc.open{display:flex;flex-direction:column}
+.v20-fc-top{height:68px;padding:12px 16px;display:grid;grid-template-columns:48px 1fr 48px;align-items:center;border-bottom:1px solid #163653;background:#07182be8;backdrop-filter:blur(12px)}
+.v20-fc-back{width:42px;height:42px;border:0;border-radius:13px;background:#0c2742;color:#cbe6ff;font-size:28px;line-height:1;cursor:pointer}
+.v20-fc-heading{text-align:center;font-size:20px;font-weight:950}.v20-fc-body{flex:1;min-height:0;position:relative}
+.v20-fc-screen{display:none;height:100%;max-width:760px;margin:0 auto;padding:24px 18px 30px}.v20-fc-screen.active{display:flex;flex-direction:column}
+.v20-fc-screen h2{text-align:center;font-size:28px;margin:10px 0 6px}.v20-fc-intro-icon{width:76px;height:76px;border-radius:24px;display:grid;place-items:center;margin:20px auto 8px;background:#0c3762;border:1px solid #1d72b8;font-size:40px;box-shadow:0 0 30px #1681ff33}
+.v20-fc-mode{width:100%;display:grid;grid-template-columns:64px 1fr 28px;align-items:center;gap:14px;margin-top:16px;padding:20px 18px;text-align:left;border:1px solid #236aa6;border-radius:20px;background:linear-gradient(145deg,#0e3152,#0c1e34);color:white;cursor:pointer}
+.v20-fc-mode:hover{border-color:#46b9ff}.v20-fc-mode-icon{width:58px;height:58px;border-radius:18px;background:#0c5da2;display:grid;place-items:center;color:#62caff;font-size:26px;font-weight:950}.v20-fc-mode b{display:block;font-size:20px}.v20-fc-mode small{display:block;color:#b7cae0;line-height:1.4;margin-top:5px;font-size:14px}.v20-fc-mode strong{font-size:38px;color:#83cfff}.v20-fc-offline{margin-top:auto;padding:13px 16px;border:1px solid #244a70;background:#0b2239;border-radius:14px;color:#a9bed5;text-align:center;font-size:13px}
+.v20-fc-sub{text-align:center;color:#a7bdd5;margin-bottom:15px}.v20-fc-team-choice{display:none;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:4px;color:#c2d3e5;font-size:13px}.v20-fc-team-choice.show{display:flex}.v20-fc-team-choice div{display:flex;border:1px solid #24517f;border-radius:12px;overflow:hidden}.v20-fc-team-choice button{border:0;border-right:1px solid #24517f;background:#0d243c;color:#cfe1f5;padding:8px 18px;font-weight:900}.v20-fc-team-choice button:last-child{border-right:0}.v20-fc-team-choice button.active{background:#1681ff;color:white}
+.v20-fc-touch{position:relative;flex:1;min-height:360px;border:1px solid #1a476f;border-radius:24px;background:radial-gradient(circle at 50% 45%,#0c2844,#061322 70%);overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;box-shadow:inset 0 0 70px #0005}
+.v20-fc-finger{position:absolute;width:94px;height:94px;margin:-47px 0 0 -47px;border-radius:50%;border:5px solid var(--fc-color);background:color-mix(in srgb,var(--fc-color) 24%,transparent);box-shadow:0 0 24px var(--fc-color),inset 0 0 22px var(--fc-color);transform:scale(.78);animation:fc-pop .18s ease-out forwards;pointer-events:none}.v20-fc-finger::after{content:'';position:absolute;inset:17px;border-radius:50%;border:2px solid #ffffff66}.v20-fc-finger.dim{opacity:.22;filter:saturate(.45)}.v20-fc-finger.winner{transform:scale(1.18);box-shadow:0 0 42px var(--fc-color),0 0 90px var(--fc-color)}
+@keyframes fc-pop{to{transform:scale(1)}}
+.v20-fc-countdown{position:absolute;inset:0;display:none;place-items:center;font-size:110px;font-weight:950;color:white;text-shadow:0 0 35px #2ca4ff;pointer-events:none;background:#06132222}.v20-fc-countdown.show{display:grid;animation:fc-pulse .55s ease-out}
+@keyframes fc-pulse{0%{transform:scale(.7);opacity:.4}100%{transform:scale(1);opacity:1}}
+.v20-fc-result{position:absolute;left:18px;right:18px;top:18px;z-index:4;text-align:center;pointer-events:none}.v20-fc-result .big{font-size:27px;font-weight:950;text-shadow:0 0 22px #1681ff}.v20-fc-result .team-summary{margin-top:8px;display:flex;justify-content:center;gap:7px;flex-wrap:wrap}.v20-fc-result .team-pill{padding:8px 12px;border-radius:999px;background:#0b2137;border:1px solid var(--team-color);color:white;font-weight:850;font-size:12px}
+.v20-fc-detected{text-align:center;color:#a5bad1;padding:13px 4px 5px;font-size:13px}.v20-fc-result-actions{display:none;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.v20-fc-result-actions.show{display:grid}
+.v20-fc-direction-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:42px}.v20-fc-direction-grid button{min-height:190px;border:1px solid #266596;border-radius:22px;background:#0d2844;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-size:18px;font-weight:900}.v20-fc-direction-grid button span{font-size:78px;color:#39adff}.v20-fc-direction-result{text-align:center;margin-top:28px;font-size:22px;font-weight:950;color:#63c5ff;min-height:34px}
+@media(max-width:600px){.v20-fc-screen{padding:15px 12px 20px}.v20-fc-screen h2{font-size:22px}.v20-fc-mode{grid-template-columns:54px 1fr 20px;padding:16px 13px}.v20-fc-mode-icon{width:50px;height:50px}.v20-fc-mode b{font-size:17px}.v20-fc-touch{min-height:310px}.v20-fc-finger{width:76px;height:76px;margin:-38px 0 0 -38px}.v20-fc-countdown{font-size:88px}.v20-fc-result-actions{grid-template-columns:1fr}.v20-fc-direction-grid button{min-height:150px}.v20-fc-direction-grid button span{font-size:60px}}
+</style>
 </head><body class="dark">
 <header><div class="top"><div class="brand">
 <img class="brand-logo" id="classicHome" src="covers/cover-01-e9db0b4d76f1.png" alt="Ludoteca de Hugo" role="button" tabindex="0" aria-label="Volver al inicio">
@@ -1179,7 +1203,7 @@ body.dark #surpriseDlg .surprise-card{background:#2a2f34!important}
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const reg = await navigator.serviceWorker.register("./sw.js?v=13", { updateViaCache: "none" });
+      const reg = await navigator.serviceWorker.register("./sw.js?v=14", { updateViaCache: "none" });
       await reg.update();
 
       let reloading = false;
@@ -1563,7 +1587,7 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
    <div class="v20-section-head"><h2>Tus juegos más jugados</h2><span class="v20-mini">Top 5</span></div>
    <div class="v20-list" id="v20TopGames"></div>
   </div>
-  <div class="v20-banner"><div class="v20-banner-title">¿No sabés qué jugar?</div><div class="v20-banner-actions"><button class="v20-btn alt" id="v20What">¿Qué jugamos?</button><button class="v20-btn" id="v20Random">🎲 Sorpréndeme</button></div></div>
+  <div class="v20-banner"><div class="v20-banner-title">¿No sabés qué jugar?</div><div class="v20-banner-actions"><button class="v20-btn alt" id="v20What">¿Qué jugamos?</button><button class="v20-btn" id="v20Random">🎲 Sorpréndeme</button><button class="v20-btn v20-finger-launch" id="v20FingerChooser">👆 ¿Quién empieza?</button></div></div>
  </section>
 
  <section class="v20-page" data-page="stats">
@@ -1629,6 +1653,56 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
   <span>Estadísticas</span>
  </button>
 </nav>
+
+
+<div class="v20-fc" id="v20FingerOverlay" aria-hidden="true">
+ <div class="v20-fc-top">
+  <button class="v20-fc-back" id="v20FingerBack" type="button" aria-label="Volver">←</button>
+  <div class="v20-fc-heading">¿Quién empieza?</div>
+  <div class="v20-fc-spacer"></div>
+ </div>
+ <div class="v20-fc-body">
+  <section class="v20-fc-screen active" id="v20FingerModes">
+   <div class="v20-fc-intro-icon">☝</div>
+   <h2>Elegí un modo</h2>
+   <button class="v20-fc-mode" id="v20ChooseStarter" type="button">
+    <span class="v20-fc-mode-icon">☝</span><span><b>Elegir un jugador</b><small>Apoyen varios dedos y la app elegirá uno al azar.</small></span><strong>›</strong>
+   </button>
+   <button class="v20-fc-mode" id="v20ChooseTeams" type="button">
+    <span class="v20-fc-mode-icon">●●●</span><span><b>Formar equipos</b><small>Divide a los jugadores al azar en 2, 3 o 4 equipos.</small></span><strong>›</strong>
+   </button>
+   <div class="v20-fc-offline">ⓘ Funciona sin conexión y no guarda ningún dato.</div>
+  </section>
+
+  <section class="v20-fc-screen" id="v20FingerTouchScreen">
+   <div class="v20-fc-team-choice" id="v20FingerTeamChoice">
+    <span>Cantidad de equipos</span>
+    <div><button class="active" data-teams="2">2</button><button data-teams="3">3</button><button data-teams="4">4</button></div>
+   </div>
+   <h2 id="v20FingerInstruction">Apoyen los dedos en la pantalla</h2>
+   <div class="v20-fc-sub" id="v20FingerSub">Mínimo 2 jugadores</div>
+   <div class="v20-fc-touch" id="v20FingerTouchArea">
+    <div class="v20-fc-countdown" id="v20FingerCountdown"></div>
+    <div class="v20-fc-result" id="v20FingerResult"></div>
+   </div>
+   <div class="v20-fc-detected" id="v20FingerDetected">Esperando dedos…</div>
+   <div class="v20-fc-result-actions" id="v20FingerActions">
+    <button class="v20-btn" id="v20FingerAgain" type="button">↻ Volver a sortear</button>
+    <button class="v20-btn alt" id="v20FingerDirection" type="button">↻ Elegir sentido de turno</button>
+   </div>
+  </section>
+
+  <section class="v20-fc-screen" id="v20FingerDirectionScreen">
+   <h2>Sentido de turno</h2>
+   <div class="v20-fc-sub">Elegí el sentido para empezar a jugar</div>
+   <div class="v20-fc-direction-grid">
+    <button type="button" data-dir="Horario"><span>↻</span><b>Horario</b></button>
+    <button type="button" data-dir="Antihorario"><span>↺</span><b>Antihorario</b></button>
+   </div>
+   <div class="v20-fc-direction-result" id="v20FingerDirectionResult"></div>
+  </section>
+ </div>
+</div>
 
 <div class="v20-modal" id="v20PlayModal"><div class="v20-dialog">
  <div class="v20-step" id="v20StepLabel">PASO 1 DE 4</div><h2>Registrar partida</h2><div class="v20-muted" id="v20StepHelp">Seleccioná el juego que jugaste.</div>
@@ -1922,6 +1996,52 @@ document.querySelector('#v20SyncLoginBtn').onclick=cloudLogin;
 document.querySelector('#v20SyncNow').onclick=cloudSync;
 document.querySelector('#v20SyncLogout').onclick=cloudLogout;
 document.querySelector('#v20SyncPassword').addEventListener('keydown',e=>{if(e.key==='Enter')cloudLogin()});
+
+
+// ¿Quién empieza? — selector multitáctil local.
+const fcOverlay=document.querySelector('#v20FingerOverlay');
+const fcModes=document.querySelector('#v20FingerModes');
+const fcTouchScreen=document.querySelector('#v20FingerTouchScreen');
+const fcDirectionScreen=document.querySelector('#v20FingerDirectionScreen');
+const fcTouch=document.querySelector('#v20FingerTouchArea');
+const fcCountdown=document.querySelector('#v20FingerCountdown');
+const fcResult=document.querySelector('#v20FingerResult');
+const fcDetected=document.querySelector('#v20FingerDetected');
+const fcActions=document.querySelector('#v20FingerActions');
+const fcTeamChoice=document.querySelector('#v20FingerTeamChoice');
+const fcInstruction=document.querySelector('#v20FingerInstruction');
+const fcSub=document.querySelector('#v20FingerSub');
+const FC_COLORS=['#1ca7ff','#ff8a1f','#35e684','#ff58c9','#a66cff','#ffd328','#ff4f5f','#56e8ea','#7be64b','#ffad5c'];
+const FC_TEAM_COLORS=['#35e684','#ff58c9','#1ca7ff','#ffd328'];
+let fcMode='starter',fcTeamCount=2,fcPointers=new Map(),fcPhase='idle',fcStableTimer=null,fcCountdownTimer=null,fcStableCount=0;
+function fcShow(screen){[fcModes,fcTouchScreen,fcDirectionScreen].forEach(x=>x.classList.toggle('active',x===screen))}
+function fcOpen(){document.body.classList.add('v20-fc-open');fcOverlay.classList.add('open');fcOverlay.setAttribute('aria-hidden','false');fcReset(true);fcShow(fcModes)}
+function fcClose(){fcClearTimers();fcPointers.clear();fcTouch.querySelectorAll('.v20-fc-finger').forEach(x=>x.remove());fcOverlay.classList.remove('open');fcOverlay.setAttribute('aria-hidden','true');document.body.classList.remove('v20-fc-open')}
+function fcClearTimers(){clearTimeout(fcStableTimer);clearInterval(fcCountdownTimer);fcStableTimer=null;fcCountdownTimer=null}
+function fcReset(toModes=false){fcClearTimers();fcPhase='waiting';fcPointers.clear();fcTouch.querySelectorAll('.v20-fc-finger').forEach(x=>x.remove());fcCountdown.classList.remove('show');fcCountdown.textContent='';fcResult.innerHTML='';fcActions.classList.remove('show');fcDetected.textContent='Esperando dedos…';if(toModes)fcTeamChoice.classList.remove('show')}
+function fcBegin(mode){fcMode=mode;fcReset(false);fcShow(fcTouchScreen);fcTeamChoice.classList.toggle('show',mode==='teams');fcInstruction.textContent=mode==='teams'?'Formar equipos':'Apoyen los dedos en la pantalla';fcSub.textContent=mode==='teams'?`Mínimo ${Math.max(2,fcTeamCount)} jugadores`:'Mínimo 2 jugadores'}
+function fcLocalPoint(e){const r=fcTouch.getBoundingClientRect();return{x:Math.max(0,Math.min(r.width,e.clientX-r.left)),y:Math.max(0,Math.min(r.height,e.clientY-r.top))}}
+function fcAddPointer(e){if(fcPhase==='result')return;e.preventDefault();if(fcPhase==='countdown')fcAbortCountdown();const p=fcLocalPoint(e);const idx=fcPointers.size%FC_COLORS.length;const dot=document.createElement('div');dot.className='v20-fc-finger';dot.style.setProperty('--fc-color',FC_COLORS[idx]);dot.style.left=p.x+'px';dot.style.top=p.y+'px';fcTouch.appendChild(dot);fcPointers.set(e.pointerId,{id:e.pointerId,x:p.x,y:p.y,color:FC_COLORS[idx],node:dot});try{fcTouch.setPointerCapture(e.pointerId)}catch(_){}fcChanged()}
+function fcMovePointer(e){const p=fcPointers.get(e.pointerId);if(!p||fcPhase==='result')return;e.preventDefault();const q=fcLocalPoint(e);p.x=q.x;p.y=q.y;p.node.style.left=q.x+'px';p.node.style.top=q.y+'px'}
+function fcRemovePointer(e){if(fcPhase==='result')return;const p=fcPointers.get(e.pointerId);if(!p)return;e.preventDefault();if(fcPhase==='countdown')fcAbortCountdown();p.node.remove();fcPointers.delete(e.pointerId);fcChanged()}
+function fcChanged(){fcClearTimers();const n=fcPointers.size;fcDetected.textContent=n?`${n} jugador${n===1?'':'es'} detectado${n===1?'':'s'}`:'Esperando dedos…';const min=fcMode==='teams'?Math.max(2,fcTeamCount):2;if(n>=min){fcStableCount=n;fcStableTimer=setTimeout(()=>{if(fcPhase==='waiting'&&fcPointers.size===fcStableCount)fcStartCountdown()},850)}}
+function fcAbortCountdown(){fcClearTimers();fcPhase='waiting';fcCountdown.classList.remove('show');fcCountdown.textContent='';fcChanged()}
+function fcStartCountdown(){fcPhase='countdown';let n=3;fcCountdown.textContent=n;fcCountdown.classList.add('show');fcDetected.textContent='¡Listos!';fcCountdownTimer=setInterval(()=>{n--;if(n>0){fcCountdown.textContent=n}else{fcClearTimers();fcCountdown.classList.remove('show');fcCountdown.textContent='';fcFinish()}},850)}
+function fcFinish(){if(fcMode==='teams')fcFinishTeams();else fcFinishStarter()}
+function fcFinishStarter(){const arr=[...fcPointers.values()];if(arr.length<2){fcAbortCountdown();return}const win=arr[Math.floor(Math.random()*arr.length)];arr.forEach(p=>p.node.classList.add(p===win?'winner':'dim'));fcPhase='result';fcResult.innerHTML='<div class="big">🎉 ¡Empieza este jugador!</div>';fcDetected.textContent='Jugador seleccionado';fcActions.classList.add('show');document.querySelector('#v20FingerDirection').style.display='';if(navigator.vibrate)navigator.vibrate([90,50,140])}
+function fcShuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function fcFinishTeams(){const arr=fcShuffle([...fcPointers.values()]);if(arr.length<Math.max(2,fcTeamCount)){fcAbortCountdown();return}const counts=Array(fcTeamCount).fill(0);arr.forEach((p,i)=>{const t=i%fcTeamCount;counts[t]++;p.node.style.setProperty('--fc-color',FC_TEAM_COLORS[t]);p.node.dataset.team=t+1});fcPhase='result';fcResult.innerHTML='<div class="big">Equipos listos</div><div class="team-summary">'+counts.map((n,i)=>`<span class="team-pill" style="--team-color:${FC_TEAM_COLORS[i]}">Equipo ${i+1}: ${n}</span>`).join('')+'</div>';fcDetected.textContent=`${arr.length} jugadores distribuidos al azar`;fcActions.classList.add('show');document.querySelector('#v20FingerDirection').style.display='none';if(navigator.vibrate)navigator.vibrate([80,40,80])}
+function fcAgain(){fcReset(false);fcInstruction.textContent=fcMode==='teams'?'Formar equipos':'Apoyen los dedos en la pantalla';fcDetected.textContent='Esperando dedos…'}
+function fcDirection(){fcReset(false);fcShow(fcDirectionScreen);document.querySelector('#v20FingerDirectionResult').textContent=''}
+fcTouch.addEventListener('pointerdown',fcAddPointer,{passive:false});fcTouch.addEventListener('pointermove',fcMovePointer,{passive:false});fcTouch.addEventListener('pointerup',fcRemovePointer,{passive:false});fcTouch.addEventListener('pointercancel',fcRemovePointer,{passive:false});
+document.querySelector('#v20FingerChooser').onclick=fcOpen;
+document.querySelector('#v20ChooseStarter').onclick=()=>fcBegin('starter');
+document.querySelector('#v20ChooseTeams').onclick=()=>fcBegin('teams');
+document.querySelector('#v20FingerAgain').onclick=fcAgain;
+document.querySelector('#v20FingerDirection').onclick=fcDirection;
+document.querySelectorAll('#v20FingerTeamChoice [data-teams]').forEach(b=>b.onclick=()=>{document.querySelectorAll('#v20FingerTeamChoice [data-teams]').forEach(x=>x.classList.remove('active'));b.classList.add('active');fcTeamCount=+b.dataset.teams;fcSub.textContent=`Mínimo ${Math.max(2,fcTeamCount)} jugadores`;fcAgain()});
+document.querySelectorAll('.v20-fc-direction-grid [data-dir]').forEach(b=>b.onclick=()=>{const result=Math.random()<.5?'Horario':'Antihorario';document.querySelector('#v20FingerDirectionResult').textContent=`Sentido elegido: ${result} ${result==='Horario'?'↻':'↺'}`;if(navigator.vibrate)navigator.vibrate(80)});
+document.querySelector('#v20FingerBack').onclick=()=>{if(fcModes.classList.contains('active'))fcClose();else{fcReset(true);fcShow(fcModes)}};
 
 // Start in V20 home.
 goto('inicio');
