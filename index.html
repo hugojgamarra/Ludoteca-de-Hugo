@@ -620,6 +620,122 @@ body.v20-fc-open{overflow:hidden!important;touch-action:none!important}
 .v20-fc-direction-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:42px}.v20-fc-direction-grid button{min-height:190px;border:1px solid #266596;border-radius:22px;background:#0d2844;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-size:18px;font-weight:900}.v20-fc-direction-grid button span{font-size:78px;color:#39adff}.v20-fc-direction-result{text-align:center;margin-top:28px;font-size:22px;font-weight:950;color:#63c5ff;min-height:34px}
 @media(max-width:600px){.v20-fc-screen{padding:15px 12px 20px}.v20-fc-screen h2{font-size:22px}.v20-fc-mode{grid-template-columns:54px 1fr 20px;padding:16px 13px}.v20-fc-mode-icon{width:50px;height:50px}.v20-fc-mode b{font-size:17px}.v20-fc-touch{min-height:310px}.v20-fc-finger{width:76px;height:76px;margin:-38px 0 0 -38px}.v20-fc-countdown{font-size:88px}.v20-fc-result-actions{grid-template-columns:1fr}.v20-fc-direction-grid button{min-height:150px}.v20-fc-direction-grid button span{font-size:60px}}
 </style>
+
+<style id="mobile-centering-overflow-fix-v15">
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden!important;
+}
+body{
+  position:relative;
+}
+#v20App,
+.v20-shell,
+.v20-page,
+.v20-section,
+.v20-banner,
+.v20-catalog-card,
+.v20-sync-card,
+.v20-list,
+.v20-chart,
+.v20-collection-grid,
+.v20-modal,
+.v20-dialog{
+  max-width:100%;
+  min-width:0;
+}
+.v20-shell{
+  width:100%;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.v20-page{
+  width:100%;
+  margin-left:auto;
+  margin-right:auto;
+}
+.v20-nav-final{
+  max-width:calc(100vw - 20px)!important;
+}
+.v20-fc{
+  width:100%;
+  max-width:100vw;
+  overflow-x:hidden!important;
+}
+.v20-fc-body,
+.v20-fc-screen{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.v20-fc-screen{
+  box-sizing:border-box;
+}
+.v20-fc-mode{
+  width:100%!important;
+  max-width:100%;
+  min-width:0;
+  box-sizing:border-box;
+}
+.v20-fc-mode > span:nth-child(2){
+  min-width:0;
+}
+.v20-fc-mode b,
+.v20-fc-mode small{
+  overflow-wrap:anywhere;
+}
+.v20-fc-touch{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+}
+.v20-fc-mode-icon{
+  overflow:hidden;
+}
+.v20-fc-mode-svg{
+  width:34px;
+  height:34px;
+  display:block;
+  color:#74d1ff;
+  filter:drop-shadow(0 0 8px rgba(44,169,255,.35));
+}
+@media(max-width:600px){
+  .v20-shell{
+    padding-left:12px!important;
+    padding-right:12px!important;
+  }
+  .v20-fc-top{
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
+  }
+  .v20-fc-screen{
+    padding-left:12px!important;
+    padding-right:12px!important;
+  }
+  .v20-fc-mode{
+    grid-template-columns:50px minmax(0,1fr) 18px!important;
+    gap:10px!important;
+    padding:15px 12px!important;
+  }
+  .v20-fc-mode-icon{
+    width:48px!important;
+    height:48px!important;
+    border-radius:15px!important;
+  }
+  .v20-fc-mode-svg{
+    width:30px;
+    height:30px;
+  }
+  .v20-fc-mode strong{
+    font-size:32px!important;
+  }
+}
+</style>
+
 </head><body class="dark">
 <header><div class="top"><div class="brand">
 <img class="brand-logo" id="classicHome" src="covers/cover-01-e9db0b4d76f1.png" alt="Ludoteca de Hugo" role="button" tabindex="0" aria-label="Volver al inicio">
@@ -1203,7 +1319,7 @@ body.dark #surpriseDlg .surprise-card{background:#2a2f34!important}
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const reg = await navigator.serviceWorker.register("./sw.js?v=14", { updateViaCache: "none" });
+      const reg = await navigator.serviceWorker.register("./sw.js?v=15", { updateViaCache: "none" });
       await reg.update();
 
       let reloading = false;
@@ -1666,10 +1782,25 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
    <div class="v20-fc-intro-icon">☝</div>
    <h2>Elegí un modo</h2>
    <button class="v20-fc-mode" id="v20ChooseStarter" type="button">
-    <span class="v20-fc-mode-icon">☝</span><span><b>Elegir un jugador</b><small>Apoyen varios dedos y la app elegirá uno al azar.</small></span><strong>›</strong>
+    <span class="v20-fc-mode-icon" aria-hidden="true">
+<svg viewBox="0 0 64 64" class="v20-fc-mode-svg">
+  <circle cx="32" cy="29" r="10" fill="currentColor"/>
+  <path d="M18 51c2-10 8-15 14-15s12 5 14 15H18Z" fill="currentColor"/>
+  <path d="M32 9v7M15 17l5 5M49 17l-5 5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+</svg>
+</span><span><b>Elegir un jugador</b><small>Apoyen varios dedos y la app elegirá uno al azar.</small></span><strong>›</strong>
    </button>
    <button class="v20-fc-mode" id="v20ChooseTeams" type="button">
-    <span class="v20-fc-mode-icon">●●●</span><span><b>Formar equipos</b><small>Divide a los jugadores al azar en 2, 3 o 4 equipos.</small></span><strong>›</strong>
+    <span class="v20-fc-mode-icon" aria-hidden="true">
+<svg viewBox="0 0 64 64" class="v20-fc-mode-svg">
+  <circle cx="32" cy="23" r="9" fill="currentColor"/>
+  <circle cx="15" cy="28" r="7" fill="currentColor" opacity=".92"/>
+  <circle cx="49" cy="28" r="7" fill="currentColor" opacity=".92"/>
+  <path d="M19 51c1-10 6-15 13-15s12 5 13 15H19Z" fill="currentColor"/>
+  <path d="M4 49c1-8 5-12 11-12 4 0 7 2 9 5-2 3-3 6-3 9H4Z" fill="currentColor" opacity=".92"/>
+  <path d="M60 49c-1-8-5-12-11-12-4 0-7 2-9 5 2 3 3 6 3 9h17Z" fill="currentColor" opacity=".92"/>
+</svg>
+</span><span><b>Formar equipos</b><small>Divide a los jugadores al azar en 2, 3 o 4 equipos.</small></span><strong>›</strong>
    </button>
    <div class="v20-fc-offline">ⓘ Funciona sin conexión y no guarda ningún dato.</div>
   </section>
