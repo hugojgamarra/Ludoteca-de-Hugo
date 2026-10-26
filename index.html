@@ -1177,7 +1177,21 @@ body.dark #surpriseDlg .surprise-card{background:#2a2f34!important}
 
 <script id="pwa-service-worker-registration">
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+  window.addEventListener("load", async () => {
+    try {
+      const reg = await navigator.serviceWorker.register("./sw.js?v=13", { updateViaCache: "none" });
+      await reg.update();
+
+      let reloading = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (reloading) return;
+        reloading = true;
+        location.reload();
+      });
+    } catch(e) {
+      console.warn("No se pudo actualizar el service worker", e);
+    }
+  });
 }
 </script>
 
