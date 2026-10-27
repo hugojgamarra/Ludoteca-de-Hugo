@@ -78,6 +78,62 @@ dialog[open]{
 .recoopt{display:flex;gap:9px;align-items:center;margin:12px 2px 4px;color:var(--muted);font-size:14px}
 .recoopt input{width:18px;height:18px}
 .recoscore{display:inline-block;margin-top:5px;font-size:12px;font-weight:800;color:var(--text)}
+
+/* Correcciones incorporadas: banner inicial, botón central y pantalla ¿Quién empieza? */
+.v20-banner{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:18px;padding:20px;border-radius:24px;border:1px solid #2d6fb4;background:linear-gradient(145deg,#102d4d,#0b1e34);text-align:left;box-shadow:0 14px 34px rgba(0,0,0,.22)}
+.v20-banner::before{content:"";position:absolute;right:0;top:0;bottom:0;width:44%;background:linear-gradient(90deg,rgba(11,30,52,0) 0%,rgba(11,30,52,.15) 18%,rgba(11,30,52,.02) 100%),url("catalogo-estante-dado.jpg") center/cover no-repeat;opacity:.98;pointer-events:none}
+.v20-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,22,38,.93) 0%,rgba(8,22,38,.89) 44%,rgba(8,22,38,.24) 71%,rgba(8,22,38,.08) 100%);pointer-events:none}
+.v20-banner > *{position:relative;z-index:1}
+.v20-banner-content{max-width:62%}
+.v20-banner-eyebrow{font-size:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#47b6ff;margin-bottom:8px}
+.v20-banner .v20-banner-title{font-size:28px;font-weight:950;line-height:1.06;margin:0 0 10px}
+.v20-banner-copy{font-size:17px;line-height:1.35;color:#bfd3ea;max-width:430px}
+.v20-banner-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.v20-banner-actions .v20-btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:64px;border-radius:18px;font-size:18px;font-weight:900;padding:12px 16px}
+.v20-banner-primary{background:linear-gradient(180deg,#2f90ff,#2076ea)!important;color:#fff!important;border:1px solid #42abff!important}
+.v20-banner-secondary,.v20-banner-tertiary{background:rgba(8,23,40,.74)!important;color:#eef6ff!important;border:1px solid #2a72b6!important}
+.v20-banner-tertiary{grid-column:1/-1}
+.v20-btn-icon{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.v20-btn-icon-svg{width:30px;height:30px;display:block;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.v20-hand-svg{width:34px;height:34px;stroke:#35d3ff}
+.v20-banner-hidden-link{display:none}
+.v20-nav-final .v20-plus-floating{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:104px!important;height:92px!important;min-height:92px!important;margin-top:-34px;border-radius:28px!important;font-size:inherit!important;padding:10px 8px 8px!important}
+.v20-plus-icon{font-size:40px;line-height:1;font-weight:900}
+.v20-plus-label{font-size:11px;line-height:1.05;font-weight:900;display:block;text-align:center}
+.v20-fc-heading{font-size:21px}
+.v20-fc-screen h2{font-size:30px;font-weight:950;margin-top:14px}
+.v20-fc-intro-icon{width:110px;height:110px;border-radius:30px;background:rgba(12,55,98,.6);border:2px solid #1697ff;box-shadow:0 0 36px #1681ff26}
+.v20-fc-touch-svg{width:54px;height:54px;fill:none;stroke:#35d3ff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.v20-fc-mode{grid-template-columns:86px 1fr 34px;padding:22px 20px;border-radius:24px}
+.v20-fc-mode-icon{width:72px;height:72px;border-radius:20px;background:#0e4a83;color:#58d0ff}
+.v20-fc-mode b{font-size:22px}
+.v20-fc-mode small{font-size:15px;color:#bcd1e8}
+.v20-fc-mode strong{font-size:48px;color:#39d1ff}
+.v20-fc-offline{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 18px;border-radius:18px;font-size:14px;background:rgba(12,35,58,.85);border:1px solid #275781;color:#bcd5ee}
+.v20-fc-offline::before{content:"i";display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:2px solid #58d0ff;color:#58d0ff;font-weight:900;font-family:system-ui,sans-serif}
+@media(max-width:640px){
+ .v20-banner{padding:18px 14px 16px}
+ .v20-banner::before{width:42%}
+ .v20-banner::after{background:linear-gradient(90deg,rgba(8,22,38,.95) 0%,rgba(8,22,38,.92) 46%,rgba(8,22,38,.38) 74%,rgba(8,22,38,.12) 100%)}
+ .v20-banner-content{max-width:100%;padding-right:34%}
+ .v20-banner .v20-banner-title{font-size:24px}
+ .v20-banner-copy{font-size:15px}
+ .v20-banner-actions .v20-btn{font-size:16px;min-height:58px;padding:10px 12px}
+ .v20-nav-final{grid-template-columns:1fr 104px 1fr!important}
+ .v20-nav-final .v20-plus-floating{width:96px!important;height:86px!important;min-height:86px!important;margin-top:-32px;padding-top:8px!important}
+ .v20-plus-icon{font-size:36px}
+ .v20-plus-label{font-size:10px}
+ .v20-fc-screen{padding:16px 14px 22px}
+ .v20-fc-intro-icon{width:92px;height:92px}
+ .v20-fc-touch-svg{width:46px;height:46px}
+ .v20-fc-mode{grid-template-columns:70px 1fr 24px;padding:18px 14px}
+ .v20-fc-mode-icon{width:60px;height:60px;border-radius:18px}
+ .v20-fc-mode b{font-size:18px}
+ .v20-fc-mode small{font-size:13px}
+ .v20-fc-mode strong{font-size:38px}
+ .v20-fc-offline{font-size:13px;padding:14px}
+}
+
 </style><link rel="manifest" href="./manifest.webmanifest?v=10">
 <meta name="theme-color" content="#0f1012">
 
@@ -1319,7 +1375,7 @@ body.dark #surpriseDlg .surprise-card{background:#2a2f34!important}
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", async () => {
     try {
-      const reg = await navigator.serviceWorker.register("./sw.js?v=15", { updateViaCache: "none" });
+      const reg = await navigator.serviceWorker.register("./sw.js?v=16", { updateViaCache: "none" });
       await reg.update();
 
       let reloading = false;
@@ -1688,22 +1744,26 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
    <div class="v20-stat gold"><div class="n" id="v20WinRate">—</div><div class="l">Tasa de victorias</div><div class="s" id="v20WinsSub">Sin datos aún</div></div>
   </div>
   <button class="v20-btn v20-widebtn" data-goto="stats">▥ Ver estadísticas</button>
-  <div class="v20-catalog-card">
-    <div class="v20-catalog-eyebrow">📖 Catálogo clásico</div>
-    <div class="v20-catalog-title">Explorá el catálogo de <span>juegos de mesa</span></div>
-    <div class="v20-catalog-copy">Descubrí y buscá todos los juegos de tu colección.</div>
-    <button class="v20-catalog-cta" id="v20CatalogCard">Explorar catálogo&nbsp;&nbsp;›</button>
+
+  <div class="v20-banner">
+   <div class="v20-banner-content">
+    <div class="v20-banner-eyebrow">CATÁLOGO CLÁSICO</div>
+    <div class="v20-banner-title">¿No sabés qué jugar?</div>
+    <div class="v20-banner-copy">Explora un catálogo con grandes clásicos, recomendaciones y novedades.</div>
+   </div>
+   <div class="v20-banner-actions">
+    <button class="v20-btn v20-banner-primary" id="v20What"><span class="v20-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" class="v20-btn-icon-svg"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4.2 4.2"></path></svg></span><span>¿Qué jugamos?</span></button>
+    <button class="v20-btn v20-banner-secondary" id="v20Random"><span class="v20-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" class="v20-btn-icon-svg"><path d="M5 19l7-7"></path><path d="M9.5 4l1.2 2.8L13.5 8l-2.8 1.2L9.5 12 8.3 9.2 5.5 8l2.8-1.2L9.5 4Z"></path><path d="M18 12l.8 1.9L21 14.7l-2.2.9L18 18l-.8-2.4-2.2-.9 2.2-.8L18 12Z"></path></svg></span><span>Sorpréndeme</span></button>
+    <button class="v20-btn v20-banner-tertiary" id="v20FingerChooser"><span class="v20-btn-icon" aria-hidden="true"><svg viewBox="0 0 64 64" class="v20-btn-icon-svg v20-hand-svg"><path d="M24 33V20a3.5 3.5 0 0 1 7 0v8"></path><path d="M31 28V16a3.5 3.5 0 0 1 7 0v14"></path><path d="M38 30V21a3.5 3.5 0 0 1 7 0v12"></path><path d="M45 33v-8a3.5 3.5 0 0 1 7 0v15c0 10-8 18-18 18h-6c-6 0-11-4-13-9l-4-10a4 4 0 0 1 7-3l4 7V33a3.5 3.5 0 0 1 7 0"></path><path d="M31 7c8 0 14 6 14 14"></path><path d="M31 13c4.5 0 8 3.5 8 8"></path></svg></span><span>¿Quién empieza?</span></button>
+   </div>
+   <button class="v20-banner-hidden-link" id="v20CatalogCard" type="button" aria-hidden="true" tabindex="-1"></button>
+   <div class="v20-list" id="v20TopGames" hidden></div>
   </div>
 
   <div class="v20-section">
    <div class="v20-section-head"><h2>Actividad reciente</h2><span class="v20-mini">Últimas 5</span></div>
    <div class="v20-list" id="v20Recent"></div>
   </div>
-  <div class="v20-section">
-   <div class="v20-section-head"><h2>Tus juegos más jugados</h2><span class="v20-mini">Top 5</span></div>
-   <div class="v20-list" id="v20TopGames"></div>
-  </div>
-  <div class="v20-banner"><div class="v20-banner-title">¿No sabés qué jugar?</div><div class="v20-banner-actions"><button class="v20-btn alt" id="v20What">¿Qué jugamos?</button><button class="v20-btn" id="v20Random">🎲 Sorpréndeme</button><button class="v20-btn v20-finger-launch" id="v20FingerChooser">👆 ¿Quién empieza?</button></div></div>
  </section>
 
  <section class="v20-page" data-page="stats">
@@ -1760,7 +1820,7 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
   </svg>
   <span>Juegos</span>
  </button>
- <button class="plus v20-plus-floating" id="v20Plus" aria-label="Registrar partida">＋</button>
+ <button class="plus v20-plus-floating" id="v20Plus" aria-label="Registrar partida"><span class="v20-plus-icon">＋</span><span class="v20-plus-label">Registrar partida</span></button>
  <button data-nav="stats" class="v20-side-tab" aria-label="Estadísticas">
   <svg class="v20-nav-svg" viewBox="0 0 24 24" aria-hidden="true">
    <path d="M5 19V11h3v8H5Zm5.5 0V5h3v14h-3Zm5.5 0V8h3v11h-3Z"/>
@@ -1779,14 +1839,17 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
  </div>
  <div class="v20-fc-body">
   <section class="v20-fc-screen active" id="v20FingerModes">
-   <div class="v20-fc-intro-icon">☝</div>
+   <div class="v20-fc-intro-icon" aria-hidden="true"><svg viewBox="0 0 64 64" class="v20-fc-mode-svg v20-fc-touch-svg"><path d="M24 33V20a3.5 3.5 0 0 1 7 0v8"></path><path d="M31 28V16a3.5 3.5 0 0 1 7 0v14"></path><path d="M38 30V21a3.5 3.5 0 0 1 7 0v12"></path><path d="M45 33v-8a3.5 3.5 0 0 1 7 0v15c0 10-8 18-18 18h-6c-6 0-11-4-13-9l-4-10a4 4 0 0 1 7-3l4 7V33a3.5 3.5 0 0 1 7 0"></path><path d="M31 7c8 0 14 6 14 14"></path><path d="M31 13c4.5 0 8 3.5 8 8"></path></svg></div>
    <h2>Elegí un modo</h2>
    <button class="v20-fc-mode" id="v20ChooseStarter" type="button">
     <span class="v20-fc-mode-icon" aria-hidden="true">
-<svg viewBox="0 0 64 64" class="v20-fc-mode-svg">
-  <circle cx="32" cy="29" r="10" fill="currentColor"/>
-  <path d="M18 51c2-10 8-15 14-15s12 5 14 15H18Z" fill="currentColor"/>
-  <path d="M32 9v7M15 17l5 5M49 17l-5 5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+<svg viewBox="0 0 64 64" class="v20-fc-mode-svg v20-fc-touch-svg">
+  <path d="M24 33V20a3.5 3.5 0 0 1 7 0v8"></path>
+  <path d="M31 28V16a3.5 3.5 0 0 1 7 0v14"></path>
+  <path d="M38 30V21a3.5 3.5 0 0 1 7 0v12"></path>
+  <path d="M45 33v-8a3.5 3.5 0 0 1 7 0v15c0 10-8 18-18 18h-6c-6 0-11-4-13-9l-4-10a4 4 0 0 1 7-3l4 7V33a3.5 3.5 0 0 1 7 0"></path>
+  <path d="M31 7c8 0 14 6 14 14"></path>
+  <path d="M31 13c4.5 0 8 3.5 8 8"></path>
 </svg>
 </span><span><b>Elegir un jugador</b><small>Apoyen varios dedos y la app elegirá uno al azar.</small></span><strong>›</strong>
    </button>
