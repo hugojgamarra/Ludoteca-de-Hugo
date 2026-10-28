@@ -78,7 +78,63 @@ dialog[open]{
 .recoopt{display:flex;gap:9px;align-items:center;margin:12px 2px 4px;color:var(--muted);font-size:14px}
 .recoopt input{width:18px;height:18px}
 .recoscore{display:inline-block;margin-top:5px;font-size:12px;font-weight:800;color:var(--text)}
-</style><link rel="manifest" href="./manifest.webmanifest?v=4">
+
+/* Correcciones incorporadas: banner inicial, botón central y pantalla ¿Quién empieza? */
+.v20-banner{position:relative;overflow:hidden;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:18px;padding:20px;border-radius:24px;border:1px solid #2d6fb4;background:linear-gradient(145deg,#102d4d,#0b1e34);text-align:left;box-shadow:0 14px 34px rgba(0,0,0,.22)}
+.v20-banner::before{content:"";position:absolute;right:0;top:0;bottom:0;width:44%;background:linear-gradient(90deg,rgba(11,30,52,0) 0%,rgba(11,30,52,.15) 18%,rgba(11,30,52,.02) 100%),url("catalogo-estante-dado.jpg") center/cover no-repeat;opacity:.98;pointer-events:none}
+.v20-banner::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,22,38,.93) 0%,rgba(8,22,38,.89) 44%,rgba(8,22,38,.24) 71%,rgba(8,22,38,.08) 100%);pointer-events:none}
+.v20-banner > *{position:relative;z-index:1}
+.v20-banner-content{max-width:62%}
+.v20-banner-eyebrow{font-size:13px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;color:#47b6ff;margin-bottom:8px}
+.v20-banner .v20-banner-title{font-size:28px;font-weight:950;line-height:1.06;margin:0 0 10px}
+.v20-banner-copy{font-size:17px;line-height:1.35;color:#bfd3ea;max-width:430px}
+.v20-banner-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.v20-banner-actions .v20-btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:64px;border-radius:18px;font-size:18px;font-weight:900;padding:12px 16px}
+.v20-banner-primary{background:linear-gradient(180deg,#2f90ff,#2076ea)!important;color:#fff!important;border:1px solid #42abff!important}
+.v20-banner-secondary,.v20-banner-tertiary{background:rgba(8,23,40,.74)!important;color:#eef6ff!important;border:1px solid #2a72b6!important}
+.v20-banner-tertiary{grid-column:1/-1}
+.v20-btn-icon{display:inline-flex;align-items:center;justify-content:center;flex:0 0 auto}
+.v20-btn-icon-svg{width:30px;height:30px;display:block;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
+.v20-hand-svg{width:34px;height:34px;stroke:#35d3ff}
+.v20-banner-hidden-link{display:none}
+.v20-nav-final .v20-plus-floating{display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:104px!important;height:92px!important;min-height:92px!important;margin-top:-34px;border-radius:28px!important;font-size:inherit!important;padding:10px 8px 8px!important}
+.v20-plus-icon{font-size:40px;line-height:1;font-weight:900}
+.v20-plus-label{font-size:11px;line-height:1.05;font-weight:900;display:block;text-align:center}
+.v20-fc-heading{font-size:21px}
+.v20-fc-screen h2{font-size:30px;font-weight:950;margin-top:14px}
+.v20-fc-intro-icon{width:110px;height:110px;border-radius:30px;background:rgba(12,55,98,.6);border:2px solid #1697ff;box-shadow:0 0 36px #1681ff26}
+.v20-fc-touch-svg{width:54px;height:54px;fill:none;stroke:#35d3ff;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.v20-fc-mode{grid-template-columns:86px 1fr 34px;padding:22px 20px;border-radius:24px}
+.v20-fc-mode-icon{width:72px;height:72px;border-radius:20px;background:#0e4a83;color:#58d0ff}
+.v20-fc-mode b{font-size:22px}
+.v20-fc-mode small{font-size:15px;color:#bcd1e8}
+.v20-fc-mode strong{font-size:48px;color:#39d1ff}
+.v20-fc-offline{margin-top:auto;display:flex;align-items:center;justify-content:center;gap:10px;padding:16px 18px;border-radius:18px;font-size:14px;background:rgba(12,35,58,.85);border:1px solid #275781;color:#bcd5ee}
+.v20-fc-offline::before{content:"i";display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:2px solid #58d0ff;color:#58d0ff;font-weight:900;font-family:system-ui,sans-serif}
+@media(max-width:640px){
+ .v20-banner{padding:18px 14px 16px}
+ .v20-banner::before{width:42%}
+ .v20-banner::after{background:linear-gradient(90deg,rgba(8,22,38,.95) 0%,rgba(8,22,38,.92) 46%,rgba(8,22,38,.38) 74%,rgba(8,22,38,.12) 100%)}
+ .v20-banner-content{max-width:100%;padding-right:34%}
+ .v20-banner .v20-banner-title{font-size:24px}
+ .v20-banner-copy{font-size:15px}
+ .v20-banner-actions .v20-btn{font-size:16px;min-height:58px;padding:10px 12px}
+ .v20-nav-final{grid-template-columns:1fr 104px 1fr!important}
+ .v20-nav-final .v20-plus-floating{width:96px!important;height:86px!important;min-height:86px!important;margin-top:-32px;padding-top:8px!important}
+ .v20-plus-icon{font-size:36px}
+ .v20-plus-label{font-size:10px}
+ .v20-fc-screen{padding:16px 14px 22px}
+ .v20-fc-intro-icon{width:92px;height:92px}
+ .v20-fc-touch-svg{width:46px;height:46px}
+ .v20-fc-mode{grid-template-columns:70px 1fr 24px;padding:18px 14px}
+ .v20-fc-mode-icon{width:60px;height:60px;border-radius:18px}
+ .v20-fc-mode b{font-size:18px}
+ .v20-fc-mode small{font-size:13px}
+ .v20-fc-mode strong{font-size:38px}
+ .v20-fc-offline{font-size:13px;padding:14px}
+}
+
+</style><link rel="manifest" href="./manifest.webmanifest?v=10">
 <meta name="theme-color" content="#0f1012">
 
 <style id="expansion-spacing-final">
@@ -382,9 +438,363 @@ body.v20-mode #v8MoreBtn{
 }
 </style>
 
+
+<style id="catalogo-premium-fix">
+.v20-catalog-card{
+  position:relative;overflow:hidden;margin:22px 0;min-height:240px;border-radius:24px;
+  border:1px solid #316fc4;
+  background:radial-gradient(circle at 85% 25%,rgba(87,79,255,.35),transparent 28%),
+             radial-gradient(circle at 72% 80%,rgba(0,145,255,.20),transparent 34%),
+             linear-gradient(135deg,#0b2545 0%,#0b1830 56%,#121a3e 100%);
+  box-shadow:0 14px 34px rgba(0,0,0,.28), inset 0 0 35px rgba(30,127,255,.06);
+  padding:24px;
+}
+.v20-catalog-card::after{content:"";position:absolute;right:0;top:0;bottom:0;width:48%;background:linear-gradient(90deg,rgba(11,37,69,0) 0%,rgba(11,37,69,.18) 16%,rgba(11,37,69,.08) 100%),url("catalogo-estante-dado.jpg") center/cover no-repeat;opacity:.96;pointer-events:none}
+.v20-catalog-eyebrow{display:inline-flex;align-items:center;gap:7px;padding:6px 11px;border-radius:999px;background:linear-gradient(180deg,#6c4b00,#3b2700);border:1px solid #ffbd32;color:#ffe49a;font-size:12px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+.v20-catalog-title{max-width:68%;margin-top:16px;font-size:30px;line-height:1.06;font-weight:950}
+.v20-catalog-title span{color:#ffb51f}
+.v20-catalog-copy{max-width:58%;margin-top:12px;color:#b8c9df;font-size:15px;line-height:1.45}
+.v20-catalog-cta{margin-top:18px;min-width:230px;min-height:52px;padding:0 18px;border:1px solid #5fd4ff;border-radius:999px;background:linear-gradient(180deg,#168cff,#116ee4);color:white;font-weight:900;font-size:17px;box-shadow:0 0 0 3px rgba(22,129,255,.15),0 8px 20px rgba(22,129,255,.28);cursor:pointer}
+.v20-catalog-cta:active{transform:scale(.98)}
+@media(max-width:560px){
+ .v20-catalog-card{min-height:228px;padding:20px}
+ .v20-catalog-title{max-width:72%;font-size:26px}
+ .v20-catalog-copy{max-width:66%;font-size:14px}
+ .v20-catalog-card::after{font-size:74px;right:18px;bottom:18px}
+ .v20-catalog-cta{min-width:210px;font-size:16px}
+}
+.v20-logo-home{width:100%;display:flex;align-items:center;justify-content:center;border:0;background:transparent;padding:0;margin:0;cursor:pointer}
+.v20-logo-home:active{transform:scale(.985)}
+.v20-logo-home:focus-visible{outline:2px solid var(--v20-blue);outline-offset:5px;border-radius:18px}
+</style>
+
+<style id="bottom-nav-final-approved">
+.v20-nav-final{grid-template-columns:1fr 96px 1fr !important;align-items:end;gap:10px !important;padding:10px 14px 12px !important;border-radius:28px !important}
+.v20-nav-final .v20-side-tab{min-height:62px;border-radius:20px !important;font-size:12px !important}
+.v20-nav-final .v20-side-tab.active{background:#10375c !important;color:#30a4ff !important}
+.v20-nav-final .v20-plus-floating{width:82px;height:82px;min-height:82px;justify-self:center;align-self:center;margin-top:-32px;border-radius:50% !important;border:3px solid #60c6ff !important;background:linear-gradient(180deg,#2694ff,#1475eb) !important;color:#fff !important;font-size:40px !important;line-height:1 !important;box-shadow:0 0 0 7px #07111f,0 12px 28px rgba(22,129,255,.38);padding:0 !important}
+.v20-nav-final .v20-plus-floating:active{transform:scale(.96)}
+@media(max-width:520px){
+ .v20-nav-final{grid-template-columns:1fr 84px 1fr !important;gap:7px !important;padding:9px 10px 10px !important}
+ .v20-nav-final .v20-plus-floating{width:74px;height:74px;min-height:74px;margin-top:-29px;font-size:36px !important}
+ .v20-nav-final .v20-side-tab{min-height:58px;font-size:11px !important}
+}
+</style>
+
+
+<style id="catalog-and-nav-icons-approved">
+.v20-catalog-card > *{position:relative;z-index:2}
+.v20-catalog-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(90deg,rgba(7,17,31,.96) 0%,rgba(7,17,31,.90) 42%,rgba(7,17,31,.18) 70%,rgba(7,17,31,.04) 100%);
+}
+.v20-nav-final .v20-side-tab{
+  display:flex!important;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+}
+.v20-nav-svg{
+  width:26px;
+  height:26px;
+  display:block;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.9;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.v20-nav-final .v20-side-tab:last-child .v20-nav-svg{
+  fill:currentColor;
+  stroke:currentColor;
+  stroke-width:1.3;
+}
+.v20-nav-final .v20-side-tab span{
+  display:block;
+  line-height:1.1;
+}
+@media(max-width:560px){
+  .v20-catalog-card::after{width:52%}
+  .v20-catalog-card::before{
+    background:linear-gradient(90deg,rgba(7,17,31,.97) 0%,rgba(7,17,31,.91) 46%,rgba(7,17,31,.28) 70%,rgba(7,17,31,.07) 100%);
+  }
+  .v20-nav-svg{width:24px;height:24px}
+}
+</style>
+
+
+<style id="classic-logo-home-click">
+#classicHome{cursor:pointer}
+</style>
+
+
+<style id="desktop-detail-layout-fix">
+@media (min-width: 861px){
+  dialog#detail{
+    width:min(94vw,1120px)!important;
+    max-width:1120px!important;
+    max-height:92vh!important;
+    overflow:hidden!important;
+  }
+  dialog#detail .approved-detail{
+    display:grid!important;
+    grid-template-columns:minmax(360px,44%) minmax(0,56%)!important;
+    gap:28px!important;
+    align-items:start!important;
+    max-width:100%!important;
+    overflow:hidden!important;
+  }
+  dialog#detail .approved-left,
+  dialog#detail .approved-right{
+    min-width:0!important;
+    max-width:100%!important;
+  }
+  dialog#detail .approved-cover{
+    width:100%!important;
+    max-width:100%!important;
+  }
+  dialog#detail .approved-cover img{
+    width:100%!important;
+    max-width:100%!important;
+    height:auto!important;
+    max-height:520px!important;
+    object-fit:contain!important;
+  }
+  dialog#detail .approved-right{
+    overflow:visible!important;
+  }
+  dialog#detail .approved-metrics{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:12px!important;
+  }
+  dialog#detail .approved-metric{
+    min-width:0!important;
+  }
+  dialog#detail .approved-close{
+    width:auto!important;
+    min-width:150px!important;
+    display:block!important;
+    margin:18px auto 0!important;
+  }
+  dialog#detail .approved-actions{
+    width:100%!important;
+  }
+  dialog#detail .approved-section,
+  dialog#detail .approved-history{
+    width:100%!important;
+    min-width:0!important;
+    overflow-wrap:anywhere!important;
+  }
+}
+@media (max-width: 860px){
+  dialog#detail{
+    width:min(94vw,620px)!important;
+    max-height:92vh!important;
+    overflow:auto!important;
+  }
+  dialog#detail .approved-detail{
+    grid-template-columns:1fr!important;
+  }
+}
+</style>
+
+
+<style id="detail-overflow-safety">
+dialog#detail,
+dialog#detail *{
+  box-sizing:border-box;
+}
+dialog#detail{
+  overflow-x:hidden!important;
+}
+dialog#detail #detailContent{
+  overflow-x:hidden!important;
+  max-width:100%!important;
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style id="v20-sync-css">
+.v20-sync-card{
+  margin-top:22px;padding:18px;border:1px solid #285b89;border-radius:18px;
+  background:linear-gradient(145deg,#0d2238,#0d1929);
+}
+.v20-sync-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.v20-sync-title{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:900}
+.v20-sync-cloud{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:#102f4e;color:#6bc3ff;font-size:21px}
+.v20-sync-status{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:#c7d5e5}
+.v20-sync-dot{width:9px;height:9px;border-radius:50%;background:#77879b;box-shadow:0 0 0 4px rgba(119,135,155,.10)}
+.v20-sync-dot.ok{background:#42d48a;box-shadow:0 0 0 4px rgba(66,212,138,.12)}
+.v20-sync-dot.warn{background:#ffb83d;box-shadow:0 0 0 4px rgba(255,184,61,.12)}
+.v20-sync-dot.err{background:#ff6b6b;box-shadow:0 0 0 4px rgba(255,107,107,.12)}
+.v20-sync-copy{margin:12px 0;color:var(--v20-muted);font-size:13px;line-height:1.45}
+.v20-sync-meta{font-size:12px;color:#9fb3ca;margin-top:8px}
+.v20-sync-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.v20-sync-actions .v20-btn{min-width:145px}
+.v20-sync-login{margin-top:14px;display:grid;grid-template-columns:1fr 1fr auto;gap:9px}
+.v20-sync-login input{width:100%;border:1px solid var(--v20-line);background:#071422;color:#fff;border-radius:12px;padding:11px 12px}
+.v20-sync-login input::placeholder{color:#71859b}
+.v20-sync-msg{margin-top:10px;font-size:12px;color:#b8c9db;min-height:17px}
+.v20-sync-msg.error{color:#ff9b9b}
+.v20-sync-msg.success{color:#77e0a7}
+@media(max-width:680px){
+ .v20-sync-head{align-items:flex-start}
+ .v20-sync-login{grid-template-columns:1fr}
+ .v20-sync-actions{display:grid;grid-template-columns:1fr}
+ .v20-sync-actions .v20-btn{width:100%}
+}
+</style>
+
+
+<style id="v20-finger-chooser-css">
+body.v20-fc-open{overflow:hidden!important;touch-action:none!important}
+.v20-finger-launch{background:linear-gradient(135deg,#1681ff,#0a66df)!important}
+.v20-fc{position:fixed;inset:0;z-index:30000;background:radial-gradient(circle at 50% 0,#0a2947 0,#07182b 35%,#06111f 100%);color:#f7f9ff;display:none;overflow:hidden}
+.v20-fc.open{display:flex;flex-direction:column}
+.v20-fc-top{height:68px;padding:12px 16px;display:grid;grid-template-columns:48px 1fr 48px;align-items:center;border-bottom:1px solid #163653;background:#07182be8;backdrop-filter:blur(12px)}
+.v20-fc-back{width:42px;height:42px;border:0;border-radius:13px;background:#0c2742;color:#cbe6ff;font-size:28px;line-height:1;cursor:pointer}
+.v20-fc-heading{text-align:center;font-size:20px;font-weight:950}.v20-fc-body{flex:1;min-height:0;position:relative}
+.v20-fc-screen{display:none;height:100%;max-width:760px;margin:0 auto;padding:24px 18px 30px}.v20-fc-screen.active{display:flex;flex-direction:column}
+.v20-fc-screen h2{text-align:center;font-size:28px;margin:10px 0 6px}.v20-fc-intro-icon{width:76px;height:76px;border-radius:24px;display:grid;place-items:center;margin:20px auto 8px;background:#0c3762;border:1px solid #1d72b8;font-size:40px;box-shadow:0 0 30px #1681ff33}
+.v20-fc-mode{width:100%;display:grid;grid-template-columns:64px 1fr 28px;align-items:center;gap:14px;margin-top:16px;padding:20px 18px;text-align:left;border:1px solid #236aa6;border-radius:20px;background:linear-gradient(145deg,#0e3152,#0c1e34);color:white;cursor:pointer}
+.v20-fc-mode:hover{border-color:#46b9ff}.v20-fc-mode-icon{width:58px;height:58px;border-radius:18px;background:#0c5da2;display:grid;place-items:center;color:#62caff;font-size:26px;font-weight:950}.v20-fc-mode b{display:block;font-size:20px}.v20-fc-mode small{display:block;color:#b7cae0;line-height:1.4;margin-top:5px;font-size:14px}.v20-fc-mode strong{font-size:38px;color:#83cfff}.v20-fc-offline{margin-top:auto;padding:13px 16px;border:1px solid #244a70;background:#0b2239;border-radius:14px;color:#a9bed5;text-align:center;font-size:13px}
+.v20-fc-sub{text-align:center;color:#a7bdd5;margin-bottom:15px}.v20-fc-team-choice{display:none;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:4px;color:#c2d3e5;font-size:13px}.v20-fc-team-choice.show{display:flex}.v20-fc-team-choice div{display:flex;border:1px solid #24517f;border-radius:12px;overflow:hidden}.v20-fc-team-choice button{border:0;border-right:1px solid #24517f;background:#0d243c;color:#cfe1f5;padding:8px 18px;font-weight:900}.v20-fc-team-choice button:last-child{border-right:0}.v20-fc-team-choice button.active{background:#1681ff;color:white}
+.v20-fc-touch{position:relative;flex:1;min-height:360px;border:1px solid #1a476f;border-radius:24px;background:radial-gradient(circle at 50% 45%,#0c2844,#061322 70%);overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;box-shadow:inset 0 0 70px #0005}
+.v20-fc-finger{position:absolute;width:94px;height:94px;margin:-47px 0 0 -47px;border-radius:50%;border:5px solid var(--fc-color);background:color-mix(in srgb,var(--fc-color) 24%,transparent);box-shadow:0 0 24px var(--fc-color),inset 0 0 22px var(--fc-color);transform:scale(.78);animation:fc-pop .18s ease-out forwards;pointer-events:none}.v20-fc-finger::after{content:'';position:absolute;inset:17px;border-radius:50%;border:2px solid #ffffff66}.v20-fc-finger.dim{opacity:.22;filter:saturate(.45)}.v20-fc-finger.winner{transform:scale(1.18);box-shadow:0 0 42px var(--fc-color),0 0 90px var(--fc-color)}
+@keyframes fc-pop{to{transform:scale(1)}}
+.v20-fc-countdown{position:absolute;inset:0;display:none;place-items:center;font-size:110px;font-weight:950;color:white;text-shadow:0 0 35px #2ca4ff;pointer-events:none;background:#06132222}.v20-fc-countdown.show{display:grid;animation:fc-pulse .55s ease-out}
+@keyframes fc-pulse{0%{transform:scale(.7);opacity:.4}100%{transform:scale(1);opacity:1}}
+.v20-fc-result{position:absolute;left:18px;right:18px;top:18px;z-index:4;text-align:center;pointer-events:none}.v20-fc-result .big{font-size:27px;font-weight:950;text-shadow:0 0 22px #1681ff}.v20-fc-result .team-summary{margin-top:8px;display:flex;justify-content:center;gap:7px;flex-wrap:wrap}.v20-fc-result .team-pill{padding:8px 12px;border-radius:999px;background:#0b2137;border:1px solid var(--team-color);color:white;font-weight:850;font-size:12px}
+.v20-fc-detected{text-align:center;color:#a5bad1;padding:13px 4px 5px;font-size:13px}.v20-fc-result-actions{display:none;grid-template-columns:1fr 1fr;gap:9px;margin-top:10px}.v20-fc-result-actions.show{display:grid}
+.v20-fc-direction-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:42px}.v20-fc-direction-grid button{min-height:190px;border:1px solid #266596;border-radius:22px;background:#0d2844;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font-size:18px;font-weight:900}.v20-fc-direction-grid button span{font-size:78px;color:#39adff}.v20-fc-direction-result{text-align:center;margin-top:28px;font-size:22px;font-weight:950;color:#63c5ff;min-height:34px}
+@media(max-width:600px){.v20-fc-screen{padding:15px 12px 20px}.v20-fc-screen h2{font-size:22px}.v20-fc-mode{grid-template-columns:54px 1fr 20px;padding:16px 13px}.v20-fc-mode-icon{width:50px;height:50px}.v20-fc-mode b{font-size:17px}.v20-fc-touch{min-height:310px}.v20-fc-finger{width:76px;height:76px;margin:-38px 0 0 -38px}.v20-fc-countdown{font-size:88px}.v20-fc-result-actions{grid-template-columns:1fr}.v20-fc-direction-grid button{min-height:150px}.v20-fc-direction-grid button span{font-size:60px}}
+</style>
+
+<style id="mobile-centering-overflow-fix-v15">
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden!important;
+}
+body{
+  position:relative;
+}
+#v20App,
+.v20-shell,
+.v20-page,
+.v20-section,
+.v20-banner,
+.v20-catalog-card,
+.v20-sync-card,
+.v20-list,
+.v20-chart,
+.v20-collection-grid,
+.v20-modal,
+.v20-dialog{
+  max-width:100%;
+  min-width:0;
+}
+.v20-shell{
+  width:100%;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.v20-page{
+  width:100%;
+  margin-left:auto;
+  margin-right:auto;
+}
+.v20-nav-final{
+  max-width:calc(100vw - 20px)!important;
+}
+.v20-fc{
+  width:100%;
+  max-width:100vw;
+  overflow-x:hidden!important;
+}
+.v20-fc-body,
+.v20-fc-screen{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+  margin-left:auto!important;
+  margin-right:auto!important;
+}
+.v20-fc-screen{
+  box-sizing:border-box;
+}
+.v20-fc-mode{
+  width:100%!important;
+  max-width:100%;
+  min-width:0;
+  box-sizing:border-box;
+}
+.v20-fc-mode > span:nth-child(2){
+  min-width:0;
+}
+.v20-fc-mode b,
+.v20-fc-mode small{
+  overflow-wrap:anywhere;
+}
+.v20-fc-touch{
+  width:100%;
+  max-width:100%;
+  min-width:0;
+}
+.v20-fc-mode-icon{
+  overflow:hidden;
+}
+.v20-fc-mode-svg{
+  width:34px;
+  height:34px;
+  display:block;
+  color:#74d1ff;
+  filter:drop-shadow(0 0 8px rgba(44,169,255,.35));
+}
+@media(max-width:600px){
+  .v20-shell{
+    padding-left:12px!important;
+    padding-right:12px!important;
+  }
+  .v20-fc-top{
+    width:100%;
+    max-width:100%;
+    box-sizing:border-box;
+  }
+  .v20-fc-screen{
+    padding-left:12px!important;
+    padding-right:12px!important;
+  }
+  .v20-fc-mode{
+    grid-template-columns:50px minmax(0,1fr) 18px!important;
+    gap:10px!important;
+    padding:15px 12px!important;
+  }
+  .v20-fc-mode-icon{
+    width:48px!important;
+    height:48px!important;
+    border-radius:15px!important;
+  }
+  .v20-fc-mode-svg{
+    width:30px;
+    height:30px;
+  }
+  .v20-fc-mode strong{
+    font-size:32px!important;
+  }
+}
+</style>
+
 </head><body class="dark">
 <header><div class="top"><div class="brand">
-<img class="brand-logo" src="covers/cover-01-e9db0b4d76f1.png" alt="Ludoteca de Hugo">
+<img class="brand-logo" id="classicHome" src="covers/cover-01-e9db0b4d76f1.png" alt="Ludoteca de Hugo" role="button" tabindex="0" aria-label="Volver al inicio">
 
 </div><button class="iconbtn" id="theme">◐</button></div>
 <div class="controls"><input class="search" id="q" placeholder="Buscar juego…"><select id="players"><option value="">Jugadores</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option value="9">8+</option></select></div>
@@ -963,7 +1373,21 @@ body.dark #surpriseDlg .surprise-card{background:#2a2f34!important}
 
 <script id="pwa-service-worker-registration">
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(()=>{}));
+  window.addEventListener("load", async () => {
+    try {
+      const reg = await navigator.serviceWorker.register("./sw.js?v=16", { updateViaCache: "none" });
+      await reg.update();
+
+      let reloading = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (reloading) return;
+        reloading = true;
+        location.reload();
+      });
+    } catch(e) {
+      console.warn("No se pudo actualizar el service worker", e);
+    }
+  });
 }
 </script>
 
@@ -1192,28 +1616,12 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
 }
 </style>
 
-
-<style id="v20-detail-history-unified-css">
-#detailContent .play-counter,
-#detailContent .history-block{
-  display:none !important;
-}
-.approved-history-details{
-  margin-top:8px;
-  color:#9caec4;
-  line-height:1.45;
-}
-.approved-history-players{
-  margin-top:6px;
-  color:#dce7f5;
-  line-height:1.4;
-}
-</style>
-
 <script id="final-approved-detail-v2-js">
 (()=>{
   const FKEY="ludoteca-favorites-v1";
-  const V20KEY="ludoteca-v20-plays";
+  const CKEY="ludoteca-play-count-v1";
+  const PKEY="ludoteca-played-v1";
+  const HKEY="ludoteca-play-history-v1";
 
   const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch(e){return d}};
   const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
@@ -1223,38 +1631,18 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
   const ageIcon=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M8 8h8M8 12h8M8 16h4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>`;
 
   function favs(){ return read(FKEY,[]); }
-  function v20PlaysFor(id){
-    return read(V20KEY,[])
-      .filter(p=>p&&p.gameId===id)
-      .sort((a,b)=>{
-        const da=new Date((a.date||"1970-01-01")+"T12:00:00").getTime();
-        const db=new Date((b.date||"1970-01-01")+"T12:00:00").getTime();
-        const ia=Number(String(a.id||"").replace(/\D/g,""))||0;
-        const ib=Number(String(b.id||"").replace(/\D/g,""))||0;
-        return db-da || ib-ia;
-      });
-  }
-  function totalV20Plays(id){
-    return v20PlaysFor(id).reduce((sum,p)=>sum+(Number(p.qty)||1),0);
-  }
-  function fmtDate(s){
-    if(!s)return "";
-    const d=new Date(s+"T12:00:00");
-    return Number.isNaN(d.getTime())?s:d.toLocaleDateString("es-PY");
-  }
-  function latestPlayersLine(p){
-    const ps=(p?.players||[]).filter(x=>x?.name);
-    if(!ps.length)return "";
-    return ps.map(x=>{
-      const score=(x.score!==null&&x.score!==undefined&&x.score!=="")?` (${x.score} pts)`:"";
-      return `${x.name}${x.winner?" 🏆":""}${score}`;
-    }).join(" · ");
-  }
+  function counts(){ return read(CKEY,{}); }
+  function hist(){ return read(HKEY,{}); }
 
   function toggleFav(id){
     let a=favs();
     a=a.includes(id)?a.filter(x=>x!==id):[...a,id];
     write(FKEY,a);
+  }
+  function addPlay(id){
+    const c=counts(); c[id]=(c[id]||0)+1; write(CKEY,c);
+    const p=read(PKEY,{}); p[id]=Date.now(); write(PKEY,p);
+    const h=hist(); (h[id]||(h[id]=[])).push(Date.now()); write(HKEY,h);
   }
 
   function approvedOpenGame(g){
@@ -1264,15 +1652,9 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
     if(!detail||!c)return;
 
     const isFav=favs().includes(g.id);
-    const gamePlays=v20PlaysFor(g.id);
-    const n=totalV20Plays(g.id);
-    const latest=gamePlays[0]||null;
-    const last=latest?fmtDate(latest.date):null;
-    const latestMeta=latest
-      ? [last, latest.location||null, latest.players?.length?`${latest.players.length} jugador${latest.players.length===1?"":"es"}`:null]
-          .filter(Boolean).join(" · ")
-      : "";
-    const playersLine=latestPlayersLine(latest);
+    const n=counts()[g.id]||0;
+    const hh=hist()[g.id]||[];
+    const last=hh.length?new Date(hh[hh.length-1]).toLocaleDateString("es"):null;
 
     c.innerHTML=`
       <div class="approved-detail">
@@ -1280,7 +1662,7 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
           <div class="approved-cover"><img src="${g.img}" alt="${g.title}"></div>
           <div class="approved-actions">
             <button class="approved-fav" data-approved-fav>${isFav?"♥ En favoritos":"♡ Añadir a favoritos"}</button>
-            <button class="approved-play" data-approved-play>＋ Registrar partida</button>
+            <button class="approved-play" data-approved-play>▶ Jugamos hoy</button>
           </div>
         </section>
         <section class="approved-right">
@@ -1323,10 +1705,7 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
               <div style="font-size:26px">🎮</div>
               <div>
                 <strong>${n} partida${n===1?"":"s"} registrada${n===1?"":"s"}</strong>
-                ${latest
-                  ? `<div class="approved-history-details">Última partida: ${latestMeta}</div>
-                     ${playersLine?`<div class="approved-history-players">${playersLine}</div>`:""}`
-                  : `<div class="approved-history-details">Aún no hay partidas registradas de este juego.</div>`}
+                <div style="color:#9caec4;margin-top:4px">${last?`Última partida: ${last}`:"Aún no hay partidas registradas de este juego."}</div>
               </div>
             </div>
           </div>
@@ -1338,11 +1717,7 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
     c.querySelector(".approved-x")?.addEventListener("click",()=>detail.close());
     c.querySelector(".approved-close")?.addEventListener("click",()=>detail.close());
     c.querySelector("[data-approved-fav]")?.addEventListener("click",()=>{toggleFav(g.id);approvedOpenGame(g)});
-    c.querySelector("[data-approved-play]")?.addEventListener("click",()=>{
-      detail.close();
-      if(typeof window.v20OpenPlay==="function") window.v20OpenPlay(g.id);
-      else document.querySelector("#v20Plus")?.click();
-    });
+    c.querySelector("[data-approved-play]")?.addEventListener("click",()=>{addPlay(g.id);approvedOpenGame(g)});
     if(!detail.open) detail.showModal();
   }
 
@@ -1357,8 +1732,7 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
 const app=document.createElement('div');app.id='v20App';app.innerHTML=`
 <div class="v20-shell">
  <div class="v20-top">
-  <div class="v20-brand v20-brand-logo-only"><img src="logo-ludoteca-hugo-v2.png" alt="Ludoteca de Hugo" class="v20-main-logo"></div>
-  <button class="v20-icon" id="v20Legacy" title="Abrir catálogo clásico">☰</button>
+  <button class="v20-logo-home" id="v20LogoHome" type="button" aria-label="Ir al inicio"><img src="logo-ludoteca-hugo-v2.png" alt="Ludoteca de Hugo" class="v20-main-logo"></button>
  </div>
 
  <section class="v20-page active" data-page="inicio">
@@ -1371,15 +1745,25 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
   </div>
   <button class="v20-btn v20-widebtn" data-goto="stats">▥ Ver estadísticas</button>
 
+  <div class="v20-banner">
+   <div class="v20-banner-content">
+    <div class="v20-banner-eyebrow">CATÁLOGO CLÁSICO</div>
+    <div class="v20-banner-title">¿No sabés qué jugar?</div>
+    <div class="v20-banner-copy">Explora un catálogo con grandes clásicos, recomendaciones y novedades.</div>
+   </div>
+   <div class="v20-banner-actions">
+    <button class="v20-btn v20-banner-primary" id="v20What"><span class="v20-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" class="v20-btn-icon-svg"><circle cx="11" cy="11" r="6.5"></circle><path d="M16 16l4.2 4.2"></path></svg></span><span>¿Qué jugamos?</span></button>
+    <button class="v20-btn v20-banner-secondary" id="v20Random"><span class="v20-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" class="v20-btn-icon-svg"><path d="M5 19l7-7"></path><path d="M9.5 4l1.2 2.8L13.5 8l-2.8 1.2L9.5 12 8.3 9.2 5.5 8l2.8-1.2L9.5 4Z"></path><path d="M18 12l.8 1.9L21 14.7l-2.2.9L18 18l-.8-2.4-2.2-.9 2.2-.8L18 12Z"></path></svg></span><span>Sorpréndeme</span></button>
+    <button class="v20-btn v20-banner-tertiary" id="v20FingerChooser"><span class="v20-btn-icon" aria-hidden="true"><svg viewBox="0 0 64 64" class="v20-btn-icon-svg v20-hand-svg"><path d="M24 33V20a3.5 3.5 0 0 1 7 0v8"></path><path d="M31 28V16a3.5 3.5 0 0 1 7 0v14"></path><path d="M38 30V21a3.5 3.5 0 0 1 7 0v12"></path><path d="M45 33v-8a3.5 3.5 0 0 1 7 0v15c0 10-8 18-18 18h-6c-6 0-11-4-13-9l-4-10a4 4 0 0 1 7-3l4 7V33a3.5 3.5 0 0 1 7 0"></path><path d="M31 7c8 0 14 6 14 14"></path><path d="M31 13c4.5 0 8 3.5 8 8"></path></svg></span><span>¿Quién empieza?</span></button>
+   </div>
+   <button class="v20-banner-hidden-link" id="v20CatalogCard" type="button" aria-hidden="true" tabindex="-1"></button>
+   <div class="v20-list" id="v20TopGames" hidden></div>
+  </div>
+
   <div class="v20-section">
    <div class="v20-section-head"><h2>Actividad reciente</h2><span class="v20-mini">Últimas 5</span></div>
    <div class="v20-list" id="v20Recent"></div>
   </div>
-  <div class="v20-section">
-   <div class="v20-section-head"><h2>Tus juegos más jugados</h2><span class="v20-mini">Top 5</span></div>
-   <div class="v20-list" id="v20TopGames"></div>
-  </div>
-  <div class="v20-banner"><div class="v20-banner-title">¿No sabés qué jugar?</div><div class="v20-banner-actions"><button class="v20-btn alt" id="v20What">¿Qué jugamos?</button><button class="v20-btn" id="v20Random">🎲 Sorpréndeme</button></div></div>
  </section>
 
  <section class="v20-page" data-page="stats">
@@ -1396,6 +1780,24 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
   </div>
   <div class="v20-section"><div class="v20-section-head"><h2>Jugadores habituales</h2><button class="v20-btn alt" id="v20AddPlayer">+ Agregar</button></div><div class="v20-list" id="v20People"></div></div>
   <div class="v20-section"><div class="v20-section-head"><h2>Lugares frecuentes</h2><button class="v20-btn alt" id="v20AddPlace">+ Agregar</button></div><div class="v20-list" id="v20Places"></div></div>
+  <div class="v20-sync-card" id="v20SyncCard">
+   <div class="v20-sync-head">
+    <div class="v20-sync-title"><span class="v20-sync-cloud">☁</span><span>Sincronización</span></div>
+    <div class="v20-sync-status"><span class="v20-sync-dot" id="v20SyncDot"></span><span id="v20SyncState">Sin conectar</span></div>
+   </div>
+   <div class="v20-sync-copy" id="v20SyncCopy">Conectá tu cuenta para ver las mismas partidas en tu celular y en la computadora.</div>
+   <div class="v20-sync-login" id="v20SyncLogin">
+    <input type="email" id="v20SyncEmail" autocomplete="email" placeholder="Correo">
+    <input type="password" id="v20SyncPassword" autocomplete="current-password" placeholder="Contraseña">
+    <button class="v20-btn" id="v20SyncLoginBtn" type="button">Iniciar sesión</button>
+   </div>
+   <div class="v20-sync-actions v20-hidden" id="v20SyncActions">
+    <button class="v20-btn" id="v20SyncNow" type="button">☁ Sincronizar ahora</button>
+    <button class="v20-btn alt" id="v20SyncLogout" type="button">Cerrar sesión</button>
+   </div>
+   <div class="v20-sync-meta v20-hidden" id="v20SyncMeta"></div>
+   <div class="v20-sync-msg" id="v20SyncMsg"></div>
+  </div>
  </section>
 
  <section class="v20-page" data-page="collection">
@@ -1409,13 +1811,92 @@ const app=document.createElement('div');app.id='v20App';app.innerHTML=`
   <div class="v20-collection-grid" id="v20CollectionGrid"></div>
  </section>
 </div>
-<nav class="v20-nav">
- <button class="active" data-nav="inicio">⌂<br>Inicio</button>
- <button data-nav="collection">◈<br>Juegos</button>
- <button class="plus" id="v20Plus">＋</button>
- <button data-nav="stats">▥<br>Estadísticas</button>
- <button data-nav="collection">▦<br>Colección</button>
+<nav class="v20-nav v20-nav-final">
+ <button data-nav="collection" class="v20-side-tab" aria-label="Juegos">
+  <svg class="v20-nav-svg" viewBox="0 0 24 24" aria-hidden="true">
+   <path d="M4 7.5h11.5a2.5 2.5 0 0 1 2.5 2.5v7.5H6.5A2.5 2.5 0 0 1 4 15V7.5Z"/>
+   <path d="M7 4h11.5A2.5 2.5 0 0 1 21 6.5V14h-3V10a2.5 2.5 0 0 0-2.5-2.5H7V4Z"/>
+   <path d="M8 11.5h6M8 14.5h4"/>
+  </svg>
+  <span>Juegos</span>
+ </button>
+ <button class="plus v20-plus-floating" id="v20Plus" aria-label="Registrar partida"><span class="v20-plus-icon">＋</span><span class="v20-plus-label">Registrar partida</span></button>
+ <button data-nav="stats" class="v20-side-tab" aria-label="Estadísticas">
+  <svg class="v20-nav-svg" viewBox="0 0 24 24" aria-hidden="true">
+   <path d="M5 19V11h3v8H5Zm5.5 0V5h3v14h-3Zm5.5 0V8h3v11h-3Z"/>
+   <path d="M4 21h16"/>
+  </svg>
+  <span>Estadísticas</span>
+ </button>
 </nav>
+
+
+<div class="v20-fc" id="v20FingerOverlay" aria-hidden="true">
+ <div class="v20-fc-top">
+  <button class="v20-fc-back" id="v20FingerBack" type="button" aria-label="Volver">←</button>
+  <div class="v20-fc-heading">¿Quién empieza?</div>
+  <div class="v20-fc-spacer"></div>
+ </div>
+ <div class="v20-fc-body">
+  <section class="v20-fc-screen active" id="v20FingerModes">
+   <div class="v20-fc-intro-icon" aria-hidden="true"><svg viewBox="0 0 64 64" class="v20-fc-mode-svg v20-fc-touch-svg"><path d="M24 33V20a3.5 3.5 0 0 1 7 0v8"></path><path d="M31 28V16a3.5 3.5 0 0 1 7 0v14"></path><path d="M38 30V21a3.5 3.5 0 0 1 7 0v12"></path><path d="M45 33v-8a3.5 3.5 0 0 1 7 0v15c0 10-8 18-18 18h-6c-6 0-11-4-13-9l-4-10a4 4 0 0 1 7-3l4 7V33a3.5 3.5 0 0 1 7 0"></path><path d="M31 7c8 0 14 6 14 14"></path><path d="M31 13c4.5 0 8 3.5 8 8"></path></svg></div>
+   <h2>Elegí un modo</h2>
+   <button class="v20-fc-mode" id="v20ChooseStarter" type="button">
+    <span class="v20-fc-mode-icon" aria-hidden="true">
+<svg viewBox="0 0 64 64" class="v20-fc-mode-svg v20-fc-touch-svg">
+  <path d="M24 33V20a3.5 3.5 0 0 1 7 0v8"></path>
+  <path d="M31 28V16a3.5 3.5 0 0 1 7 0v14"></path>
+  <path d="M38 30V21a3.5 3.5 0 0 1 7 0v12"></path>
+  <path d="M45 33v-8a3.5 3.5 0 0 1 7 0v15c0 10-8 18-18 18h-6c-6 0-11-4-13-9l-4-10a4 4 0 0 1 7-3l4 7V33a3.5 3.5 0 0 1 7 0"></path>
+  <path d="M31 7c8 0 14 6 14 14"></path>
+  <path d="M31 13c4.5 0 8 3.5 8 8"></path>
+</svg>
+</span><span><b>Elegir un jugador</b><small>Apoyen varios dedos y la app elegirá uno al azar.</small></span><strong>›</strong>
+   </button>
+   <button class="v20-fc-mode" id="v20ChooseTeams" type="button">
+    <span class="v20-fc-mode-icon" aria-hidden="true">
+<svg viewBox="0 0 64 64" class="v20-fc-mode-svg">
+  <circle cx="32" cy="23" r="9" fill="currentColor"/>
+  <circle cx="15" cy="28" r="7" fill="currentColor" opacity=".92"/>
+  <circle cx="49" cy="28" r="7" fill="currentColor" opacity=".92"/>
+  <path d="M19 51c1-10 6-15 13-15s12 5 13 15H19Z" fill="currentColor"/>
+  <path d="M4 49c1-8 5-12 11-12 4 0 7 2 9 5-2 3-3 6-3 9H4Z" fill="currentColor" opacity=".92"/>
+  <path d="M60 49c-1-8-5-12-11-12-4 0-7 2-9 5 2 3 3 6 3 9h17Z" fill="currentColor" opacity=".92"/>
+</svg>
+</span><span><b>Formar equipos</b><small>Divide a los jugadores al azar en 2, 3 o 4 equipos.</small></span><strong>›</strong>
+   </button>
+   <div class="v20-fc-offline">ⓘ Funciona sin conexión y no guarda ningún dato.</div>
+  </section>
+
+  <section class="v20-fc-screen" id="v20FingerTouchScreen">
+   <div class="v20-fc-team-choice" id="v20FingerTeamChoice">
+    <span>Cantidad de equipos</span>
+    <div><button class="active" data-teams="2">2</button><button data-teams="3">3</button><button data-teams="4">4</button></div>
+   </div>
+   <h2 id="v20FingerInstruction">Apoyen los dedos en la pantalla</h2>
+   <div class="v20-fc-sub" id="v20FingerSub">Mínimo 2 jugadores</div>
+   <div class="v20-fc-touch" id="v20FingerTouchArea">
+    <div class="v20-fc-countdown" id="v20FingerCountdown"></div>
+    <div class="v20-fc-result" id="v20FingerResult"></div>
+   </div>
+   <div class="v20-fc-detected" id="v20FingerDetected">Esperando dedos…</div>
+   <div class="v20-fc-result-actions" id="v20FingerActions">
+    <button class="v20-btn" id="v20FingerAgain" type="button">↻ Volver a sortear</button>
+    <button class="v20-btn alt" id="v20FingerDirection" type="button">↻ Elegir sentido de turno</button>
+   </div>
+  </section>
+
+  <section class="v20-fc-screen" id="v20FingerDirectionScreen">
+   <h2>Sentido de turno</h2>
+   <div class="v20-fc-sub">Elegí el sentido para empezar a jugar</div>
+   <div class="v20-fc-direction-grid">
+    <button type="button" data-dir="Horario"><span>↻</span><b>Horario</b></button>
+    <button type="button" data-dir="Antihorario"><span>↺</span><b>Antihorario</b></button>
+   </div>
+   <div class="v20-fc-direction-result" id="v20FingerDirectionResult"></div>
+  </section>
+ </div>
+</div>
 
 <div class="v20-modal" id="v20PlayModal"><div class="v20-dialog">
  <div class="v20-step" id="v20StepLabel">PASO 1 DE 4</div><h2>Registrar partida</h2><div class="v20-muted" id="v20StepHelp">Seleccioná el juego que jugaste.</div>
@@ -1448,6 +1929,142 @@ const LS_PLAYS='ludoteca-v20-plays', LS_PEOPLE='ludoteca-v20-people', LS_PLACES=
 const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch(e){return d}}
 const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
 let plays=read(LS_PLAYS,[]), people=read(LS_PEOPLE,['Hugo']), places=read(LS_PLACES,['Casa','Amigos','Evento','Viaje','Café / Bar']);
+
+const SUPABASE_URL='https://wfhbdolaljfnwypusfuj.supabase.co';
+const SUPABASE_KEY='sb_publishable_MPlrqYzPqruEfbYundUBuw_lmiBaIWK';
+const cloud=(window.supabase&&window.supabase.createClient)?window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY):null;
+let cloudSession=null,cloudBusy=false;
+
+function isUuid(v){return /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(String(v||''))}
+function ensurePlayIds(){
+ let changed=false;
+ plays=plays.map(p=>{
+   if(isUuid(p.id)) return p;
+   changed=true;
+   return {...p,id:crypto.randomUUID()};
+ });
+ if(changed) write(LS_PLAYS,plays);
+ return changed;
+}
+function cloudSetState(state,label){
+ const dot=document.querySelector('#v20SyncDot'),txt=document.querySelector('#v20SyncState');
+ if(!dot||!txt)return;
+ dot.className='v20-sync-dot'+(state?' '+state:'');
+ txt.textContent=label;
+}
+function cloudMessage(msg,type=''){
+ const el=document.querySelector('#v20SyncMsg');if(!el)return;
+ el.className='v20-sync-msg'+(type?' '+type:'');el.textContent=msg||'';
+}
+function cloudRender(){
+ const login=document.querySelector('#v20SyncLogin'),actions=document.querySelector('#v20SyncActions'),meta=document.querySelector('#v20SyncMeta'),copy=document.querySelector('#v20SyncCopy');
+ if(!login||!actions||!meta||!copy)return;
+ if(cloudSession?.user){
+   login.classList.add('v20-hidden');actions.classList.remove('v20-hidden');meta.classList.remove('v20-hidden');
+   cloudSetState('ok','Conectado');
+   const email=cloudSession.user.email||'Cuenta conectada';
+   copy.textContent='Tus partidas se guardan localmente y también en la nube.';
+   meta.textContent=email+(localStorage.getItem('ludoteca-v20-last-sync')?' · Última sincronización: '+localStorage.getItem('ludoteca-v20-last-sync'):'');
+ }else{
+   login.classList.remove('v20-hidden');actions.classList.add('v20-hidden');meta.classList.add('v20-hidden');
+   cloudSetState('','Sin conectar');
+   copy.textContent='Conectá tu cuenta para ver las mismas partidas en tu celular y en la computadora.';
+ }
+}
+async function cloudLogin(){
+ if(!cloud)return cloudMessage('No se pudo cargar el servicio de sincronización.','error');
+ const email=document.querySelector('#v20SyncEmail').value.trim();
+ const password=document.querySelector('#v20SyncPassword').value;
+ if(!email||!password)return cloudMessage('Ingresá tu correo y contraseña.','error');
+ cloudSetState('warn','Conectando…');cloudMessage('');
+ const {data,error}=await cloud.auth.signInWithPassword({email,password});
+ if(error){cloudSession=null;cloudRender();return cloudMessage('No se pudo iniciar sesión. Revisá el correo y la contraseña.','error')}
+ cloudSession=data.session;cloudRender();cloudMessage('Sesión iniciada. Ahora podés sincronizar.','success');
+ await cloudSync();
+}
+async function cloudLogout(){
+ if(!cloud)return;
+ await cloud.auth.signOut();cloudSession=null;cloudRender();cloudMessage('Sesión cerrada.');
+}
+async function cloudSync(){
+ if(!cloud||!cloudSession?.user||cloudBusy)return;
+ cloudBusy=true;cloudSetState('warn','Sincronizando…');cloudMessage('');
+ try{
+   ensurePlayIds();
+   const uid=cloudSession.user.id;
+   const {data:remotePlays,error:readErr}=await cloud.from('partidas').select('id,game_id,fecha,cantidad,lugar,notas,created_at');
+   if(readErr)throw readErr;
+   const {data:remotePeople,error:peopleErr}=await cloud.from('participantes').select('partida_id,nombre,ganador,puntuacion');
+   if(peopleErr)throw peopleErr;
+   const remoteById=new Map((remotePlays||[]).map(r=>[r.id,r]));
+   const remotePlayers=new Map();
+   (remotePeople||[]).forEach(r=>{
+     if(!remotePlayers.has(r.partida_id))remotePlayers.set(r.partida_id,[]);
+     remotePlayers.get(r.partida_id).push({name:r.nombre,score:r.puntuacion==null?null:String(r.puntuacion),winner:!!r.ganador});
+   });
+
+   // Upload local plays that do not exist in the cloud yet.
+   for(const p of plays){
+     if(remoteById.has(p.id))continue;
+     const {error:insertErr}=await cloud.from('partidas').insert({
+       id:p.id,user_id:uid,game_id:p.gameId,fecha:p.date,cantidad:p.qty||1,lugar:p.location||null,notas:p.notes||null
+     });
+     if(insertErr)throw insertErr;
+     const participants=(p.players||[]).map(x=>({
+       partida_id:p.id,nombre:x.name,ganador:!!x.winner,puntuacion:(x.score===''||x.score==null)?null:Number(x.score)
+     }));
+     if(participants.length){
+       const {error:partErr}=await cloud.from('participantes').insert(participants);
+       if(partErr)throw partErr;
+     }
+   }
+
+   // Re-read cloud after upload and merge cloud-only plays into local storage.
+   const {data:allRemote,error:r2}=await cloud.from('partidas').select('id,game_id,fecha,cantidad,lugar,notas,created_at');
+   if(r2)throw r2;
+   const {data:allParticipants,error:p2}=await cloud.from('participantes').select('partida_id,nombre,ganador,puntuacion');
+   if(p2)throw p2;
+   const allPlayers=new Map();
+   (allParticipants||[]).forEach(r=>{
+     if(!allPlayers.has(r.partida_id))allPlayers.set(r.partida_id,[]);
+     allPlayers.get(r.partida_id).push({name:r.nombre,score:r.puntuacion==null?null:String(r.puntuacion),winner:!!r.ganador});
+   });
+   const localIds=new Set(plays.map(p=>p.id));
+   let added=0;
+   for(const r of (allRemote||[])){
+     if(localIds.has(r.id))continue;
+     plays.push({
+       id:r.id,gameId:r.game_id,date:r.fecha,qty:r.cantidad||1,location:r.lugar||'',players:allPlayers.get(r.id)||[],notes:r.notas||''
+     });
+     localIds.add(r.id);added++;
+   }
+   // Keep players and places useful on every device, deriving them from synchronized plays.
+   plays.forEach(p=>{
+     if(p.location&&!places.includes(p.location))places.push(p.location);
+     (p.players||[]).forEach(x=>{if(x.name&&!people.includes(x.name))people.push(x.name)});
+   });
+   write(LS_PLAYS,plays);write(LS_PEOPLE,people);write(LS_PLACES,places);
+   const stamp=new Date().toLocaleString('es-PY',{dateStyle:'short',timeStyle:'short'});
+   localStorage.setItem('ludoteca-v20-last-sync',stamp);
+   cloudRender();refresh();
+   cloudSetState('ok','Sincronizado');
+   cloudMessage(added?`Sincronización completa. Se descargaron ${added} partida${added===1?'':'s'} de la nube.`:'Todo está sincronizado.','success');
+ }catch(err){
+   console.error('Sync error',err);
+   cloudSetState('err','Error');
+   cloudMessage('No se pudo sincronizar. Revisá tu conexión y volvé a intentar.','error');
+ }finally{
+   cloudBusy=false;
+ }
+}
+async function cloudInit(){
+ if(!cloud){cloudSetState('err','No disponible');return}
+ const {data}=await cloud.auth.getSession();
+ cloudSession=data.session||null;cloudRender();
+ if(cloudSession?.user) await cloudSync();
+ cloud.auth.onAuthStateChange((_event,session)=>{cloudSession=session;cloudRender()});
+}
+
 let selected=null,step=1;
 const EXPANSIONS=new Set(['J027','J028']);
 
@@ -1503,7 +2120,25 @@ function goto(page){
  refresh();
 }
 document.querySelectorAll('[data-nav],[data-goto]').forEach(b=>b.onclick=()=>goto(b.dataset.nav||b.dataset.goto));
-v20Legacy.onclick=()=>{app.classList.remove('active');document.body.classList.remove('v20-mode')};
+function openClassicCatalog(){
+ app.classList.remove('active');
+ document.body.classList.remove('v20-mode');
+ window.scrollTo({top:0,behavior:'instant'});
+}
+function backToV20Home(){
+ document.body.classList.add('v20-mode');
+ app.classList.add('active');
+ goto('inicio');
+ document.querySelectorAll('.v20-nav-final [data-nav]').forEach(x=>x.classList.remove('active'));
+ window.scrollTo({top:0,behavior:'instant'});
+}
+document.querySelector('#v20LogoHome').onclick=backToV20Home;
+document.querySelector('#v20CatalogCard').onclick=openClassicCatalog;
+const classicHome=document.querySelector('#classicHome');
+if(classicHome){
+ classicHome.onclick=backToV20Home;
+ classicHome.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();backToV20Home();}};
+}
 v20Search.oninput=renderCollection;
 document.querySelectorAll('#v20CollectionTabs .v20-pill').forEach(b=>b.onclick=()=>{document.querySelectorAll('#v20CollectionTabs .v20-pill').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderCollection()});
 v20AddPlayer.onclick=()=>{const n=prompt('Nombre del jugador habitual:');if(n&&!people.includes(n)){people.push(n);write(LS_PEOPLE,people);renderPeople()}};
@@ -1514,17 +2149,6 @@ function openPlay(){
  selected=null;step=1;v20PlayModal.classList.add('open');v20Date.value=new Date().toISOString().slice(0,10);
  v20PlayerRows.innerHTML='';v20Notes.value='';v20Qty.value=1;syncLocationOptions();renderPicker();showStep();
 }
-window.v20OpenPlay=(gameId)=>{
- openPlay();
- const g=gameById(gameId);
- if(g){
-   selected=g;
-   step=2;
-   v20SelectedGame.value=g.title;
-   showStep();
- }
-};
-
 function renderPicker(){
  const q=(v20GameSearch.value||'').toLowerCase();const list=games.filter(g=>g.title.toLowerCase().includes(q)).slice(0,12);
  v20GamePicker.innerHTML=list.map(g=>`<button class="v20-row" style="width:100%;background:transparent;color:white;text-align:left;border:0" data-pick="${g.id}"><img class="v20-thumb" src="${g.img}"><div class="v20-row-main"><div class="v20-row-title">${escapeHtml(g.title)}</div><div class="v20-row-meta">${g.players} · ${g.duration}</div></div><div>›</div></button>`).join('');
@@ -1556,27 +2180,66 @@ v20Next.onclick=()=>{
  if(loc&&!places.includes(loc)){places.push(loc);write(LS_PLACES,places)}
  ps.forEach(p=>{if(!people.includes(p.name))people.push(p.name)});
  write(LS_PEOPLE,people);
- const saved={id:'p'+Date.now(),gameId:selected.id,date:v20Date.value,qty:+v20Qty.value||1,location:loc,players:ps,notes:v20Notes.value};
- plays.push(saved);
- write(LS_PLAYS,plays);
-
- // Compatibility sync for classic catalog filters only.
- const oldCounts=read('ludoteca-play-count-v1',{});
- oldCounts[selected.id]=(oldCounts[selected.id]||0)+saved.qty;
- write('ludoteca-play-count-v1',oldCounts);
- const oldPlayed=read('ludoteca-played-v1',{});
- oldPlayed[selected.id]=Date.now();
- write('ludoteca-played-v1',oldPlayed);
-
- window.dispatchEvent(new CustomEvent('ludoteca-v20-updated',{detail:{gameId:selected.id}}));
- v20PlayModal.classList.remove('open');refresh();goto('inicio');
+ plays.push({id:'p'+Date.now(),gameId:selected.id,date:v20Date.value,qty:+v20Qty.value||1,location:loc,players:ps,notes:v20Notes.value});
+ write(LS_PLAYS,plays);v20PlayModal.classList.remove('open');refresh();goto('inicio');
 };
 v20Plus.onclick=openPlay;
 v20What.onclick=()=>{app.classList.remove('active');document.body.classList.remove('v20-mode');setTimeout(()=>document.querySelector('#recommend')?.click(),50)};
 v20Random.onclick=()=>{app.classList.remove('active');document.body.classList.remove('v20-mode');setTimeout(()=>document.querySelector('#surprise')?.click(),50)};
+document.querySelector('#v20SyncLoginBtn').onclick=cloudLogin;
+document.querySelector('#v20SyncNow').onclick=cloudSync;
+document.querySelector('#v20SyncLogout').onclick=cloudLogout;
+document.querySelector('#v20SyncPassword').addEventListener('keydown',e=>{if(e.key==='Enter')cloudLogin()});
+
+
+// ¿Quién empieza? — selector multitáctil local.
+const fcOverlay=document.querySelector('#v20FingerOverlay');
+const fcModes=document.querySelector('#v20FingerModes');
+const fcTouchScreen=document.querySelector('#v20FingerTouchScreen');
+const fcDirectionScreen=document.querySelector('#v20FingerDirectionScreen');
+const fcTouch=document.querySelector('#v20FingerTouchArea');
+const fcCountdown=document.querySelector('#v20FingerCountdown');
+const fcResult=document.querySelector('#v20FingerResult');
+const fcDetected=document.querySelector('#v20FingerDetected');
+const fcActions=document.querySelector('#v20FingerActions');
+const fcTeamChoice=document.querySelector('#v20FingerTeamChoice');
+const fcInstruction=document.querySelector('#v20FingerInstruction');
+const fcSub=document.querySelector('#v20FingerSub');
+const FC_COLORS=['#1ca7ff','#ff8a1f','#35e684','#ff58c9','#a66cff','#ffd328','#ff4f5f','#56e8ea','#7be64b','#ffad5c'];
+const FC_TEAM_COLORS=['#35e684','#ff58c9','#1ca7ff','#ffd328'];
+let fcMode='starter',fcTeamCount=2,fcPointers=new Map(),fcPhase='idle',fcStableTimer=null,fcCountdownTimer=null,fcStableCount=0;
+function fcShow(screen){[fcModes,fcTouchScreen,fcDirectionScreen].forEach(x=>x.classList.toggle('active',x===screen))}
+function fcOpen(){document.body.classList.add('v20-fc-open');fcOverlay.classList.add('open');fcOverlay.setAttribute('aria-hidden','false');fcReset(true);fcShow(fcModes)}
+function fcClose(){fcClearTimers();fcPointers.clear();fcTouch.querySelectorAll('.v20-fc-finger').forEach(x=>x.remove());fcOverlay.classList.remove('open');fcOverlay.setAttribute('aria-hidden','true');document.body.classList.remove('v20-fc-open')}
+function fcClearTimers(){clearTimeout(fcStableTimer);clearInterval(fcCountdownTimer);fcStableTimer=null;fcCountdownTimer=null}
+function fcReset(toModes=false){fcClearTimers();fcPhase='waiting';fcPointers.clear();fcTouch.querySelectorAll('.v20-fc-finger').forEach(x=>x.remove());fcCountdown.classList.remove('show');fcCountdown.textContent='';fcResult.innerHTML='';fcActions.classList.remove('show');fcDetected.textContent='Esperando dedos…';if(toModes)fcTeamChoice.classList.remove('show')}
+function fcBegin(mode){fcMode=mode;fcReset(false);fcShow(fcTouchScreen);fcTeamChoice.classList.toggle('show',mode==='teams');fcInstruction.textContent=mode==='teams'?'Formar equipos':'Apoyen los dedos en la pantalla';fcSub.textContent=mode==='teams'?`Mínimo ${Math.max(2,fcTeamCount)} jugadores`:'Mínimo 2 jugadores'}
+function fcLocalPoint(e){const r=fcTouch.getBoundingClientRect();return{x:Math.max(0,Math.min(r.width,e.clientX-r.left)),y:Math.max(0,Math.min(r.height,e.clientY-r.top))}}
+function fcAddPointer(e){if(fcPhase==='result')return;e.preventDefault();if(fcPhase==='countdown')fcAbortCountdown();const p=fcLocalPoint(e);const idx=fcPointers.size%FC_COLORS.length;const dot=document.createElement('div');dot.className='v20-fc-finger';dot.style.setProperty('--fc-color',FC_COLORS[idx]);dot.style.left=p.x+'px';dot.style.top=p.y+'px';fcTouch.appendChild(dot);fcPointers.set(e.pointerId,{id:e.pointerId,x:p.x,y:p.y,color:FC_COLORS[idx],node:dot});try{fcTouch.setPointerCapture(e.pointerId)}catch(_){}fcChanged()}
+function fcMovePointer(e){const p=fcPointers.get(e.pointerId);if(!p||fcPhase==='result')return;e.preventDefault();const q=fcLocalPoint(e);p.x=q.x;p.y=q.y;p.node.style.left=q.x+'px';p.node.style.top=q.y+'px'}
+function fcRemovePointer(e){if(fcPhase==='result')return;const p=fcPointers.get(e.pointerId);if(!p)return;e.preventDefault();if(fcPhase==='countdown')fcAbortCountdown();p.node.remove();fcPointers.delete(e.pointerId);fcChanged()}
+function fcChanged(){fcClearTimers();const n=fcPointers.size;fcDetected.textContent=n?`${n} jugador${n===1?'':'es'} detectado${n===1?'':'s'}`:'Esperando dedos…';const min=fcMode==='teams'?Math.max(2,fcTeamCount):2;if(n>=min){fcStableCount=n;fcStableTimer=setTimeout(()=>{if(fcPhase==='waiting'&&fcPointers.size===fcStableCount)fcStartCountdown()},850)}}
+function fcAbortCountdown(){fcClearTimers();fcPhase='waiting';fcCountdown.classList.remove('show');fcCountdown.textContent='';fcChanged()}
+function fcStartCountdown(){fcPhase='countdown';let n=3;fcCountdown.textContent=n;fcCountdown.classList.add('show');fcDetected.textContent='¡Listos!';fcCountdownTimer=setInterval(()=>{n--;if(n>0){fcCountdown.textContent=n}else{fcClearTimers();fcCountdown.classList.remove('show');fcCountdown.textContent='';fcFinish()}},850)}
+function fcFinish(){if(fcMode==='teams')fcFinishTeams();else fcFinishStarter()}
+function fcFinishStarter(){const arr=[...fcPointers.values()];if(arr.length<2){fcAbortCountdown();return}const win=arr[Math.floor(Math.random()*arr.length)];arr.forEach(p=>p.node.classList.add(p===win?'winner':'dim'));fcPhase='result';fcResult.innerHTML='<div class="big">🎉 ¡Empieza este jugador!</div>';fcDetected.textContent='Jugador seleccionado';fcActions.classList.add('show');document.querySelector('#v20FingerDirection').style.display='';if(navigator.vibrate)navigator.vibrate([90,50,140])}
+function fcShuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function fcFinishTeams(){const arr=fcShuffle([...fcPointers.values()]);if(arr.length<Math.max(2,fcTeamCount)){fcAbortCountdown();return}const counts=Array(fcTeamCount).fill(0);arr.forEach((p,i)=>{const t=i%fcTeamCount;counts[t]++;p.node.style.setProperty('--fc-color',FC_TEAM_COLORS[t]);p.node.dataset.team=t+1});fcPhase='result';fcResult.innerHTML='<div class="big">Equipos listos</div><div class="team-summary">'+counts.map((n,i)=>`<span class="team-pill" style="--team-color:${FC_TEAM_COLORS[i]}">Equipo ${i+1}: ${n}</span>`).join('')+'</div>';fcDetected.textContent=`${arr.length} jugadores distribuidos al azar`;fcActions.classList.add('show');document.querySelector('#v20FingerDirection').style.display='none';if(navigator.vibrate)navigator.vibrate([80,40,80])}
+function fcAgain(){fcReset(false);fcInstruction.textContent=fcMode==='teams'?'Formar equipos':'Apoyen los dedos en la pantalla';fcDetected.textContent='Esperando dedos…'}
+function fcDirection(){fcReset(false);fcShow(fcDirectionScreen);document.querySelector('#v20FingerDirectionResult').textContent=''}
+fcTouch.addEventListener('pointerdown',fcAddPointer,{passive:false});fcTouch.addEventListener('pointermove',fcMovePointer,{passive:false});fcTouch.addEventListener('pointerup',fcRemovePointer,{passive:false});fcTouch.addEventListener('pointercancel',fcRemovePointer,{passive:false});
+document.querySelector('#v20FingerChooser').onclick=fcOpen;
+document.querySelector('#v20ChooseStarter').onclick=()=>fcBegin('starter');
+document.querySelector('#v20ChooseTeams').onclick=()=>fcBegin('teams');
+document.querySelector('#v20FingerAgain').onclick=fcAgain;
+document.querySelector('#v20FingerDirection').onclick=fcDirection;
+document.querySelectorAll('#v20FingerTeamChoice [data-teams]').forEach(b=>b.onclick=()=>{document.querySelectorAll('#v20FingerTeamChoice [data-teams]').forEach(x=>x.classList.remove('active'));b.classList.add('active');fcTeamCount=+b.dataset.teams;fcSub.textContent=`Mínimo ${Math.max(2,fcTeamCount)} jugadores`;fcAgain()});
+document.querySelectorAll('.v20-fc-direction-grid [data-dir]').forEach(b=>b.onclick=()=>{const result=Math.random()<.5?'Horario':'Antihorario';document.querySelector('#v20FingerDirectionResult').textContent=`Sentido elegido: ${result} ${result==='Horario'?'↻':'↺'}`;if(navigator.vibrate)navigator.vibrate(80)});
+document.querySelector('#v20FingerBack').onclick=()=>{if(fcModes.classList.contains('active'))fcClose();else{fcReset(true);fcShow(fcModes)}};
 
 // Start in V20 home.
 goto('inicio');
+cloudInit();
 })();
 </script>
 
