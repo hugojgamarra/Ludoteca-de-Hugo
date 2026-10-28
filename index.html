@@ -924,7 +924,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  q("#search")?.addEventListener("input",()=>setTimeout(count));qa(".tab").forEach(b=>b.addEventListener("click",()=>setTimeout(count)));
  q("#clearFilters")?.addEventListener("click",()=>{if(q("#search")){q("#search").value="";q("#search").dispatchEvent(new Event("input"))}qa(".tab").find(b=>/todos/i.test(b.textContent))?.click()});
  const ft=qa(".tab").find(b=>b.dataset.style==="Favoritos");ft?.addEventListener("click",()=>setTimeout(()=>{let f=favs();qa(".card").forEach(c=>c.style.display=f.has(c.dataset.id)?"":"none");count()}));
- const detail=q("#detail");if(detail)new MutationObserver(()=>{let c=q("#detailContent");if(!c)return;let g=games.find(x=>(c.textContent||"").includes(x.title));if(!g||c.dataset.v8===g.id)return;c.dataset.v8=g.id;if(ex[g.id])c.querySelector("h1,h2")?.insertAdjacentHTML("afterend",`<div class="expbadge">Expansión de ${ex[g.id]}</div>`);let f=favs(),pl=played();c.insertAdjacentHTML("beforeend",`<div class="detail-actions"><button class="favbtn ${f.has(g.id)?"on":""}" data-fav>${f.has(g.id)?"♥ Favorito":"♡ Añadir a favoritos"}</button><button class="playedbtn" data-play>✓ Jugamos hoy${pl[g.id]?` · ${new Date(pl[g.id]).toLocaleDateString("es")}`:""}</button></div>`);c.querySelector("[data-fav]").onclick=e=>{let s=favs();s.has(g.id)?s.delete(g.id):s.add(g.id);localStorage.setItem(favKey,JSON.stringify([...s]));e.currentTarget.classList.toggle("on",s.has(g.id));e.currentTarget.textContent=s.has(g.id)?"♥ Favorito":"♡ Añadir a favoritos"};c.querySelector("[data-play]").onclick=e=>{let o=played();o[g.id]=Date.now();localStorage.setItem(playKey,JSON.stringify(o));e.currentTarget.textContent="✓ Jugado hoy"}}).observe(detail,{childList:true,subtree:true});
+ const detail=q("#detail");if(detail && !document.getElementById("final-approved-detail-v2-js"))new MutationObserver(()=>{let c=q("#detailContent");if(!c)return;let g=games.find(x=>(c.textContent||"").includes(x.title));if(!g||c.dataset.v8===g.id)return;c.dataset.v8=g.id;if(ex[g.id])c.querySelector("h1,h2")?.insertAdjacentHTML("afterend",`<div class="expbadge">Expansión de ${ex[g.id]}</div>`);let f=favs(),pl=played();c.insertAdjacentHTML("beforeend",`<div class="detail-actions"><button class="favbtn ${f.has(g.id)?"on":""}" data-fav>${f.has(g.id)?"♥ Favorito":"♡ Añadir a favoritos"}</button><button class="playedbtn" data-play>✓ Jugamos hoy${pl[g.id]?` · ${new Date(pl[g.id]).toLocaleDateString("es")}`:""}</button></div>`);c.querySelector("[data-fav]").onclick=e=>{let s=favs();s.has(g.id)?s.delete(g.id):s.add(g.id);localStorage.setItem(favKey,JSON.stringify([...s]));e.currentTarget.classList.toggle("on",s.has(g.id));e.currentTarget.textContent=s.has(g.id)?"♥ Favorito":"♡ Añadir a favoritos"};c.querySelector("[data-play]").onclick=e=>{let o=played();o[g.id]=Date.now();localStorage.setItem(playKey,JSON.stringify(o));e.currentTarget.textContent="✓ Jugado hoy"}}).observe(detail,{childList:true,subtree:true});
  const surprise=q("#surprise");if(surprise)surprise.onclick=()=>{let pool=visibleGames().filter(g=>!ex[g.id]);if(!pool.length)pool=games.filter(g=>!ex[g.id]);let pl=played(),fresh=pool.filter(g=>!pl[g.id]||pl[g.id]<Date.now()-604800000);if(fresh.length)pool=fresh;let dlg=q("#surpriseDlg");if(!dlg){dlg=document.createElement("dialog");dlg.id="surpriseDlg";dlg.innerHTML='<div id="surpriseBody"></div>';document.body.appendChild(dlg);dlg.addEventListener("close",()=>{try{unlockPage()}catch(e){}})}function draw(){let g=pool[Math.floor(Math.random()*pool.length)];dlg.dataset.pick=g.id;q("#surpriseBody").innerHTML=`<h2>🎲 Hoy jugamos…</h2><div class="surprise-card"><img src="${g.img}"><div><h3>${g.title}</h3><div>${g.players} jugadores · ${g.duration}</div></div></div><div class="surprise-actions"><button id="surOther">Otro</button><button id="surView">Ver juego</button></div>`;q("#surOther").onclick=draw;q("#surView").onclick=()=>{dlg.close();setTimeout(()=>openGame(games.find(x=>x.id===dlg.dataset.pick)),0)}}draw();try{lockPage()}catch(e){}dlg.showModal()};
  const labels={Familiar:"Algo tranquilo",Party:"Reírnos",Estrategia:"Pensar un poco",Cooperativo:"Cooperar",Deducción:"Descubrir / deducir",Destreza:"Algo dinámico",Duelo:"Competir",Abstracto:"Pensar / abstracto"};let rx=q("#rx");if(rx)[...rx.options].forEach(o=>{if(labels[o.value])o.textContent=labels[o.value]});
  setTimeout(()=>{badges();count()},100);
@@ -940,6 +940,7 @@ document.addEventListener("DOMContentLoaded",()=>{
  const savePlayed=o=>localStorage.setItem(PLAY_KEY,JSON.stringify(o));
  const detail=document.querySelector("#detail");
  if(!detail)return;
+ if(document.getElementById("final-approved-detail-v2-js")) return;
 
  function gameFromDetail(){
    const c=document.querySelector("#detailContent");
@@ -1616,12 +1617,18 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
 }
 </style>
 
+
+<style id="informational-detail-only">
+#detailContent .detail-actions,
+#detailContent .play-counter,
+#detailContent .history-block{
+  display:none!important;
+}
+</style>
+
 <script id="final-approved-detail-v2-js">
 (()=>{
-  const FKEY="ludoteca-favorites-v1";
-  const CKEY="ludoteca-play-count-v1";
-  const PKEY="ludoteca-played-v1";
-  const HKEY="ludoteca-play-history-v1";
+  const V20KEY="ludoteca-v20-plays";
 
   const read=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||JSON.stringify(d))}catch(e){return d}};
   const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
@@ -1630,19 +1637,22 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
   const clockIcon=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M12 6v6l4 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>`;
   const ageIcon=()=>`<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M8 8h8M8 12h8M8 16h4" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>`;
 
-  function favs(){ return read(FKEY,[]); }
-  function counts(){ return read(CKEY,{}); }
-  function hist(){ return read(HKEY,{}); }
-
-  function toggleFav(id){
-    let a=favs();
-    a=a.includes(id)?a.filter(x=>x!==id):[...a,id];
-    write(FKEY,a);
+  function gamePlays(id){
+    return read(V20KEY,[])
+      .filter(p=>p && p.gameId===id)
+      .sort((a,b)=>{
+        const da=new Date((a.date||"1970-01-01")+"T12:00:00").getTime();
+        const db=new Date((b.date||"1970-01-01")+"T12:00:00").getTime();
+        return db-da;
+      });
   }
-  function addPlay(id){
-    const c=counts(); c[id]=(c[id]||0)+1; write(CKEY,c);
-    const p=read(PKEY,{}); p[id]=Date.now(); write(PKEY,p);
-    const h=hist(); (h[id]||(h[id]=[])).push(Date.now()); write(HKEY,h);
+  function totalPlays(id){
+    return gamePlays(id).reduce((sum,p)=>sum+(Number(p.qty)||1),0);
+  }
+  function fmtDate(s){
+    if(!s)return "";
+    const d=new Date(s+"T12:00:00");
+    return Number.isNaN(d.getTime())?s:d.toLocaleDateString("es-PY");
   }
 
   function approvedOpenGame(g){
@@ -1651,19 +1661,22 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
     const c=document.querySelector("#detailContent");
     if(!detail||!c)return;
 
-    const isFav=favs().includes(g.id);
-    const n=counts()[g.id]||0;
-    const hh=hist()[g.id]||[];
-    const last=hh.length?new Date(hh[hh.length-1]).toLocaleDateString("es"):null;
+    const gp=gamePlays(g.id);
+    const n=totalPlays(g.id);
+    const latest=gp[0]||null;
+    const last=latest?fmtDate(latest.date):null;
+    const latestPlayers=(latest?.players||[]).filter(x=>x?.name);
+    const playerLine=latestPlayers.length
+      ? latestPlayers.map(x=>{
+          const score=(x.score!==null&&x.score!==undefined&&x.score!=="")?` (${x.score} pts)`:"";
+          return `${x.name}${x.winner?" 🏆":""}${score}`;
+        }).join(" · ")
+      : "";
 
     c.innerHTML=`
       <div class="approved-detail">
         <section class="approved-left">
           <div class="approved-cover"><img src="${g.img}" alt="${g.title}"></div>
-          <div class="approved-actions">
-            <button class="approved-fav" data-approved-fav>${isFav?"♥ En favoritos":"♡ Añadir a favoritos"}</button>
-            <button class="approved-play" data-approved-play>▶ Jugamos hoy</button>
-          </div>
         </section>
         <section class="approved-right">
           <div class="approved-head">
@@ -1706,6 +1719,7 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
               <div>
                 <strong>${n} partida${n===1?"":"s"} registrada${n===1?"":"s"}</strong>
                 <div style="color:#9caec4;margin-top:4px">${last?`Última partida: ${last}`:"Aún no hay partidas registradas de este juego."}</div>
+                ${playerLine?`<div style="color:#dce7f5;margin-top:6px;line-height:1.4">${playerLine}</div>`:""}
               </div>
             </div>
           </div>
@@ -1716,8 +1730,6 @@ body.dark #v8MoreBtn,body.dark #v8MoreMenu{background:#0d1929!important;color:#f
 
     c.querySelector(".approved-x")?.addEventListener("click",()=>detail.close());
     c.querySelector(".approved-close")?.addEventListener("click",()=>detail.close());
-    c.querySelector("[data-approved-fav]")?.addEventListener("click",()=>{toggleFav(g.id);approvedOpenGame(g)});
-    c.querySelector("[data-approved-play]")?.addEventListener("click",()=>{addPlay(g.id);approvedOpenGame(g)});
     if(!detail.open) detail.showModal();
   }
 
