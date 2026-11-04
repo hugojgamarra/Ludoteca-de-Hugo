@@ -2139,8 +2139,16 @@ function renderCollection(){
  const q=(v20Search.value||'').toLowerCase(),active=document.querySelector('#v20CollectionTabs .active')?.dataset.filter||'all';
  let arr=games.filter(g=>g.title.toLowerCase().includes(q));
  if(active==='exp')arr=arr.filter(g=>EXPANSIONS.has(g.id));
- v20CollectionGrid.innerHTML=arr.map(g=>`<div class="v20-game"><img src="${g.img}"><div style="flex:1"><div class="name">${escapeHtml(g.title)}</div><div class="meta">${escapeHtml(g.players)} · ${escapeHtml(g.duration)} · ${escapeHtml(g.age)}</div></div></div>`).join('');
+ v20CollectionGrid.innerHTML=arr.map(g=>`<div class="v20-game" data-game-id="${g.id}"><img src="${g.img}"><div style="flex:1"><div class="name">${escapeHtml(g.title)}</div><div class="meta">${escapeHtml(g.players)} · ${escapeHtml(g.duration)} · ${escapeHtml(g.age)}</div></div></div>`).join('');
 }
+
+v20CollectionGrid.addEventListener('click',e=>{
+ const card=e.target.closest('.v20-game');
+ if(!card)return;
+ const g=gameById(card.dataset.gameId);
+ if(g)openGame(g);
+});
+
 function goto(page){
  document.body.classList.add('v20-mode');app.classList.add('active');
  document.querySelectorAll('.v20-page').forEach(x=>x.classList.toggle('active',x.dataset.page===page));
