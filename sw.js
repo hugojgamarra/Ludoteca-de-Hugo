@@ -1,61 +1,58 @@
-const CACHE='ludoteca-hugo-v21-1';
-const ASSETS=['./','./index.html','./manifest.webmanifest','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./logo-ludoteca-hugo.png','./catalogo-estante-dado.jpg',
-  "covers/cover-01-e9db0b4d76f1.png",
-  "covers/J001-wingspan.jpg",
-  "covers/J002-coffee-rush.jpg",
-  "covers/J003-alta-sociedad.jpg",
-  "covers/J004-alebrijes.jpg",
-  "covers/J005-taco-gato-cabra-queso-pizza.jpg",
-  "covers/J006-taco-vuelta-cabra-queso-pizza.jpg",
-  "covers/J007-vintage.jpg",
-  "covers/J008-cereal-killer.png",
-  "covers/J009-timebomb-deluxe.png",
-  "covers/J010-sos-titanic.jpg",
-  "covers/J011-duelo-por-cardia.jpg",
-  "covers/J012-hila-dos.jpg",
-  "covers/J013-bandido.jpg",
-  "covers/J014-barbecubes.jpg",
-  "covers/J015-el-camarero.jpg",
-  "covers/J016-cards-vs-gravity.jpg",
-  "covers/J017-flip-7.jpg",
-  "covers/J018-giant-uno.jpg",
-  "covers/J019-hitster-original.jpg",
-  "covers/J020-yo-soy-tu-peli.jpg",
-  "covers/J021-jardinero.jpg",
-  "covers/J022-scream-the-game.png",
-  "covers/J023-shiki.jpg",
-  "covers/J024-tacta.jpg",
-  "covers/J025-trio.jpg",
-  "covers/J026-virus.jpg",
-  "covers/J027-virus-2-evolution.jpg",
-  "covers/J028-virus-halloween.png",
-  "covers/J029-terapeuta-de-pacotilla.jpg",
-  "covers/J030-hake-pombero.png",
-  "covers/J031-secret-hitler.png",
-  "covers/J032-esquinados.png",
-  "covers/J033-tembleque.png",
-  "covers/J034-uno-paraguay.png",
-  "covers/J035-the-mind.png",
-  "covers/J036-bandida.png",
-  "covers/J037-sushi-express.png",
-  "covers/J038-saboteur.png",
-  "covers/J039-en-palabras-desconectados.png",
-  "covers/J040-flip-7-with-a-vengeance.png",
-  "covers/J041-nembo-tabu.png",
-  "covers/J042-catan-big-box.png",
-  "covers/J043-azul.png",
-  './covers/J044-van-gogh.png',
-  './covers/J045-fuji-flush.png',
-  './covers/J046-quorum.png',
-  './covers/J047-matryoshka.png',
-  './covers/J048-fungi.png',
-  './covers/J049-colorfox.png',
-  './covers/J050-ouch.png',
-  './covers/J051-a-fake-artist-goes-to-new-york.png',
-  './covers/J052-dixit.png'];
-self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)).then(()=>self.skipWaiting())));
-self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
-self.addEventListener('fetch',e=>{
- if(e.request.mode==='navigate'){e.respondWith(fetch(e.request).then(r=>{const c=r.clone();caches.open(CACHE).then(x=>x.put('./index.html',c));return r}).catch(()=>caches.match('./index.html')));return;}
- e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request)));
+const CACHE = 'ludoteca-hugo-v21-core';
+
+const CORE_ASSETS = [
+  './',
+  './index.html',
+  './manifest.webmanifest',
+  './icon-192.png',
+  './icon-512.png',
+  './icon-maskable-512.png',
+  './logo-ludoteca-hugo-v2.png',
+  './catalogo-estante-dado.jpg'
+];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE)
+      .then(cache => cache.addAll(CORE_ASSETS))
+      .then(() => self.skipWaiting())
+  );
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key))))
+      .then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch', event => {
+  const request = event.request;
+
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then(response => {
+          const copy = response.clone();
+          caches.open(CACHE).then(cache => cache.put('./index.html', copy));
+          return response;
+        })
+        .catch(() => caches.match('./index.html'))
+    );
+    return;
+  }
+
+  event.respondWith(
+    caches.match(request).then(cached => {
+      if (cached) return cached;
+
+      return fetch(request).then(response => {
+        if (!response || response.status !== 200 || response.type === 'opaque') return response;
+        const copy = response.clone();
+        caches.open(CACHE).then(cache => cache.put(request, copy));
+        return response;
+      });
+    })
+  );
 });
