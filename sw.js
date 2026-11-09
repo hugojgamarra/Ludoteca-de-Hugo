@@ -1,4 +1,4 @@
-const CACHE = 'ludoteca-hugo-v21-core';
+const CACHE = 'ludoteca-hugo-v22-core';
 
 const CORE_ASSETS = [
   './',
