@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ludoteca-hugo-v23';
+const CACHE_NAME = 'ludoteca-hugo-v22-0';
 const APP_SHELL = [
   './',
   './index.html',
